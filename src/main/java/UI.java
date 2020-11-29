@@ -110,8 +110,6 @@ public class UI extends JPanel{
 
         mainPanel.add(textField);
 
-
-
     }
 
     public JPanel getMainPanel(){
