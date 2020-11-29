@@ -26,6 +26,26 @@ public class UI extends JPanel{
 
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
+        final JLabel label = new JLabel();
+        addClient.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            String result = (String) JOptionPane.showInputDialog(
+                                                    mainPanel,
+                                                    "Input the client's name",
+                                                    "Add Clientr",
+                                                    JOptionPane.PLAIN_MESSAGE,
+                                                    null,
+                                                    null,
+                                                    " "
+                                            );
+                                            if (result != null && result.length() > 0) {
+                                                label.setText("You selected:" + result);
+                                            } else {
+                                                label.setText("None selected");
+                                            }
+                                        }
+                                    });
 
         updateStock = new JButton("Update Stock");
         mainPanel.add(updateStock);
