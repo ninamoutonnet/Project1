@@ -1,13 +1,26 @@
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Main {
-    public static void main(String[] args){
-        System.out.println("Salut");
-        System.out.println("Bonjour");
+
+
+    static GraphicsConfiguration gc;
+    public static void main(String[] args) {
+        JFrame frame = new JFrame(gc);
+        frame.setSize(1000,1000);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        UI dUIc = new UI();
+        frame.add(dUIc.getMainPanel());
+
+        frame.setVisible(true);
     }
+
+    /*
     public void MakeGetRequest() {
         try {
             URL myURL = new URL("http://imperial.ac.uk");
@@ -28,5 +41,5 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Something is wrong with URL");
         }
-    }
+    }*/
 }
