@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 
@@ -71,8 +73,6 @@ public class UI extends JPanel{
         TextField textField = new TextField ();
 
         mainPanel.add(textField);
-
-
 
     }
 
