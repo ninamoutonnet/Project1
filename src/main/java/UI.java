@@ -16,7 +16,8 @@ public class UI extends JPanel{
     public UI(){
 
         mainPanel.setLayout(new GridLayout(2, 4));
-        mainPanel.setBackground(Color.pink);
+        Color mycol = new Color(180, 200, 100); // Color
+        mainPanel.setBackground(mycol);
 
         View_stock = new JButton("View Stock");
         mainPanel.add(View_stock);
