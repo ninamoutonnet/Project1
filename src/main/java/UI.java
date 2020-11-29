@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
+
+
 
 public class UI extends JPanel{
 
@@ -16,24 +16,14 @@ public class UI extends JPanel{
     public UI(){
 
         mainPanel.setLayout(new GridLayout(2, 4));
-        mainPanel.setBackground(Color.pink);
-
+        Color mycol = new Color(180, 200, 100); // Color
+        mainPanel.setBackground(mycol);
 
         View_stock = new JButton("View Stock");
         mainPanel.add(View_stock);
 
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
-
-        //SpringForm
-        String[] labels = {"Name: ", "Fax: ", "Email: ", "Address: "};
-        int numPairs = labels.length;
-        addClient.addActionListener(new ActionListener(){ //code called when button is called
-            @Override
-            public void actionPerformed(ActionEvent e){
-                JOptionPane.showInputDialog("Add new client:");
-            }
-        });
 
         updateStock = new JButton("Update Stock");
         mainPanel.add(updateStock);
@@ -74,6 +64,15 @@ public class UI extends JPanel{
         final JComboBox<String> names = new JComboBox<String>(name);
         names.setVisible(true);
         mainPanel.add(names);
+
+
+        //set the date
+        Label label1 = new Label("Name:");
+        TextField textField = new TextField ();
+
+        mainPanel.add(textField);
+
+
 
     }
 
