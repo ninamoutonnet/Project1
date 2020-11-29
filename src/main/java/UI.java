@@ -27,6 +27,7 @@ public class UI extends JPanel{
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
         final JLabel label = new JLabel();
+        final JLabel label2 = new JLabel();
         addClient.addActionListener(new ActionListener() {
                                         @Override
                                         public void actionPerformed(ActionEvent e) {
@@ -43,6 +44,21 @@ public class UI extends JPanel{
                                                 label.setText("You selected:" + result);
                                             } else {
                                                 label.setText("None selected");
+                                            }
+
+                                            String result2 = (String) JOptionPane.showInputDialog(
+                                                    mainPanel,
+                                                    "Input the client's card number",
+                                                    "Add Clientr",
+                                                    JOptionPane.PLAIN_MESSAGE,
+                                                    null,
+                                                    null,
+                                                    " "
+                                            );
+                                            if (result2 != null && result2.length() > 0) {
+                                                label2.setText("You selected:" + result2);
+                                            } else {
+                                                label2.setText("None selected");
                                             }
                                         }
                                     });
