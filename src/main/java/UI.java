@@ -46,6 +46,7 @@ public class UI extends JPanel{
                                                 label.setText("None selected");
                                             }
 
+                                            //this will pop up after asking for the name
                                             String result2 = (String) JOptionPane.showInputDialog(
                                                     mainPanel,
                                                     "Input the client's card number",
