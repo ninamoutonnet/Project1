@@ -90,6 +90,9 @@ public class UI extends JPanel{
         choices.addElement("4");
         final JComboBox<String> cb = new JComboBox<String>(choices);
         cb.setVisible(true);
+        String varName = (String)cb.getSelectedItem();
+        //problem with this is that the value is the initial one, ie always 1
+        System.out.println("the selected number of medication is: " + varName);
         mainPanel.add(cb);
 
 
@@ -108,7 +111,6 @@ public class UI extends JPanel{
         //set the date
         Label label1 = new Label("Name:");
         TextField textField = new TextField ();
-
         mainPanel.add(textField);
 
     }
