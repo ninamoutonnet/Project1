@@ -15,7 +15,9 @@ public class UI extends JPanel{
     JButton add_remove_med;
 
 
+
     public UI(){
+
 
         mainPanel.setLayout(new GridLayout(2, 4));
         Color mycol = new Color(180, 200, 100); // Color
@@ -24,51 +26,31 @@ public class UI extends JPanel{
         View_stock = new JButton("View Stock");
         mainPanel.add(View_stock);
 
+
+        add_remove_med = new JButton("Add or remove a medicine");
+        mainPanel.add(add_remove_med);
+        add_remove_med.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPaneMultipleInputAddRemove newMed = new JOptionPaneMultipleInputAddRemove();
+            }
+        });
+
+
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
         final JLabel label = new JLabel();
         final JLabel label2 = new JLabel();
         addClient.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            String result = (String) JOptionPane.showInputDialog(
-                                                    mainPanel,
-                                                    "Input the client's name",
-                                                    "Add Clientr",
-                                                    JOptionPane.PLAIN_MESSAGE,
-                                                    null,
-                                                    null,
-                                                    " "
-                                            );
-                                            if (result != null && result.length() > 0) {
-                                                label.setText("You selected:" + result);
-                                            } else {
-                                                label.setText("None selected");
-                                            }
-
-                                            //this will pop up after asking for the name
-                                            String result2 = (String) JOptionPane.showInputDialog(
-                                                    mainPanel,
-                                                    "Input the client's card number",
-                                                    "Add Clientr",
-                                                    JOptionPane.PLAIN_MESSAGE,
-                                                    null,
-                                                    null,
-                                                    " "
-                                            );
-                                            if (result2 != null && result2.length() > 0) {
-                                                label2.setText("You selected:" + result2);
-                                            } else {
-                                                label2.setText("None selected");
-                                            }
-                                        }
-                                    });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPaneAddClient newClient = new JOptionPaneAddClient();
+            }
+        });
 
         updateStock = new JButton("Update Stock");
         mainPanel.add(updateStock);
 
-        add_remove_med = new JButton("Add or remove a medicine");
-        mainPanel.add(add_remove_med);
 
         //use this combo box to see the list of possible medicine to select,
         //ideally it would go through the heroku db and select all the names of the available medicine
@@ -106,6 +88,7 @@ public class UI extends JPanel{
         final JComboBox<String> names = new JComboBox<String>(name);
         names.setVisible(true);
         mainPanel.add(names);
+
 
 
         //set the date

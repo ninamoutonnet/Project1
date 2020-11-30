@@ -14,6 +14,7 @@ public class Main {
         frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+
         UI dUIc = new UI();
         frame.add(dUIc.getMainPanel());
 
