@@ -15,8 +15,21 @@ public class UI extends JPanel{
 
     public UI(){ //constructor
 
-        mainPanel.setLayout(new GridLayout(2, 4));
-        JPanel myPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(4, 4));
+
+        //fill in the top of the grid layout with empty jpanels, will fit the logo in there
+        JPanel border1 = new JPanel();
+        border1.setOpaque(false); // make the panel transparent
+        mainPanel.add(border1);
+        JPanel border2 = new JPanel();
+        border2.setOpaque(false);
+        mainPanel.add(border2);
+        JPanel border3 = new JPanel();
+        border3.setOpaque(false);
+        mainPanel.add(border3);
+        JPanel border4 = new JPanel();
+        border4.setOpaque(false);
+        mainPanel.add(border4);
 
         Vector<String> cat = new Vector<String>();
         cat.addElement("Select a medicine type");
@@ -79,6 +92,8 @@ public class UI extends JPanel{
 
         // stock button
         View_stock = new JButton("View Stock");
+        View_stock.setPreferredSize(new Dimension(100, 200));
+
         mainPanel.add(View_stock);
 
         // med handling button
@@ -110,7 +125,22 @@ public class UI extends JPanel{
         updateStock = new JButton("Update Stock");
         mainPanel.add(updateStock);
 
+        //include bottom panel with nothing!
+        JPanel border5 = new JPanel();
+        border5.setOpaque(false); // make the panel transparent
+        mainPanel.add(border5);
+        JPanel border6 = new JPanel();
+        border6.setOpaque(false);
+        mainPanel.add(border6);
+        JPanel border7 = new JPanel();
+        border7.setOpaque(false);
+        mainPanel.add(border7);
+        JPanel border8 = new JPanel();
+        border8.setOpaque(false);
+        mainPanel.add(border8);
     }
+
+
 
     public JPanel getMainPanel(){
         return mainPanel;

@@ -16,8 +16,8 @@ public class GradientPanel extends JPanel {
         //Color color2 = new Color(97,9,85);
 
         //Pink purple option
-        Color color1 = new Color(172,2,80);
-        Color color2 = new Color(95,5,95);
+        Color color2 = new Color(172,2,80);
+        Color color1 = new Color(95,5,95);
 
         //light blue to blue option
         Color color3 = new Color(102,178,255);
