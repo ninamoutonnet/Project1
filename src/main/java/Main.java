@@ -13,18 +13,23 @@ public class Main {
 
 
     static GraphicsConfiguration gc;
+
     public static void main(String[] args) throws SQLException {
         JFrame frame = new JFrame(gc);
-        frame.setSize(1000,1000);
+        frame.setSize(1000, 1000);
+        frame.setTitle("Over the counter drug management");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 
         UI dUIc = new UI();
         frame.add(dUIc.getMainPanel());
 
+        /*TestSetup stp = new TestSetup();
+        stp.Show();
+        stp.PopulatePanel(); */
+
         frame.setVisible(true);
 
-        String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
+        /*String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
         try {
         // Registers the driver Class.forName("org.postgresql.Driver");
         } catch (Exception e) {
@@ -40,11 +45,10 @@ public class Main {
             s.close();
             conn.close();
         }
-        catch (Exception e){
+        catch (Exception e) {
         }
 
-
-    }
+    } */
 
     /*
     public void MakeGetRequest() {
@@ -68,4 +72,6 @@ public class Main {
             System.out.println("Something is wrong with URL");
         }
     }*/
+    }
+
 }

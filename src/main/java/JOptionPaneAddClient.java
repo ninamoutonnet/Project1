@@ -1,13 +1,15 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class JOptionPaneAddClient {
     public JOptionPaneAddClient() {
-        JTextField name = new JTextField(5);
-        JTextField cardNb = new JTextField(5);
-        JTextField CCV = new JTextField(5);
-        JTextField expDate = new JTextField(5);
+        JTextField name = new JTextField(10);
+        JTextField cardNb = new JTextField(13);
+        JTextField CCV = new JTextField(3);
+        JTextField expDate = new JTextField(6);
 
         JPanel myPanel = new JPanel();
+        myPanel.setLayout(new GridLayout(4, 2));
         myPanel.add(new JLabel("Name:"));
         myPanel.add(name);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
@@ -21,7 +23,7 @@ public class JOptionPaneAddClient {
         myPanel.add(expDate);
 
         int result = JOptionPane.showConfirmDialog(null, myPanel,
-                "Please Enter the clients' details", JOptionPane.OK_CANCEL_OPTION);
+                "Please enter the client's details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             System.out.println("Name: " + name.getText());
             System.out.println("Card Number: " + cardNb.getText());
