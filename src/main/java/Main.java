@@ -29,30 +29,8 @@ public class Main {
         stp.PopulatePanel(); */
 
         frame.setVisible(true);
-
-        /*String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
-        try {
-        // Registers the driver Class.forName("org.postgresql.Driver");
-        } catch (Exception e) {
-        }
-
-        Connection conn= DriverManager.getConnection(dbUrl, "postgres", "jivajiva2");
-
-        try {
-            Statement s=conn.createStatement();
-            String sqlStr = "INSERT INTO clients (familyname,givenname,cardnumber,ccv,expdate) values ('moutonnet','nina','1234','222','01/04/24');";
-            s.execute(sqlStr);
-
-            s.close();
-            conn.close();
-        }
-        catch (Exception e) {
-        }
-
-
     }
 
-    /*
     public void MakeGetRequest() {
         try {
             URL myURL = new URL("http://imperial.ac.uk");
@@ -73,7 +51,6 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Something is wrong with URL");
         }
-    }*/
-}
+    }
 
 }

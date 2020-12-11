@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class UI extends JPanel{
 
-    JPanel mainPanel = new JPanel();
+    GradientPanel mainPanel = new GradientPanel();
     JButton View_stock;
     JButton addClient;
     JButton updateStock;
@@ -16,9 +16,6 @@ public class UI extends JPanel{
     public UI(){ //constructor
 
         mainPanel.setLayout(new GridLayout(2, 4));
-        Color mycol = new Color(180, 200, 100); // Color
-        mainPanel.setBackground(mycol);
-
         JPanel myPanel = new JPanel();
 
         Vector<String> cat = new Vector<String>();
@@ -49,7 +46,6 @@ public class UI extends JPanel{
         mainPanel.add(med);
 
         //set the combo box
-
         Vector<String> choices = new Vector<String>();
         choices.addElement("Select amount");
         choices.addElement("1");
