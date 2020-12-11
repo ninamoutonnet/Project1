@@ -13,7 +13,6 @@ public class UI extends JPanel{
     JButton updateStock;
     JButton add_remove_med;
 
-
     public UI(){ //constructor
 
         mainPanel.setLayout(new GridLayout(2, 4));
@@ -52,7 +51,6 @@ public class UI extends JPanel{
 
         updateStock = new JButton("Update Stock");
         mainPanel.add(updateStock);
-
 
         //use this combo box to see the list of possible medicine to select,
         //ideally it would go through the heroku db and select all the names of the available medicine

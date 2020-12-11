@@ -14,6 +14,7 @@ public class JOptionPaneAddClient {
         JTextField expDate = new JTextField(6);
 
         JPanel myPanel = new JPanel();
+        myPanel.setLayout(new GridLayout (5,2));
         myPanel.add(new JLabel("Family name:"));
         myPanel.add(famname);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
@@ -23,7 +24,7 @@ public class JOptionPaneAddClient {
         myPanel.add(new JLabel("Card Number:"));
         myPanel.add(cardNb);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-        myPanel.add(new JLabel("CCV :"));
+        myPanel.add(new JLabel("CCV:"));
         myPanel.add(CCV);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Exp date:"));
@@ -61,8 +62,7 @@ public class JOptionPaneAddClient {
                 System.out.println("Problem with inserting SQL into the db");
             }
 
-
-            System.out.println("family name: " + famname.getText());
+            System.out.println("Family name: " + famname.getText());
             System.out.println("Given name: " + givname.getText());
             System.out.println("Card Number: " + cardNb.getText());
             System.out.println("CCV: " + CCV.getText());
