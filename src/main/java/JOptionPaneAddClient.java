@@ -22,6 +22,7 @@ public class JOptionPaneAddClient {
         myPanel.add(new JLabel("Exp date:"));
         myPanel.add(expDate);
 
+        // dialog box - for now no icon (Plain message)
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Please enter the client's details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {

@@ -14,16 +14,16 @@ public class RemoveMed {
         name.addElement("Paracetamol");
         name.addElement("Spasphon");
         name.addElement("Doliprane");
-        name.addElement("aspirin");
+        name.addElement("Aspirin");
         final JComboBox<String> names = new JComboBox<String>(name);
         names.setVisible(true);
         JPanel myPanel = new JPanel();
         myPanel.add(names);
 
         int result = JOptionPane.showConfirmDialog(frmOpt, myPanel,
-                "Please Enter the medicine details", JOptionPane.OK_CANCEL_OPTION);
+                "Please Enter the medicine details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
-            System.out.println("Medicine seletcioned: " + names.getSelectedItem().toString());
+            System.out.println(names.getSelectedItem().toString() + " was removed");
         }
         frmOpt.dispose(); //discard of the dummy jframe
     }
