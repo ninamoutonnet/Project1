@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Vector;
 
 
@@ -44,7 +45,11 @@ public class UI extends JPanel{
         addClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPaneAddClient newClient = new JOptionPaneAddClient();
+                try {
+                    JOptionPaneAddClient newClient = new JOptionPaneAddClient();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
 
