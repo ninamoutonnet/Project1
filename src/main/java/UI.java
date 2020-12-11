@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Vector;
 
-
-
 public class UI extends JPanel{
 
     JPanel mainPanel = new JPanel();
@@ -16,18 +14,17 @@ public class UI extends JPanel{
     JButton add_remove_med;
 
 
-
-    public UI(){
-
+    public UI(){ //constructor
 
         mainPanel.setLayout(new GridLayout(2, 4));
         Color mycol = new Color(180, 200, 100); // Color
         mainPanel.setBackground(mycol);
 
+        // stock button
         View_stock = new JButton("View Stock");
         mainPanel.add(View_stock);
 
-
+       // med handling button
         add_remove_med = new JButton("Add or remove a medicine");
         mainPanel.add(add_remove_med);
         add_remove_med.addActionListener(new ActionListener() {
@@ -37,11 +34,11 @@ public class UI extends JPanel{
             }
         });
 
-
+        // add a client
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
-        final JLabel label = new JLabel();
-        final JLabel label2 = new JLabel();
+        final JLabel label = new JLabel(); // do we use this?
+        final JLabel label2 = new JLabel(); // do we use this?
         addClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +79,6 @@ public class UI extends JPanel{
         System.out.println("the selected number of medication is: " + varName);
         mainPanel.add(cb);
 
-
         //set the combo box
         //when using the servlet, we have to go through the db and names
         Vector<String> name = new Vector<String>();
@@ -94,12 +90,10 @@ public class UI extends JPanel{
         names.setVisible(true);
         mainPanel.add(names);
 
-
-
         //set the date
         Label label1 = new Label("Name:");
         TextField textField = new TextField ();
-        mainPanel.add(textField);
+        // mainPanel.add(textField); //not adding it for now
 
     }
 

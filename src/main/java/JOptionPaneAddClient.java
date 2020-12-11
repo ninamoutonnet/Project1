@@ -1,16 +1,17 @@
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JOptionPaneAddClient {
-    public JOptionPaneAddClient() throws SQLException {
-        JTextField famname = new JTextField(5);
-        JTextField givname = new JTextField(5);
-        JTextField cardNb = new JTextField(5);
-        JTextField CCV = new JTextField(5);
-        JTextField expDate = new JTextField(5);
+    public JOptionPaneAddClient() throws SQLException{
+        JTextField famname = new JTextField(10);
+        JTextField givname = new JTextField(10);
+        JTextField cardNb = new JTextField(13);
+        JTextField CCV = new JTextField(3);
+        JTextField expDate = new JTextField(6);
 
         JPanel myPanel = new JPanel();
         myPanel.add(new JLabel("Family name:"));
@@ -28,8 +29,9 @@ public class JOptionPaneAddClient {
         myPanel.add(new JLabel("Exp date:"));
         myPanel.add(expDate);
 
+        // dialog box - for now no icon (Plain message)
         int result = JOptionPane.showConfirmDialog(null, myPanel,
-                "Please Enter the clients' details", JOptionPane.OK_CANCEL_OPTION);
+                "Please enter the client's details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
 
             //COMMUNICATION WITH THE DB ON THE COMPUTER

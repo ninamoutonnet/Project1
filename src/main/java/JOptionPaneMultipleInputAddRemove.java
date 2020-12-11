@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,7 @@ public class JOptionPaneMultipleInputAddRemove {
         JButton remove = new JButton("Remove");
 
         JPanel myPanel = new JPanel();
+        myPanel.setLayout(new GridLayout(3, 2));
         myPanel.add(adding);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(remove);
@@ -29,9 +31,9 @@ public class JOptionPaneMultipleInputAddRemove {
             }
         });
 
-
+        // no icon for now
         int result = JOptionPane.showConfirmDialog(null, myPanel,
-              "Add or Remove a medicine", JOptionPane.OK_CANCEL_OPTION);
+              "Add or Remove a medicine", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }
 }
