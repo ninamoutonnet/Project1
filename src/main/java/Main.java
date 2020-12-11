@@ -4,12 +4,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main {
 
 
     static GraphicsConfiguration gc;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         JFrame frame = new JFrame(gc);
         frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -19,6 +23,27 @@ public class Main {
         frame.add(dUIc.getMainPanel());
 
         frame.setVisible(true);
+
+        String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
+        try {
+        // Registers the driver Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {
+        }
+
+        Connection conn= DriverManager.getConnection(dbUrl, "postgres", "jivajiva2");
+
+        try {
+            Statement s=conn.createStatement();
+            String sqlStr = "INSERT INTO clients (familyname,givenname,cardnumber,ccv,expdate) values ('moutonnet','nina','1234','222','01/04/24');";
+            s.execute(sqlStr);
+
+            s.close();
+            conn.close();
+        }
+        catch (Exception e){
+        }
+
+
     }
 
     /*
