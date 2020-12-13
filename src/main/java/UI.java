@@ -2,6 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.Vector;
 
@@ -47,7 +53,8 @@ public class UI extends JPanel{
         mainPanel.add(categories);
 
         //use this combo box to see the list of possible medicine to select,
-        //ideally it would go through the heroku db and select all the names of the available medicine
+        //ideally it would go through the heroku db and select all the names of the available medicine --> will do that soon
+
         Vector<String> medname = new Vector<String>();
         medname.addElement("Select a medicine brand");
         medname.addElement("paracetamol");
@@ -145,4 +152,43 @@ public class UI extends JPanel{
     public JPanel getMainPanel(){
         return mainPanel;
     }
+
+    /*
+    public static String[] makeGetRequest() {
+        try {
+            String message = "SELECT brand FROM products;";
+            byte[] body = message.getBytes(StandardCharsets.UTF_8);
+
+            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess"); // is the request target?? - probably yes
+            HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "text/html");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length",Integer.toString(body.length));
+            conn.setDoOutput(true);
+
+            try (OutputStream outputStream = conn.getOutputStream()) {
+                outputStream.write(body, 0, body.length);
+            }
+            BufferedReader bufferedReader = new BufferedReader(new
+                    InputStreamReader(conn.getInputStream(), "utf-8"));
+
+            String inputLine;
+            // Read the body of the response
+            while ((inputLine = bufferedReader.readLine()) != null) {
+                // add elements one by one to array of strings
+                System.out.println(inputLine);
+            }
+            bufferedReader.close();
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+
+        String[] stringarray = new String[3];
+
+        return stringarray;
+    }
+     */
 }
+
