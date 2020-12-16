@@ -7,14 +7,17 @@ public class JOptionPaneMultipleInputAddRemove {
 
     //constructor
     public  JOptionPaneMultipleInputAddRemove() {
+
         JButton adding = new JButton("Add");
         JButton remove = new JButton("Remove");
 
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(3, 2));
+        myPanel.setLocation(100,100);
         myPanel.add(adding);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(remove);
+
 
         adding.addActionListener(new ActionListener() {
             @Override

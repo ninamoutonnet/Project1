@@ -79,6 +79,9 @@ public class AddMed {
         int result = JOptionPane.showConfirmDialog(fr, myPanel,
                 "Please Enter the medicine details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
+
+            fr.dispose(); //discard of the dummy jframe
+
             // for now -> print text but later us this loop to get data
           /*  System.out.println("Medicine brand: " + brand.getText());
             System.out.println("Medicine name: " + name.getText());
@@ -90,7 +93,7 @@ public class AddMed {
             System.out.println("Description : " + comboBox.getSelectedItem());
             System.out.println("Category : " + comboBox2.getSelectedItem());*/
 
-            if(comboBox.getSelectedItem()=="OTHER") { //add a new element to the description
+           if(comboBox.getSelectedItem()=="OTHER") { //add a new element to the description
 
                 JFrame addDescription = new JFrame("Add a new description");
                 addDescription.setVisible(true);
@@ -112,8 +115,10 @@ public class AddMed {
 
             }
 
+        }else{
+            fr.dispose(); //discard of the dummy jframe
         }
-        fr.dispose(); //discard of the dummy jframe
+
 
     }
 }

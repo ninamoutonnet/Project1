@@ -24,7 +24,10 @@ public class RemoveMed {
                 "Please Enter the medicine details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             System.out.println(names.getSelectedItem().toString() + " was removed");
+            frmOpt.dispose(); //discard of the dummy jframe
+        }else{
+            frmOpt.dispose(); //discard of the dummy jframe
         }
-        frmOpt.dispose(); //discard of the dummy jframe
+
     }
 }

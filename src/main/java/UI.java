@@ -18,12 +18,15 @@ public class UI extends JPanel{
     JButton addClient;
     JButton updateStock;
     JButton add_remove_med;
+    JButton HandleS;
 
     public UI(){ //constructor
 
         mainPanel.setLayout(new GridLayout(4, 4));
 
+
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
+
         JPanel border1 = new JPanel();
         border1.setOpaque(false); // make the panel transparent
         mainPanel.add(border1);
@@ -33,9 +36,15 @@ public class UI extends JPanel{
         JPanel border3 = new JPanel();
         border3.setOpaque(false);
         mainPanel.add(border3);
-        JPanel border4 = new JPanel();
-        border4.setOpaque(false);
-        mainPanel.add(border4);
+
+        Vector<String> branch = new Vector<String>();
+        branch.addElement("Green Park");
+        branch.addElement("Paddington");
+        branch.addElement("East End");
+        final JComboBox<String> branches = new JComboBox<String>(branch);
+        branches.setVisible(true);
+        mainPanel.add(branches);
+
 
         Vector<String> cat = new Vector<String>();
         cat.addElement("Select a medicine type");
@@ -49,7 +58,7 @@ public class UI extends JPanel{
         categories.setVisible(true);
         String var = (String)categories.getSelectedItem();
         //problem with this is that the value is the initial one, ie always 1
-        System.out.println("the selected type of medication is: " + var);
+       // System.out.println("the selected type of medication is: " + var);
         mainPanel.add(categories);
 
         //use this combo box to see the list of possible medicine to select,
@@ -97,27 +106,21 @@ public class UI extends JPanel{
         // mainPanel.add(textField); //not adding it for now
 
 
-        // stock button
-        View_stock = new JButton("View Stock");
-        View_stock.setPreferredSize(new Dimension(100, 200));
-
-        mainPanel.add(View_stock);
-
-        // med handling button
-        add_remove_med = new JButton("Add or remove a medicine");
-        mainPanel.add(add_remove_med);
-        add_remove_med.addActionListener(new ActionListener() {
+        //Handling the stock
+        HandleS = new JButton("Stock Handling");
+        mainPanel.add(HandleS);
+        HandleS.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPaneMultipleInputAddRemove newMed = new JOptionPaneMultipleInputAddRemove();
+                HandlingStock hs = new HandlingStock();
             }
         });
+
+
 
         // add a client
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
-        final JLabel label = new JLabel(); // do we use this?
-        final JLabel label2 = new JLabel(); // do we use this?
         addClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,13 +132,21 @@ public class UI extends JPanel{
             }
         });
 
-        updateStock = new JButton("Update Stock");
-        mainPanel.add(updateStock);
 
         //include bottom panel with nothing!
         JPanel border5 = new JPanel();
         border5.setOpaque(false); // make the panel transparent
         mainPanel.add(border5);
+
+        //
+        JButton checkout = new JButton("Checkout");
+        Color color6 = new Color(102,204,0);
+        checkout.setBackground(color6);
+        checkout.setOpaque(true);
+        checkout.setBorderPainted(true); // if set to false the whole button gets colored
+        mainPanel.add(checkout);
+
+
         JPanel border6 = new JPanel();
         border6.setOpaque(false);
         mainPanel.add(border6);
