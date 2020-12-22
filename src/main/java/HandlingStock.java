@@ -19,6 +19,9 @@ public class HandlingStock {
         HSpanel.add(View_stock);
         HSpanel.add(Box.createHorizontalStrut(15)); // a spacer
 
+
+
+
         //ADD REMOVE MED
         HSpanel.add(add_remove_med);
         add_remove_med.addActionListener(new ActionListener() {
@@ -30,10 +33,16 @@ public class HandlingStock {
 
         //UPDATE STOCK
         HSpanel.add(updateStock);
+        updateStock.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UpdateStock US = new UpdateStock();
+            }
+        });
 
         //fr.add(HSpanel);
         int result = JOptionPane.showConfirmDialog(null, HSpanel,
-                "Please enter the client's details", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                "Please select the appropriate box", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }
 }

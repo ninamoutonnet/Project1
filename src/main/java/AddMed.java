@@ -1,19 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.JComponent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class AddMed {
 
     public AddMed() {
-        JFrame fr = new JFrame("Add a new medicine");  //dummy JFrame to ensure that the window popping up is on top of anything else
-        fr.setVisible(true);
+        JFrame fr = new JFrame();  //dummy JFrame to ensure that the window popping up is on top of anything else
+        fr.setVisible(false);
         fr.setLocation(100,100);
         fr.setAlwaysOnTop(true);
 
-        JTextField brand = new JTextField(10);
+        JTextField amount = new JTextField(13);
         JTextField name = new JTextField(13);
         JTextField qty = new JTextField(13);
         JTextField sprice = new JTextField(3);
@@ -22,11 +19,11 @@ public class AddMed {
 
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(9, 2));
-        myPanel.add(new JLabel("Medicine Brand:"));
-        myPanel.add(brand);
-        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Medicine Name:"));
         myPanel.add(name);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Medicine amount per box/bottle:"));
+        myPanel.add(amount);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Quantity:"));
         myPanel.add(qty);
@@ -49,6 +46,12 @@ public class AddMed {
 
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Description "));
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        // WE SHOULD BE ABLE TO SELECT THE CHOICE 2 FROM THE DB ONLINE!
+
+        //
         String[] choices2 = {"Relief","OTHER" ,"Tabs","Antiseptic","Hand Sanitizer","Plasters","Liquid","First Defense", "Night Nurse","Max","Standard","Day and Night", "Mucus relief","4 flu","Vaporub","Moisturising cream","Exfoliating cleanser","Skin cream", "Skin relief cream","Face Scrub","Psiorasis cream","Repair and Restore","Eczema cream","Meltlets","Express","Max Strengh","Headache", "Extra", "Triple action", "Original","Soluble","Blackcurrant","Lemon","Chewable","Advance"};
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choices2);
@@ -69,7 +72,6 @@ public class AddMed {
          */
 
 
-
         String[] choices3 = {"Allergy","OTHER" ,"First Aid","Cold and flu","Skincare","Headache and pain relief","Digestion"};
         SortedComboBoxModel<String> model2 = new SortedComboBoxModel<String>(choices3);
         JComboBox<String> comboBox2 = new JComboBox<String>( model2 );
@@ -83,7 +85,7 @@ public class AddMed {
             fr.dispose(); //discard of the dummy jframe
 
             // for now -> print text but later us this loop to get data
-          /*  System.out.println("Medicine brand: " + brand.getText());
+            /*  System.out.println("Medicine brand: " + brand.getText());
             System.out.println("Medicine name: " + name.getText());
             System.out.println("Quantity: " + name.getText());
             System.out.println("Sale price: " + sprice.getText());

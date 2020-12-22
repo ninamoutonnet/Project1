@@ -4,7 +4,7 @@ import java.util.Vector;
 public class RemoveMed {
     public RemoveMed(){
         JFrame frmOpt = new JFrame();  //dummy JFrame to ensure that the window popping up is on top of anything else
-        frmOpt.setVisible(true);
+        frmOpt.setVisible(false);
         frmOpt.setLocation(100, 100);
         frmOpt.setAlwaysOnTop(true);
 
