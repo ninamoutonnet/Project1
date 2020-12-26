@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -28,9 +29,10 @@ public class UpdateStock {
             conn.setRequestProperty("charset", "utf-8");
             conn.setRequestProperty("Content-Length", Integer.toString(body.length));
             conn.setDoOutput(true);
-
-
             // Write the body of the request
+            //try (InputStream is = conn.getInputStream()) {
+              //  is.read(body, 0, body.length);
+           // }
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
@@ -38,7 +40,6 @@ public class UpdateStock {
                 ret = ret + inputLine;
             }
             in.close();
-
         }
         catch(Exception e) {
             System.out.println("Something went wrong");
