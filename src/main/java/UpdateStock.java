@@ -1,9 +1,51 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.Buffer;
+import java.nio.charset.StandardCharsets;
+import java.sql.*;
 
 public class UpdateStock {
+
+    public String GetBrandFromDB() { //returns a String[]
+        String ret = null;
+        try {
+            // This is the SQL query included in the body of the POST request = instructions
+            String message = "SELECT brand FROM products";
+            byte[] body = message.getBytes(StandardCharsets.UTF_8);
+
+            // The URL maps to the servlet (check that this is the correct way to say it)
+            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess");
+            HttpURLConnection conn = null;
+            conn = (HttpURLConnection) myURL.openConnection();
+            // Set up the header
+            conn.setRequestMethod("GET"); // sets the HTTP method
+            conn.setRequestProperty("Accept", "text/html");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length", Integer.toString(body.length));
+            conn.setDoOutput(true);
+
+
+            // Write the body of the request
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println(inputLine);
+                ret = ret + inputLine;
+            }
+            in.close();
+
+        }
+        catch(Exception e) {
+            System.out.println("Something went wrong");
+        }
+        return ret;
+    }
+
 
     //constructor
     public  UpdateStock() {
@@ -14,6 +56,11 @@ public class UpdateStock {
 
         myPanel.add(new JLabel("Medicine Name:"));
         String[] choices = {"Name of medicine"}; //GET FROM DB
+
+
+        String brandNames = GetBrandFromDB();
+        System.out.println(brandNames);
+
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choices);
         JComboBox<String> comboBox = new JComboBox<String>( model );
