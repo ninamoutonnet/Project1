@@ -88,7 +88,7 @@ public class JOptionPaneAddClient {
         }
     }
 
-    // Method making a POST request to the servlet to add a new client to the DB - check that POST is the correct method
+    // Method making a POST request to the servlet to add a new client to the DB - check that POST is the correct method (could be PUT)
     public static void makePostRequest(String FN, String GV, String CN, String Ccv, String ED) {
         try {
             // This is the SQL query included in the body of the POST request = instructions
