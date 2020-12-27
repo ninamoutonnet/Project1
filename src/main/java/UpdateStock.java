@@ -37,7 +37,7 @@ public class UpdateStock {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 System.out.println(inputLine);
-                ret = ret + inputLine;
+                ret = ret + " "  + inputLine;
             }
             in.close();
         }

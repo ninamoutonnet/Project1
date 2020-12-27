@@ -12,12 +12,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JOptionPaneAddClient {
+
+    //check if a string is only digits
+    public static boolean onlyDigits(String str) {
+        // Traverse the string from
+
+        int n =str.length();
+        for (int i = 0; i < n; i++) {
+           //if each char is between 0 and 9 return true
+            if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+                System.out.println("char is : " + str.charAt(i));
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     public JOptionPaneAddClient() throws SQLException {
-        JTextField famname = new JTextField(10);
-        JTextField givname = new JTextField(10);
-        JTextField cardNb = new JTextField(13);
+        JTextField famname = new JTextField(20);
+        JTextField givname = new JTextField(20);
+        JTextField cardNb = new JTextField(16);
         JTextField CCV = new JTextField(3);
-        JTextField expDate = new JTextField(6);
+        JTextField expDate = new JTextField(8);
 
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(5, 2));
@@ -39,7 +58,30 @@ public class JOptionPaneAddClient {
         // dialog box - for now no icon (Plain message)
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Please enter the client's details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        if (result == JOptionPane.OK_OPTION) {
+
+        //check if the text fields are properly populated in order to not push anything to the db that has incorrect data
+        boolean familyName = famname.getText().isEmpty();
+        boolean givenName = givname.getText().isEmpty();
+        boolean cardNumber = cardNb.getText().length()==16 && onlyDigits(cardNb.getText()); //also check its only numbers
+        System.out.println("result is : " + onlyDigits(cardNb.getText()));
+        boolean ccvNumber = CCV.getText().length()==3 && onlyDigits(CCV.getText());
+        //check the date is in the proper format
+        boolean expirationDate = expDate.getText().length()==8 && (expDate.getText().charAt(2)=='/') && (expDate.getText().charAt(5)=='/') ;
+
+        if(result==JOptionPane.OK_OPTION && (familyName==true || givenName==true || cardNumber==false || ccvNumber==false || expirationDate==false)){
+            JPanel error = new JPanel();
+            error.setVisible(true);
+            JLabel errorMsg = new JLabel("Error, please enter valid values for the fields, try again");
+            error.add(errorMsg);
+            // dialog box - for now no icon (Plain message)
+            int result2 = JOptionPane.showConfirmDialog(null, error,
+                    "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        }
+
+
+        //only adds to the db if all the fields are the proper length and not empty.
+        if (result == JOptionPane.OK_OPTION && !(familyName)  && !(givenName) && (cardNumber) && (ccvNumber) && (expirationDate) ) {
             // Get the inputs from the person using the app --> information for one client
             String FN = famname.getText();
             String GN = givname.getText();
