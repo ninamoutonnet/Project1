@@ -9,10 +9,12 @@ import java.net.URL;
 import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UpdateStock {
+    GetDB info = new GetDB();
 
-    public String GetBrandFromDB() { //returns a String[]
+    /* public String GetBrandFromDB() { //returns a String[]
         String ret = null;
         try {
             // This is the SQL query included in the body of the POST request = instructions
@@ -45,8 +47,7 @@ public class UpdateStock {
             System.out.println("Something went wrong");
         }
         return ret;
-    }
-
+    } */
 
     //constructor
     public  UpdateStock() {
@@ -55,13 +56,17 @@ public class UpdateStock {
         myPanel.setLocation(100,100);
         myPanel.setLayout(new GridLayout(8, 2));
 
+        // MED NAME
         myPanel.add(new JLabel("Medicine Name:"));
-        String[] choices = {"Name of medicine"}; //GET FROM DB
-
-
-        String brandNames = GetBrandFromDB();
-        System.out.println(brandNames);
-
+        // need to find better way to do this (arraylist not compatible with la suite)
+        ArrayList<String> str1 = info.getBrand(); //GET FROM DB
+        int size = str1.size();
+        String[] choices = new String[size];
+        for (int i = 0; i < size; i++){
+             choices[i] = str1.get(i);
+        }
+        // String brandNames = GetBrandFromDB();
+        // System.out.println(brandNames);
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choices);
         JComboBox<String> comboBox = new JComboBox<String>( model );
@@ -70,7 +75,12 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Amount per box/bottle:"));
-        String[] choices2 = {"150 ml", "15 caps"}; //GET FROM DB
+        ArrayList<String> str2 = info.getAmount(); //GET FROM DB
+        String[] choices2 = new String[size];
+        for (int i = 0; i < size; i++){
+            choices2[i] = str2.get(i);
+        }
+        //String[] choices2 = {"150 ml", "15 caps"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model2 = new SortedComboBoxModel<String>(choices2);
         JComboBox<String> comboBox2 = new JComboBox<String>( model2 );
@@ -85,7 +95,12 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Sale price :"));
-        String[] choices3 = {"3.6", "1.5"}; //GET FROM DB
+        ArrayList<String> str3 = info.getSPrice(); //GET FROM DB
+        String[] choices3 = new String[size];
+        for (int i = 0; i < size; i++){
+            choices3[i] = str3.get(i);
+        }
+        //String[] choices3 = {"3.6", "1.5"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model3 = new SortedComboBoxModel<String>(choices3);
         JComboBox<String> comboBox3 = new JComboBox<String>( model3 );
@@ -94,7 +109,12 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Purchase price:"));
-        String[] choices4 = {"2.6", "0.5"}; //GET FROM DB
+        ArrayList<String> str4 = info.getPPrice(); //GET FROM DB
+        String[] choices4 = new String[size];
+        for (int i = 0; i < size; i++){
+            choices4[i] = str4.get(i);
+        }
+        //String[] choices4 = {"2.6", "0.5"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model4 = new SortedComboBoxModel<String>(choices4);
         JComboBox<String> comboBox4 = new JComboBox<String>( model4 );
@@ -103,7 +123,12 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Description:"));
-        String[] choices5 = {"lemon", "blackcurrant"}; //GET FROM DB
+        ArrayList<String> str5 = info.getDescription(); //GET FROM DB
+        String[] choices5 = new String[size];
+        for (int i = 0; i < size; i++){
+            choices5[i] = str5.get(i);
+        }
+        //String[] choices5 = {"lemon", "blackcurrant"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model5 = new SortedComboBoxModel<String>(choices5);
         JComboBox<String> comboBox5 = new JComboBox<String>( model5 );
@@ -112,7 +137,12 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Category:"));
-        String[] choices6 = {"Digestion"}; //GET FROM DB
+        ArrayList<String> str6 = info.getCategory(); //GET FROM DB
+        String[] choices6 = new String[size];
+        for (int i = 0; i < size; i++){
+            choices6[i] = str6.get(i);
+        }
+        //String[] choices6 = {"Digestion"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model6 = new SortedComboBoxModel<String>(choices6);
         JComboBox<String> comboBox6 = new JComboBox<String>( model6 );

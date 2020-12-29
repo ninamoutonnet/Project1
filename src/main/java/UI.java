@@ -14,16 +14,17 @@ import java.util.Vector;
 public class UI extends JPanel{
 
     GradientPanel mainPanel = new GradientPanel();
-    JButton View_stock;
+    //JButton View_stock;
     JButton addClient;
-    JButton updateStock;
-    JButton add_remove_med;
+    //JButton updateStock;
+    //JButton add_remove_med;
     JButton HandleS;
 
     public UI(){ //constructor
 
         mainPanel.setLayout(new GridLayout(4, 4));
 
+        GetDB DB = new GetDB();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
 
@@ -38,6 +39,7 @@ public class UI extends JPanel{
         mainPanel.add(border3);
 
         Vector<String> branch = new Vector<String>();
+        // add a condition for the prices if one of these is selected
         branch.addElement("Green Park");
         branch.addElement("Paddington");
         branch.addElement("East End");
@@ -47,13 +49,18 @@ public class UI extends JPanel{
 
 
         Vector<String> cat = new Vector<String>();
-        cat.addElement("Select a medicine type");
-        cat.addElement("Cold and flu");
+        cat.addElement("Select a medicine category");
+        /*cat.addElement("Cold and flu");
         cat.addElement("Skincare");
         cat.addElement("Headaches and pain relief");
         cat.addElement("Digestion");
         cat.addElement("Allergy");
-        cat.addElement("First aid");
+        cat.addElement("First aid");*/
+        // getting info from the DB & storing it into vector
+        int size = DB.getCategory().size();
+        for(int i = 0; i< size; i++){
+            cat.addElement(DB.getCategory().get(i));
+        }
         final JComboBox<String> categories = new JComboBox<String>(cat);
         categories.setVisible(true);
         String var = (String)categories.getSelectedItem();
@@ -66,10 +73,13 @@ public class UI extends JPanel{
 
         Vector<String> medname = new Vector<String>();
         medname.addElement("Select a medicine brand");
-        medname.addElement("paracetamol");
-        medname.addElement("doliprane");
-        medname.addElement("spasphon");
-        medname.addElement("smecta");
+        /*medname.addElement("Vicks Vaporub 100 g");
+        medname.addElement("Vicks First Defence 15 ml");
+        medname.addElement("GSK Night Nurse 160 ml");
+        medname.addElement("Sudafed Day and Night 16 caps");*/
+        for(int i = 0; i< size; i++){
+            medname.addElement(DB.getBrand().get(i));
+        }
         final JComboBox<String> med = new JComboBox<String>(medname);
         med.setVisible(true);
         mainPanel.add(med);
@@ -116,8 +126,6 @@ public class UI extends JPanel{
             }
         });
 
-
-
         // add a client
         addClient = new JButton("Add Client");
         mainPanel.add(addClient);
@@ -145,6 +153,12 @@ public class UI extends JPanel{
         checkout.setOpaque(true);
         checkout.setBorderPainted(true); // if set to false the whole button gets colored
         mainPanel.add(checkout);
+        checkout.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JOptionPane.showMessageDialog(null, "Checkout successful", " " , JOptionPane.PLAIN_MESSAGE);
+        }
+        });
 
 
         JPanel border6 = new JPanel();

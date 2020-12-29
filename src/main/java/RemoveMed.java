@@ -1,7 +1,11 @@
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class RemoveMed {
+
+    GetDB info = new GetDB();
+
     public RemoveMed(){
         JFrame frmOpt = new JFrame();  //dummy JFrame to ensure that the window popping up is on top of anything else
         frmOpt.setVisible(false);
@@ -10,11 +14,17 @@ public class RemoveMed {
 
         //set the combo box
         //when using the servlet, we have to go through the db and names
-        Vector<String> name = new Vector<String>();
+        /*Vector<String> name = new Vector<String>();
         name.addElement("Paracetamol");
         name.addElement("Spasphon");
         name.addElement("Doliprane");
-        name.addElement("Aspirin");
+        name.addElement("Aspirin"); */
+        Vector<String> name = new Vector<>();
+        int size = info.getBrand().size();
+        //System.out.println(size);
+        for (int i = 0; i < size; i++){
+            name.addElement(info.getBrand().get(i));
+        }
         final JComboBox<String> names = new JComboBox<String>(name);
         names.setVisible(true);
         JPanel myPanel = new JPanel();

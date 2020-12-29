@@ -18,9 +18,15 @@ public class HandlingStock {
         // add VIEW STOCK
         HSpanel.add(View_stock);
         HSpanel.add(Box.createHorizontalStrut(15)); // a spacer
-
-
-
+        // to update the stock correctly each time -> need info about medicine:
+        // original quantity when medicine is added
+        // each time there is a purchase -> call a function that returns what & how many have been bought
+       View_stock.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            ViewStock VS = new ViewStock();
+            }
+        });
 
         //ADD REMOVE MED
         HSpanel.add(add_remove_med);
@@ -45,6 +51,8 @@ public class HandlingStock {
                 "Please select the appropriate box", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }
+
+
 }
 
 

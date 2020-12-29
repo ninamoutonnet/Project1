@@ -30,7 +30,6 @@ public class JOptionPaneAddClient {
         return true;
     }
 
-
     public JOptionPaneAddClient() throws SQLException {
         JTextField famname = new JTextField(20);
         JTextField givname = new JTextField(20);
@@ -78,7 +77,6 @@ public class JOptionPaneAddClient {
                     "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         }
-
 
         //only adds to the db if all the fields are the proper length and not empty.
         if (result == JOptionPane.OK_OPTION && !(familyName)  && !(givenName) && (cardNumber) && (ccvNumber) && (expirationDate) ) {

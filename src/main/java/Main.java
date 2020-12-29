@@ -20,13 +20,8 @@ public class Main {
         frame.setTitle("Over the counter drug management");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-
         UI dUIc = new UI();
         frame.add(dUIc.getMainPanel());
-
-        /*TestSetup stp = new TestSetup();
-        stp.Show();
-        stp.PopulatePanel(); */
 
         frame.setVisible(true);
     }
