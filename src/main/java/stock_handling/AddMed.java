@@ -1,3 +1,7 @@
+package stock_handling;
+
+import GUI.SortedComboBoxModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -71,7 +75,7 @@ public class AddMed {
         //
         String[] choices2 = {"Relief","OTHER","Tabs","Antiseptic","Hand Sanitizer","Plasters","Liquid","First Defense","Night Nurse","Max","Standard","Day and Night","Mucus relief","4 flu","Vaporub","Moisturising cream","Exfoliating cleanser","Skin cream","Skin relief cream","Face Scrub","Psiorasis cream","Repair and Restore","Eczema cream","Meltlets","Express","Max Strengh","Headache","Extra","Triple action","Original","Soluble","Blackcurrant","Lemon","Chewable","Advance"};
         //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choices2);
+        GUI.SortedComboBoxModel<String> model = new GUI.SortedComboBoxModel<String>(choices2);
         JComboBox<String> comboBox = new JComboBox<String>( model );
         comboBox.setVisible(true);
         myPanel.add(comboBox);

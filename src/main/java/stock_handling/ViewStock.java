@@ -1,4 +1,8 @@
+package stock_handling;
+
 import java.util.ArrayList;
+import db_handling.GetDB;
+
 
 public class ViewStock {
 

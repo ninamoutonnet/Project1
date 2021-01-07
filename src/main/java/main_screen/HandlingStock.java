@@ -1,3 +1,9 @@
+package main_screen;
+
+import stock_handling.JOptionPaneMultipleInputAddRemove;
+import stock_handling.UpdateStock;
+import stock_handling.ViewStock;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,3 +1,5 @@
+package main_screen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -89,41 +91,6 @@ public class JOptionPaneAddClient {
 
             // Include this new client in the DB on Heroku (see ProjectServlet for more details)
             makePostRequest(FN, GN, CN, Ccv, ED); // make sure that the client is not added if he/she is already in the DB - need to find a solution for that
-
-            /*
-            //COMMUNICATION WITH THE DB ON THE COMPUTER
-            String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
-            try {
-                // Registers the driver Class.forName("org.postgresql.Driver");
-            } catch (Exception e) {
-            }
-
-            Connection conn= DriverManager.getConnection(dbUrl, "postgres", "jivajiva2");
-
-            try {
-                Statement s=conn.createStatement();
-                String FN = famname.getText();
-                String GN = givname.getText();
-                String CN = cardNb.getText();
-                String Ccv = CCV.getText();
-                String ED = expDate.getText();
-
-                String sqlStr = "INSERT INTO clients (familyname,givenname,cardnumber,ccv,expdate) values( '"+famname.getText()+"','"+givname.getText()+"','"+cardNb.getText()+"','"+CCV.getText()+"','"+expDate.getText()+"');";
-                s.execute(sqlStr);
-
-                s.close();
-                conn.close();
-            }
-            catch (Exception e){
-                System.out.println("Problem with inserting SQL into the db");
-            }
-
-            System.out.println("Family name: " + famname.getText());
-            System.out.println("Given name: " + givname.getText());
-            System.out.println("Card Number: " + cardNb.getText());
-            System.out.println("CCV: " + CCV.getText());
-            System.out.println("Exp date: " + expDate.getText());
-        } */
 
         }
     }

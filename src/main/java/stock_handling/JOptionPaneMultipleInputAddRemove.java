@@ -1,3 +1,8 @@
+package stock_handling;
+
+import stock_handling.AddMed;
+import stock_handling.RemoveMed;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,5 +1,8 @@
+package stock_handling;
+
+import db_handling.GetDB;
+
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class RemoveMed {

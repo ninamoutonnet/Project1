@@ -1,9 +1,11 @@
+package GUI;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
-class SortedComboBoxModel<E> extends DefaultComboBoxModel<E> {
+public class SortedComboBoxModel<E> extends DefaultComboBoxModel<E> {
     private Comparator comparator;
      // Create an empty model that will use the natural sort order of the item
     public SortedComboBoxModel() {

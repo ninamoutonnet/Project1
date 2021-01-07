@@ -1,14 +1,10 @@
+package stock_handling;
+
+import db_handling.GetDB;
+import GUI.SortedComboBoxModel;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.Buffer;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
 import java.util.ArrayList;
 
 public class UpdateStock {

@@ -1,13 +1,14 @@
+package main_screen;
+
+import GUI.GradientPanel;
+import db_handling.GetDB;
+import main_screen.HandlingStock;
+import main_screen.JOptionPaneAddClient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.Vector;
 
@@ -117,7 +118,7 @@ public class UI extends JPanel{
 
 
         //Handling the stock
-        HandleS = new JButton("Stock Handling");
+        HandleS = new JButton("stock_handling");
         mainPanel.add(HandleS);
         HandleS.addActionListener(new ActionListener() {
             @Override
