@@ -1,14 +1,14 @@
 package stock_handling;
 
 import java.util.ArrayList;
-import db_handling.GetDB;
+import db_handling.GetDB_medicine;
 
 
 public class ViewStock {
 
     public ViewStock() {
 
-        GetDB info = new GetDB();
+        GetDB_medicine info = new GetDB_medicine();
 
         ArrayList<Double> percentage = new ArrayList<>(); // to stock the percentages for each med
 

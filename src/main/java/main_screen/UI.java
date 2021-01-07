@@ -1,9 +1,7 @@
 package main_screen;
 
 import GUI.GradientPanel;
-import db_handling.GetDB;
-import main_screen.HandlingStock;
-import main_screen.JOptionPaneAddClient;
+import db_handling.GetDB_medicine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +23,7 @@ public class UI extends JPanel{
 
         mainPanel.setLayout(new GridLayout(4, 4));
 
-        GetDB DB = new GetDB();
+        GetDB_medicine DB = new GetDB_medicine();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 // store the info into arrays
 // make functions that return the arrays of info when called in other classes
 
-public class GetDB {
+public class GetDB_medicine {
     //ArrayList of ArrayList that stores all info from the DB
     ArrayList<ArrayList> AllProducts = new ArrayList<ArrayList>();
     String jsonS = "";
@@ -30,7 +30,7 @@ public class GetDB {
     ArrayList<String> CurrentStock = new ArrayList<>();
 
 
-    public GetDB() {
+    public GetDB_medicine() {
         try {
             URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess");
             HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
@@ -76,7 +76,7 @@ public class GetDB {
             //System.out.println(product);
         }
 
-       /* System.out.println(Brand);
+        /*System.out.println(Brand);
         System.out.println(Amount);
         System.out.println(SPrice);
         System.out.println(PPrice);
@@ -85,7 +85,7 @@ public class GetDB {
         System.out.println(Description);
         System.out.println(Category);
         System.out.println(ID);
-        System.out.println(CurrentStock); */
+        System.out.println(CurrentStock);*/
 
 
     }

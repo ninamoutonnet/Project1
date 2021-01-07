@@ -1,13 +1,13 @@
 package stock_handling;
 
-import db_handling.GetDB;
+import db_handling.GetDB_medicine;
 
 import javax.swing.*;
 import java.util.Vector;
 
 public class RemoveMed {
 
-    GetDB info = new GetDB();
+    GetDB_medicine info = new GetDB_medicine();
 
     public RemoveMed(){
         JFrame frmOpt = new JFrame();  //dummy JFrame to ensure that the window popping up is on top of anything else
