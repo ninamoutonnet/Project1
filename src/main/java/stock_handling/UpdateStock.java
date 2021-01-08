@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.channels.ScatteringByteChannel;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -30,58 +31,30 @@ public class UpdateStock {
         myPanel.setLocation(200,100);
         myPanel.setLayout(new GridLayout(8, 2));
 
+
         // MED NAME
         myPanel.add(new JLabel("Medicine Name:"));
-        // need to find better way to do this (arraylist not compatible with la suite)
         ArrayList<String> str1 = info.getBrand(); //GET FROM DB
         int size = str1.size();
         String[] choices = new String[size];
         for (int i = 0; i < size; i++){
              choices[i] = str1.get(i);
         }
-       //  String brandNames = GetBrandFromDB();
-        // System.out.println(brandNames);
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choices);
         JComboBox<String> comboBox = new JComboBox<String>( model );
         comboBox.setVisible(true);
         myPanel.add(comboBox);
 
-        //use an action listener to only record the value when the user actively changes it and not get the default value
-        //useful in the next step of the code to have the actual name of the medicine selected
-       /* valueHolder VH = new valueHolder();
-
-        comboBox.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    VH.setStr(comboBox.getSelectedItem().toString());
-                }
-        });
-
-        if(VH.getStrVH()!= null) {
-            nameSelected = VH.getStrVH();
-            System.out.println("the selected name is: " + VH.getStrVH());
-
-        }*/
-
 
 
 
         myPanel.add(new JLabel("Amount per box/bottle:"));
-
-        //here you want only the amount corresponding to the medicine name selected above
-        //use the name of the selected product to find the corresponding index
-        //there might be more than 1 index because some medicine comes in a different format, ie 16 caps or 10 sachets
-
-
-
         ArrayList<String> str2 = info.getAmount(); //GET FROM DB
         String[] choices2 = new String[size];
         for (int i = 0; i < size; i++){
             choices2[i] = str2.get(i);
         }
-
-        //String[] choices2 = {"150 ml", "15 caps"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model2 = new SortedComboBoxModel<String>(choices2);
         JComboBox<String> comboBox2 = new JComboBox<String>( model2 );
@@ -96,13 +69,14 @@ public class UpdateStock {
         myPanel.add(qty);
 
 
+
+
         myPanel.add(new JLabel("Sale price :"));
         ArrayList<String> str3 = info.getSPrice(); //GET FROM DB
         String[] choices3 = new String[size];
         for (int i = 0; i < size; i++){
             choices3[i] = str3.get(i);
         }
-        //String[] choices3 = {"3.6", "1.5"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model3 = new SortedComboBoxModel<String>(choices3);
         JComboBox<String> comboBox3 = new JComboBox<String>( model3 );
@@ -116,7 +90,6 @@ public class UpdateStock {
         for (int i = 0; i < size; i++){
             choices4[i] = str4.get(i);
         }
-        //String[] choices4 = {"2.6", "0.5"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model4 = new SortedComboBoxModel<String>(choices4);
         JComboBox<String> comboBox4 = new JComboBox<String>( model4 );
@@ -130,7 +103,6 @@ public class UpdateStock {
         for (int i = 0; i < size; i++){
             choices5[i] = str5.get(i);
         }
-        //String[] choices5 = {"lemon", "blackcurrant"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model5 = new SortedComboBoxModel<String>(choices5);
         JComboBox<String> comboBox5 = new JComboBox<String>( model5 );
@@ -144,7 +116,6 @@ public class UpdateStock {
         for (int i = 0; i < size; i++){
             choices6[i] = str6.get(i);
         }
-        //String[] choices6 = {"Digestion"}; //GET FROM DB
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model6 = new SortedComboBoxModel<String>(choices6);
         JComboBox<String> comboBox6 = new JComboBox<String>( model6 );
@@ -193,7 +164,7 @@ public class UpdateStock {
                // System.out.println(id.get(i));
             }
             temp.clear();
-            if(id.size()==0) validEntry =false; //if the id is 0, there was no match between brand name and amount and thus this is not valid
+            //if(id.size()==0) validEntry =false; //if the id is 0, there was no match between brand name and amount and thus this is not valid
 
 
 
@@ -212,8 +183,7 @@ public class UpdateStock {
                // System.out.println(id.get(i));
             }
             temp.clear();
-            if(id.size()==0) validEntry = false;
-
+            //if(id.size()==0) validEntry = false;
 
 
 
@@ -230,7 +200,7 @@ public class UpdateStock {
                 id.add(temp.get(i)); //update the id vector
             }
             temp.clear();
-            if(id.size()==0) validEntry = false;
+            //if(id.size()==0) validEntry = false;
 
 
 
@@ -247,7 +217,7 @@ public class UpdateStock {
                 id.add(temp.get(i)); //update the id vector
             }
             temp.clear();
-            if(id.size()==0) validEntry = false;
+           // if(id.size()==0) validEntry = false;
 
 
             //verify brand and category match
@@ -263,6 +233,7 @@ public class UpdateStock {
                 id.add(temp.get(i)); //update the id vector
             }
             temp.clear();
+
             if(id.size()==0) validEntry = false;
 
 
@@ -279,14 +250,62 @@ public class UpdateStock {
                         "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
             }
 
-            if(validEntry!=false){
-                JPanel success = new JPanel();
-                success.setVisible(true);
-                JLabel errorMsg = new JLabel("Succes, needs to be updated: "+id.get(0));
-                success.add(errorMsg);
-                // dialog box - for now no icon (Plain message)
-                int result3 = JOptionPane.showConfirmDialog(null, success,
-                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+            if(validEntry==true ){
+                //now check the input makes sens with respoect to stock available
+                ArrayList<String> strAmount = info.getCurrentStock(); //GET FROM DB
+                System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
+                //check that the number in the database is superior than the quantity to remove if it is a removal
+                boolean finalstep = true;
+                int qtyAddRem = 0;
+                try{
+                    qtyAddRem = Integer.parseInt(quantityAddRemove); //this will give an error if the string has smt else than numbers
+                    //this is good as even 4.3 gives an error, and we can only work with ints
+                    if( ( qtyAddRem + Integer.parseInt(strAmount.get(id.get(0)-1)) )<0){
+
+                        //if the quantity to add/remove + what is in stock is negative, you have a problem
+                        JPanel error = new JPanel();
+                        error.setVisible(true);
+                        JLabel errorMsg = new JLabel("Error, you wish to remove more medicine than you have in stock");
+                        error.add(errorMsg);
+                        int result3 = JOptionPane.showConfirmDialog(null, error,
+                                "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        finalstep=false;
+                    }
+                }catch(Exception e){
+                    JPanel error = new JPanel();
+                    error.setVisible(true);
+                    JLabel errorMsg = new JLabel("Error, you have to enter a valid number for the quantity");
+                    error.add(errorMsg);
+                    int result3 = JOptionPane.showConfirmDialog(null, error,
+                            "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                    finalstep=false;
+                }
+
+                if(finalstep) {
+                    JPanel success = new JPanel();
+                    success.setVisible(true);
+                    //System.out.println("Quantity to add/rem is: "+qtyAddRem);
+                    JLabel successMsg = new JLabel("Success, needs to be updated: " + id.get(0));
+                    success.add(successMsg);
+                    // dialog box - for now no icon (Plain message)
+                    int result3 = JOptionPane.showConfirmDialog(null, success,
+                            "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                    //MODIFY THE DB
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+
+
+
+                }
             }
 
 

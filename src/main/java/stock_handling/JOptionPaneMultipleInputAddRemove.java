@@ -13,6 +13,13 @@ public class JOptionPaneMultipleInputAddRemove {
     //constructor
     public  JOptionPaneMultipleInputAddRemove() {
 
+        //create a dummy jframe in order to set the option pane on top
+        JFrame frmOpt;
+        frmOpt = new JFrame();
+        frmOpt.setVisible(false);
+        frmOpt.setLocation(100, 100);
+        frmOpt.setAlwaysOnTop(true);
+
         JButton adding = new JButton("Add");
         JButton remove = new JButton("Remove");
 
@@ -40,7 +47,7 @@ public class JOptionPaneMultipleInputAddRemove {
         });
 
         // no icon for now
-        int result = JOptionPane.showConfirmDialog(null, myPanel,
+        int result = JOptionPane.showConfirmDialog(frmOpt, myPanel,
               "Add or Remove a medicine", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }

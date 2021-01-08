@@ -38,9 +38,10 @@ public class JOptionPaneAddClient {
         JTextField cardNb = new JTextField(16);
         JTextField CCV = new JTextField(3);
         JTextField expDate = new JTextField(8);
+        JTextField password = new JTextField(8);
 
         JPanel myPanel = new JPanel();
-        myPanel.setLayout(new GridLayout(5, 2));
+        myPanel.setLayout(new GridLayout(6, 2));
         myPanel.add(new JLabel("Family name:"));
         myPanel.add(famname);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
@@ -55,6 +56,9 @@ public class JOptionPaneAddClient {
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Exp date:"));
         myPanel.add(expDate);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Password:"));
+        myPanel.add(password);
 
         // dialog box - for now no icon (Plain message)
         int result = JOptionPane.showConfirmDialog(null, myPanel,
@@ -63,13 +67,14 @@ public class JOptionPaneAddClient {
         //check if the text fields are properly populated in order to not push anything to the db that has incorrect data
         boolean familyName = famname.getText().isEmpty();
         boolean givenName = givname.getText().isEmpty();
+        boolean passW = password.getText().isEmpty();
         boolean cardNumber = cardNb.getText().length()==16 && onlyDigits(cardNb.getText()); //also check its only numbers
         System.out.println("result is : " + onlyDigits(cardNb.getText()));
         boolean ccvNumber = CCV.getText().length()==3 && onlyDigits(CCV.getText());
         //check the date is in the proper format
         boolean expirationDate = expDate.getText().length()==8 && (expDate.getText().charAt(2)=='/') && (expDate.getText().charAt(5)=='/') ;
 
-        if(result==JOptionPane.OK_OPTION && (familyName==true || givenName==true || cardNumber==false || ccvNumber==false || expirationDate==false)){
+        if(result==JOptionPane.OK_OPTION && (passW==true || familyName==true || givenName==true || cardNumber==false || ccvNumber==false || expirationDate==false)){
             JPanel error = new JPanel();
             error.setVisible(true);
             JLabel errorMsg = new JLabel("Error, please enter valid values for the fields, try again");
@@ -81,25 +86,26 @@ public class JOptionPaneAddClient {
         }
 
         //only adds to the db if all the fields are the proper length and not empty.
-        if (result == JOptionPane.OK_OPTION && !(familyName)  && !(givenName) && (cardNumber) && (ccvNumber) && (expirationDate) ) {
+        if (result == JOptionPane.OK_OPTION && !(familyName) && !(passW) && !(givenName) && (cardNumber) && (ccvNumber) && (expirationDate) ) {
             // Get the inputs from the person using the app --> information for one client
             String FN = famname.getText();
             String GN = givname.getText();
             String CN = cardNb.getText();
             String Ccv = CCV.getText();
             String ED = expDate.getText();
+            String PW = password.getText();
 
             // Include this new client in the DB on Heroku (see ProjectServlet for more details)
-            makePostRequest(FN, GN, CN, Ccv, ED); // make sure that the client is not added if he/she is already in the DB - need to find a solution for that
+            makePostRequest(FN, GN, CN, Ccv, ED, PW); // make sure that the client is not added if he/she is already in the DB - need to find a solution for that
 
         }
     }
 
     // Method making a POST request to the servlet to add a new client to the DB - check that POST is the correct method (could be PUT)
-    public static void makePostRequest(String FN, String GV, String CN, String Ccv, String ED) {
+    public static void makePostRequest(String FN, String GV, String CN, String Ccv, String ED, String PW) {
         try {
             // This is the SQL query included in the body of the POST request = instructions
-            String message = "INSERT INTO clients (lastname,firstname,cardnumber,ccv,expdate) values( '"+FN+"','"+GV+"','"+CN+"','"+Ccv+"','"+ED+"');";
+            String message = "INSERT INTO clients (lastname,firstname,cardnumber,ccv,expdate,passwrd) values( '"+FN+"','"+GV+"','"+CN+"','"+Ccv+"','"+ED+"','"+PW+"');";
             byte[] body = message.getBytes(StandardCharsets.UTF_8);
 
             // The URL maps to the servlet (check that this is the correct way to say it)
