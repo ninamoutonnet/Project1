@@ -16,4 +16,8 @@ public class dummyFrame {
         frmOpt.setAlwaysOnTop(true);
         return frmOpt;
     }
+
+    public void dummyFrameDispose(JFrame jf){
+        jf.dispose();
+    }
 }

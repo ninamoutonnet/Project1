@@ -3,6 +3,7 @@ package stock_handling;
 import GUI.SortedComboBoxModel;
 import db_handling.GetDB_medicine;
 import GUI.dummyFrame;
+import db_handling.checkForMed;
 
 import javax.swing.*;
 import java.awt.*;
@@ -113,6 +114,9 @@ public class AddMed {
                 error.add(errorMsg);
                 int error1 = JOptionPane.showConfirmDialog(dummyF, error,
                         "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if(error1==0){//only enter the loop when ok pressed
+                    df.dummyFrameDispose(dummyF);
+                }
 
             }
 
@@ -134,6 +138,9 @@ public class AddMed {
                 error.add(errorMsg);
                 int error2 = JOptionPane.showConfirmDialog(dummyF, error,
                         "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if(error2==0){//only enter the loop when ok pressed
+                   df.dummyFrameDispose(dummyF);
+                }
 
             }
 
@@ -155,6 +162,9 @@ public class AddMed {
                 error.add(errorMsg);
                 int error3 = JOptionPane.showConfirmDialog(dummyF, error,
                         "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if(error3==0){//only enter the loop when ok pressed
+                    df.dummyFrameDispose(dummyF);
+                }
 
             }
 
@@ -176,6 +186,9 @@ public class AddMed {
                 error.add(errorMsg);
                 int error4 = JOptionPane.showConfirmDialog(dummyF, error,
                         "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if(error4==0){//only enter the loop when ok pressed
+                    df.dummyFrameDispose(dummyF);
+                }
 
             }
 
@@ -186,45 +199,22 @@ public class AddMed {
             }else if(LIM.equalsIgnoreCase("no")){
                 LIM2=false;
             }
-            /*
-            System.out.println(A);
-            System.out.println(LIM);
-            System.out.println(CAT);
-            System.out.println(DES);
-            System.out.println(CS);
-            System.out.println(SP);
-            System.out.println(PP);
-            System.out.println(FS);
-            System.out.println(N);
-            */
 
-            if(okToPost) {//if there was an issue before, it will not post
+
+            if(okToPost) {//if there was an issue in the format of the input, it will not enter the loop
                 // Include this new product in the DB on Heroku (see ProjectServlet for more details)
-                makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
-                fr.dispose(); //discard of the dummy jframe
-            }
-            /*
-           if(comboBox.getSelectedItem()=="OTHER") { //add a new element to the description
 
-                JFrame addDescription = new JFrame("Add a new description");
-                addDescription.setVisible(true);
-                addDescription.setLocation(100,100);
-                addDescription.setAlwaysOnTop(true);
-                JPanel myPanel2 = new JPanel();
-                //addDescription.add(myPanel2);
-                myPanel2.add(new JLabel("Description: "));
-                JTextField newDescription = new JTextField(6);
-                myPanel2.add(newDescription);
-                int result2 = JOptionPane.showConfirmDialog(addDescription, myPanel2,
-                        "Please Enter the description ", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                //here add the new description to the DB!!!
-
-                //HERE WE ADD THE NEW DESCRIPTION TO THE DB!!!
-                if(result2 ==JOptionPane.OK_OPTION){
-                    addDescription.dispose();
+                db_handling.checkForMed CFM = new checkForMed();
+                boolean notAlreadyIn =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT);
+                if(!notAlreadyIn) {
+                    System.out.println("It is already in the db");
+                }else{
+                    makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
+                    fr.dispose(); //discard of the dummy jframe
                 }
+
             }
-             */
+
         }
         else {
             fr.dispose(); //discard of the dummy jframe
