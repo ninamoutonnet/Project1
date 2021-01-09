@@ -60,7 +60,7 @@ public class GetDB_medicine {
         for(int i = 0; i<AllProducts.size(); i++){
             ArrayList<String> product = new ArrayList<String>();
             product = AllProducts.get(i); // getting all the info for 1 product
-            // ordering from DB: barnd, amount, salesprice, purchaseprice
+            // ordering from DB: brand, amount, salesprice, purchaseprice
             // fullstock, limit, decription, category, id, current stock
             Brand.add(product.get(0));
             Amount.add(product.get(1));
@@ -109,5 +109,4 @@ public class GetDB_medicine {
     public ArrayList<String> getID() { return ID; }
 
     public ArrayList<String> getCurrentStock(){ return CurrentStock; }
-
 }

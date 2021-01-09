@@ -100,8 +100,6 @@ public class AddMed {
             CAT = comboBoxCategory.getSelectedItem().toString(); // this does not work --> always returns 'Allergy' even though another one is chosen
             DES = comboBox.getSelectedItem().toString();
 
-
-
             // Get the inputs from the person using the app --> information for one client
             String A = amount.getText();
            // String CS = qty.getText();
@@ -192,7 +190,7 @@ public class AddMed {
     public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS) {
         try {
             // This is the SQL query included in the body of the POST request = instructions
-            String message = "INSERT INTO products (brand,amount,sprice,pprice,fullstock,limitation,description,category,currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
+            String message = "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
             byte[] body = message.getBytes(StandardCharsets.UTF_8);
 
             // The URL maps to the servlet (check that this is the correct way to say it)
