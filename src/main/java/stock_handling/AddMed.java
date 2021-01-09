@@ -18,7 +18,7 @@ public class AddMed {
     GetDB_medicine info = new GetDB_medicine();
 
     public AddMed() {
-        JFrame fr = new JFrame();  //dummy JFrame to ensure that the window popping up is on top of anything else
+        JFrame fr = new JFrame(); //dummy JFrame to ensure that the window popping up is on top of anything else
         fr.setVisible(false);
         fr.setLocation(100,100);
         fr.setAlwaysOnTop(true);
@@ -29,19 +29,26 @@ public class AddMed {
         JTextField sprice = new JTextField(3);
         JTextField pprice = new JTextField(6);
         JTextField fullstock = new JTextField(6);
-        String LIM = " ";
-        String CAT = " ";
-        String DES = " ";
+        JTextField description = new JTextField(13);
+        String LIM = "";
+        String CAT = "";
+        String DES = "";
 
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(10, 2));
-        myPanel.add(new JLabel("Medicine name/brand:"));
+        myPanel.add(new JLabel("Medicine brand:"));
         myPanel.add(name);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Medicine name/description:"));
+        myPanel.add(description);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Medicine amount per box/bottle:"));
         myPanel.add(amount);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Current stock quantity:"));
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Full stock quantity:"));
+        myPanel.add(fullstock);
         myPanel.add(qty);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Sale price:"));
@@ -49,9 +56,6 @@ public class AddMed {
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Purchase price:"));
         myPanel.add(pprice);
-        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Full stock quantity:"));
-        myPanel.add(fullstock);
 
         // Need to extract a string from this
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
@@ -61,7 +65,6 @@ public class AddMed {
         limited.setVisible(true);
         myPanel.add(limited);
 
-
         //CATEGORY
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Category "));
@@ -70,38 +73,26 @@ public class AddMed {
         for (int i = 0; i < str1.size(); i++){
             choicesCategory[i] = str1.get(i);
         }
+        // Should we offer the choice to detail new category?
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> modelCategory = new SortedComboBoxModel<String>(choicesCategory);
         JComboBox<String> comboBoxCategory = new JComboBox<String>( modelCategory );
         comboBoxCategory.setVisible(true);
         myPanel.add(comboBoxCategory);
-
-
-        //DESCRIPTION
-        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Description:"));
-        ArrayList<String> str = info.getDescription(); //GET FROM DB
-        String[] choicesDescription = new String[str.size()];
-        for (int i = 0; i < str.size(); i++){
-            choicesDescription[i] = str.get(i);
-        }
-        //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choicesDescription);
-        JComboBox<String> comboBox = new JComboBox<String>( model );
-        comboBox.setVisible(true);
-        myPanel.add(comboBox);
-
+        // + need to eliminate all the strings that are the same
 
         int result = JOptionPane.showConfirmDialog(fr, myPanel,
                 "Please Enter the medicine details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             //get the values of combobox once OK is pressed
-            LIM = limited.getSelectedItem().toString(); // this does not work --> always returns 'Yes' even though 'No' is selected
-            CAT = comboBoxCategory.getSelectedItem().toString(); // this does not work --> always returns 'Allergy' even though another one is chosen
-            DES = comboBox.getSelectedItem().toString();
+            LIM = limited.getSelectedItem().toString();
+            CAT = comboBoxCategory.getSelectedItem().toString();
 
             // Get the inputs from the person using the app --> information for one client
             String A = amount.getText();
+
+            DES = description.getText();
+
            // String CS = qty.getText();
             Integer CS=0;
             try{
@@ -129,7 +120,7 @@ public class AddMed {
             try{
                 FS = Integer.parseInt(fullstock.getText());
             }catch (Exception e){
-                System.out.println("Not an integer fullstock ");
+                System.out.println("Not an integer fullstock");
             }
 
             String N = name.getText();
@@ -140,7 +131,8 @@ public class AddMed {
             }else if(LIM.equalsIgnoreCase("no")){
                 LIM2=false;
             }
-            /*System.out.println(A);
+            /*
+            System.out.println(A);
             System.out.println(LIM);
             System.out.println(CAT);
             System.out.println(DES);
@@ -148,9 +140,8 @@ public class AddMed {
             System.out.println(SP);
             System.out.println(PP);
             System.out.println(FS);
-            System.out.println(N);*/
-
-
+            System.out.println(N);
+            */
 
             // Include this new product in the DB on Heroku (see ProjectServlet for more details)
             makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
