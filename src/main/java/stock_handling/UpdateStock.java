@@ -1,5 +1,6 @@
 package stock_handling;
 
+import GUI.dummyFrame;
 import db_handling.GetDB_medicine;
 import db_handling.valueHolder;
 import GUI.SortedComboBoxModel;
@@ -20,13 +21,10 @@ public class UpdateStock {
     public  UpdateStock() {
 
         //create a dummy jframe in order to set the option pane on top
-        JFrame frmOpt;
-        frmOpt = new JFrame();
-        frmOpt.setVisible(false);
-        frmOpt.setLocation(100, 100);
-        frmOpt.setAlwaysOnTop(true);
+        //construct a dummy frame using the class! since it is a redundant operation
+        dummyFrame df = new dummyFrame();
+        JFrame frmOpt = df.dummyFrameConstruction();
 
-        String nameSelected = " ";
         JPanel myPanel = new JPanel();
         myPanel.setLocation(200,100);
         myPanel.setLayout(new GridLayout(8, 2));
@@ -47,8 +45,6 @@ public class UpdateStock {
         myPanel.add(comboBox);
 
 
-
-
         myPanel.add(new JLabel("Amount per box/bottle:"));
         ArrayList<String> str2 = info.getAmount(); //GET FROM DB
         String[] choices2 = new String[size];
@@ -62,13 +58,10 @@ public class UpdateStock {
         myPanel.add(comboBox2);
 
 
-
         myPanel.add(new JLabel("Quantity to add or remove:"));
        //can take in negative numbers
         JTextField qty = new JTextField(13);
         myPanel.add(qty);
-
-
 
 
         myPanel.add(new JLabel("Sale price :"));
@@ -165,7 +158,6 @@ public class UpdateStock {
             }
             temp.clear();
             //if(id.size()==0) validEntry =false; //if the id is 0, there was no match between brand name and amount and thus this is not valid
-
 
 
             //verify brand and sprice match

@@ -1,5 +1,6 @@
 package stock_handling;
 
+import GUI.dummyFrame;
 import stock_handling.AddMed;
 import stock_handling.RemoveMed;
 
@@ -13,12 +14,9 @@ public class JOptionPaneMultipleInputAddRemove {
     //constructor
     public  JOptionPaneMultipleInputAddRemove() {
 
-        //create a dummy jframe in order to set the option pane on top
-        JFrame frmOpt;
-        frmOpt = new JFrame();
-        frmOpt.setVisible(false);
-        frmOpt.setLocation(100, 100);
-        frmOpt.setAlwaysOnTop(true);
+        //construct a dummy frame using the class! since it is a redundant operation
+        dummyFrame df = new dummyFrame();
+        JFrame frmOpt = df.dummyFrameConstruction();
 
         JButton adding = new JButton("Add");
         JButton remove = new JButton("Remove");

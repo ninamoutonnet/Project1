@@ -2,6 +2,7 @@ package stock_handling;
 
 import GUI.SortedComboBoxModel;
 import db_handling.GetDB_medicine;
+import GUI.dummyFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,10 +47,10 @@ public class AddMed {
         myPanel.add(amount);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Current stock quantity:"));
+        myPanel.add(qty);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Full stock quantity:"));
         myPanel.add(fullstock);
-        myPanel.add(qty);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Sale price:"));
         myPanel.add(sprice);
@@ -87,43 +88,97 @@ public class AddMed {
             //get the values of combobox once OK is pressed
             LIM = limited.getSelectedItem().toString();
             CAT = comboBoxCategory.getSelectedItem().toString();
-
             // Get the inputs from the person using the app --> information for one client
             String A = amount.getText();
-
             DES = description.getText();
+            String N = name.getText();
 
-           // String CS = qty.getText();
+            boolean okToPost = true; //boolean that allows to ensure that all the values are valid before sending them to the db
+
+            //check that current stock is an int, if not give an error
             Integer CS=0;
             try{
                 CS = Integer.parseInt(qty.getText());
             }catch (Exception e){
-                System.out.println("Not an current stock integer ");
+                //System.out.println("Not an current stock integer ");
+                okToPost = false; //set to false to signal an issue
+
+                //construct a dummy frame using the class! since it is a redundant operation
+                dummyFrame df = new dummyFrame();
+                JFrame dummyF = df.dummyFrameConstruction();
+
+                JPanel error = new JPanel();
+                error.setVisible(true);
+                JLabel errorMsg = new JLabel("Error, current stock is not an integer ");
+                error.add(errorMsg);
+                int error1 = JOptionPane.showConfirmDialog(dummyF, error,
+                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
             }
 
-           // String SP = sprice.getText();
+            //check that sales price  is a double, if not give an error
             Double SP =0.0;
             try{
                 SP = Double.parseDouble(sprice.getText());
             }catch (Exception e){
-                System.out.println("Not a double sales price");
+                //System.out.println("Not a double sales price");
+                okToPost = false; //set to false to signal an issue
+
+                //construct a dummy frame using the class! since it is a redundant operation
+                dummyFrame df = new dummyFrame();
+                JFrame dummyF = df.dummyFrameConstruction();
+
+                JPanel error = new JPanel();
+                error.setVisible(true);
+                JLabel errorMsg = new JLabel("Error, sales price is not a double ");
+                error.add(errorMsg);
+                int error2 = JOptionPane.showConfirmDialog(dummyF, error,
+                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
             }
-            //String PP = pprice.getText();
+
+            //check that  purchase price is a double, if not give an error
             Double PP=0.0;
             try{
                 PP = Double.parseDouble(pprice.getText());
             }catch (Exception e){
-                System.out.println("Not a double pruchase price");
+                //System.out.println("Not a double purchase price");
+                okToPost = false; //set to false to signal an issue
+
+                //construct a dummy frame using the class! since it is a redundant operation
+                dummyFrame df = new dummyFrame();
+                JFrame dummyF = df.dummyFrameConstruction();
+
+                JPanel error = new JPanel();
+                error.setVisible(true);
+                JLabel errorMsg = new JLabel("Error, purchase price is not a double ");
+                error.add(errorMsg);
+                int error3 = JOptionPane.showConfirmDialog(dummyF, error,
+                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
             }
-            //String FS = fullstock.getText();
+
+            //check that full stock is an int, if not give an error
             Integer FS=0;
             try{
                 FS = Integer.parseInt(fullstock.getText());
             }catch (Exception e){
-                System.out.println("Not an integer fullstock");
+                //System.out.println("Not an integer fullstock");
+                okToPost = false; //set to false to signal an issue
+
+                //construct a dummy frame using the class! since it is a redundant operation
+                dummyFrame df = new dummyFrame();
+                JFrame dummyF = df.dummyFrameConstruction();
+
+                JPanel error = new JPanel();
+                error.setVisible(true);
+                JLabel errorMsg = new JLabel("Error, full stock is not an integer ");
+                error.add(errorMsg);
+                int error4 = JOptionPane.showConfirmDialog(dummyF, error,
+                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
             }
 
-            String N = name.getText();
 
             boolean LIM2=true;
             if(LIM.equalsIgnoreCase("yes")){
@@ -143,11 +198,11 @@ public class AddMed {
             System.out.println(N);
             */
 
-            // Include this new product in the DB on Heroku (see ProjectServlet for more details)
-            makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
-
-            fr.dispose(); //discard of the dummy jframe
-
+            if(okToPost) {//if there was an issue before, it will not post
+                // Include this new product in the DB on Heroku (see ProjectServlet for more details)
+                makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
+                fr.dispose(); //discard of the dummy jframe
+            }
             /*
            if(comboBox.getSelectedItem()=="OTHER") { //add a new element to the description
 

@@ -49,12 +49,6 @@ public class UI extends JPanel{
 
         Vector<String> cat = new Vector<String>();
         cat.addElement("Select a medicine category");
-        /*cat.addElement("Cold and flu");
-        cat.addElement("Skincare");
-        cat.addElement("Headaches and pain relief");
-        cat.addElement("Digestion");
-        cat.addElement("Allergy");
-        cat.addElement("First aid");*/
         // getting info from the DB & storing it into vector
         int size = DB.getCategory().size();
         for(int i = 0; i< size; i++){
@@ -72,10 +66,6 @@ public class UI extends JPanel{
 
         Vector<String> medname = new Vector<String>();
         medname.addElement("Select a medicine brand");
-        /*medname.addElement("Vicks Vaporub 100 g");
-        medname.addElement("Vicks First Defence 15 ml");
-        medname.addElement("GSK Night Nurse 160 ml");
-        medname.addElement("Sudafed Day and Night 16 caps");*/
         for(int i = 0; i< size; i++){
             medname.addElement(DB.getBrand().get(i));
         }
@@ -177,42 +167,5 @@ public class UI extends JPanel{
         return mainPanel;
     }
 
-    /*
-    public static String[] makeGetRequest() {
-        try {
-            String message = "SELECT brand FROM products;";
-            byte[] body = message.getBytes(StandardCharsets.UTF_8);
-
-            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess"); // is the request target?? - probably yes
-            HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "text/html");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setRequestProperty("Content-Length",Integer.toString(body.length));
-            conn.setDoOutput(true);
-
-            try (OutputStream outputStream = conn.getOutputStream()) {
-                outputStream.write(body, 0, body.length);
-            }
-            BufferedReader bufferedReader = new BufferedReader(new
-                    InputStreamReader(conn.getInputStream(), "utf-8"));
-
-            String inputLine;
-            // Read the body of the response
-            while ((inputLine = bufferedReader.readLine()) != null) {
-                // add elements one by one to array of strings
-                System.out.println(inputLine);
-            }
-            bufferedReader.close();
-        }
-        catch (Exception e) {
-            System.out.println("Something went wrong");
-        }
-
-        String[] stringarray = new String[3];
-
-        return stringarray;
-    }
-     */
 }
 

@@ -1,5 +1,6 @@
 package stock_handling;
 
+import GUI.dummyFrame;
 import db_handling.GetDB_medicine;
 
 import javax.swing.*;
@@ -10,21 +11,15 @@ public class RemoveMed {
     GetDB_medicine info = new GetDB_medicine();
 
     public RemoveMed(){
-        JFrame frmOpt = new JFrame();  //dummy JFrame to ensure that the window popping up is on top of anything else
-        frmOpt.setVisible(false);
-        frmOpt.setLocation(100, 100);
-        frmOpt.setAlwaysOnTop(true);
+        //construct a dummy frame using the class! since it is a redundant operation
+        dummyFrame df = new dummyFrame();
+        JFrame frmOpt = df.dummyFrameConstruction();
 
         //set the combo box
         //when using the servlet, we have to go through the db and names
-        /*Vector<String> name = new Vector<String>();
-        name.addElement("Paracetamol");
-        name.addElement("Spasphon");
-        name.addElement("Doliprane");
-        name.addElement("Aspirin"); */
+
         Vector<String> name = new Vector<>();
         int size = info.getBrand().size();
-        //System.out.println(size);
         for (int i = 0; i < size; i++){
             name.addElement(info.getBrand().get(i));
         }
