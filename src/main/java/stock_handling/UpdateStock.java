@@ -207,7 +207,8 @@ public class UpdateStock {
                     Integer id1 = id.get(0)-1;
                     Integer idToSendToDB = Integer.parseInt(strID.get(id1));
                     System.out.println("The id is: " + idToSendToDB);
-                    UpdateRequest(idToSendToDB,qtyAddRem);
+                    Integer updatedAmount = Integer.parseInt(strAmount.get(id.get(0)-1))+qtyAddRem;
+                    UpdateRequest(idToSendToDB,updatedAmount);
 
                     JPanel success = new JPanel();
                     success.setVisible(true);
@@ -226,7 +227,7 @@ public class UpdateStock {
     public static void UpdateRequest(Integer idNUM, Integer CS) {
         try {
             // This is the SQL query included in the body of the POST request = instructions
-            String message = "UPDATE products SET (\"currentstock\") value (\"+CS+\") where (\"id\") is \"+idNUM+\";";
+            String message = "UPDATE products SET currentstock = "+CS+" where id = "+idNUM+";";
            // "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
             byte[] body = message.getBytes(StandardCharsets.UTF_8);
 
