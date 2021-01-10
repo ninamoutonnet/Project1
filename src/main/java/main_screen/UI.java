@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.LinkedHashSet;
 import java.util.Vector;
 
 public class UI extends JPanel{
@@ -48,12 +49,18 @@ public class UI extends JPanel{
 
 
         Vector<String> cat = new Vector<String>();
-        cat.addElement("Select a medicine category");
         // getting info from the DB & storing it into vector
         int size = DB.getCategory().size();
         for(int i = 0; i< size; i++){
             cat.addElement(DB.getCategory().get(i));
         }
+        //sorts the array list and then converting it to a linkedhashset removes the duplicates
+        cat.sort(String::compareToIgnoreCase);
+        LinkedHashSet<String> set = new LinkedHashSet<String>();
+        set.addAll(cat);
+        cat.clear();
+        cat.addAll(set);
+        cat.add(0,"Select a medicine category"); //ad it after sorting alphabetically!
         final JComboBox<String> categories = new JComboBox<String>(cat);
         categories.setVisible(true);
         String var = (String)categories.getSelectedItem();
@@ -69,9 +76,17 @@ public class UI extends JPanel{
         for(int i = 0; i< size; i++){
             medname.addElement(DB.getBrand().get(i));
         }
+        //sorts the array list and then converting it to a linkedhashset removes the duplicates
+        medname.sort(String::compareToIgnoreCase);
+        LinkedHashSet<String> set2 = new LinkedHashSet<String>();
+        set2.addAll(medname);
+        medname.clear();
+        medname.addAll(set2);
+        medname.add(0,"Select a medicine brand"); //ad it after sorting alphabetically!
         final JComboBox<String> med = new JComboBox<String>(medname);
         med.setVisible(true);
         mainPanel.add(med);
+
 
         //set the combo box
         Vector<String> choices = new Vector<String>();

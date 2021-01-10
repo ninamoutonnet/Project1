@@ -5,14 +5,10 @@ import db_handling.GetDB_medicine;
 import db_handling.valueHolder;
 import GUI.SortedComboBoxModel;
 import db_handling.checkForMed;
-
-import javax.print.DocFlavor;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.nio.channels.ScatteringByteChannel;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Vector;
 
 public class UpdateStock {
@@ -35,26 +31,32 @@ public class UpdateStock {
         myPanel.add(new JLabel("Medicine Name:"));
         ArrayList<String> str1 = info.getBrand(); //GET FROM DB
         int size = str1.size();
-        String[] choices = new String[size];
-        for (int i = 0; i < size; i++){
-             choices[i] = str1.get(i);
-        }
-        //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> model = new SortedComboBoxModel<String>(choices);
-        JComboBox<String> comboBox = new JComboBox<String>( model );
+        //sort the list
+        str1.sort(String::compareToIgnoreCase);
+        //remove duplicates from the list
+        LinkedHashSet<String> set = new LinkedHashSet<String>();
+        set.addAll(str1);
+        str1.clear();
+        str1.addAll(set);
+        //create the combo box
+        String[] array = str1.toArray(new String[str1.size()]);
+        JComboBox<String> comboBox = new JComboBox<>(array);
         comboBox.setVisible(true);
         myPanel.add(comboBox);
 
 
         myPanel.add(new JLabel("Amount per box/bottle:"));
         ArrayList<String> str2 = info.getAmount(); //GET FROM DB
-        String[] choices2 = new String[size];
-        for (int i = 0; i < size; i++){
-            choices2[i] = str2.get(i);
-        }
-        //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> model2 = new SortedComboBoxModel<String>(choices2);
-        JComboBox<String> comboBox2 = new JComboBox<String>( model2 );
+        //sort the list
+        str2.sort(String::compareToIgnoreCase);
+        //remove duplicates from the list
+        LinkedHashSet<String> set2 = new LinkedHashSet<String>();
+        set2.addAll(str2);
+        str2.clear();
+        str2.addAll(set2);
+        //create the combo box
+        String[] array2 = str2.toArray(new String[str2.size()]);
+        JComboBox<String> comboBox2 = new JComboBox<>(array2);
         comboBox2.setVisible(true);
         myPanel.add(comboBox2);
 
@@ -67,10 +69,12 @@ public class UpdateStock {
 
         myPanel.add(new JLabel("Sale price :"));
         ArrayList<String> str3 = info.getSPrice(); //GET FROM DB
-        String[] choices3 = new String[size];
-        for (int i = 0; i < size; i++){
-            choices3[i] = str3.get(i);
-        }
+        //remove duplicates from the list
+        LinkedHashSet<String> set3 = new LinkedHashSet<String>();
+        set3.addAll(str3);
+        str3.clear();
+        str3.addAll(set3);
+        String[] choices3 = str3.toArray(new String[str3.size()]);
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model3 = new SortedComboBoxModel<String>(choices3);
         JComboBox<String> comboBox3 = new JComboBox<String>( model3 );
@@ -80,10 +84,12 @@ public class UpdateStock {
 
         myPanel.add(new JLabel("Purchase price:"));
         ArrayList<String> str4 = info.getPPrice(); //GET FROM DB
-        String[] choices4 = new String[size];
-        for (int i = 0; i < size; i++){
-            choices4[i] = str4.get(i);
-        }
+        //remove duplicates from the list
+        LinkedHashSet<String> set4 = new LinkedHashSet<String>();
+        set4.addAll(str4);
+        str4.clear();
+        str4.addAll(set4);
+        String[] choices4 = str4.toArray(new String[str4.size()]);
         //this class of combo box makes everything sorted alphabetically.
         SortedComboBoxModel<String> model4 = new SortedComboBoxModel<String>(choices4);
         JComboBox<String> comboBox4 = new JComboBox<String>( model4 );
@@ -93,26 +99,32 @@ public class UpdateStock {
 
         myPanel.add(new JLabel("Description:"));
         ArrayList<String> str5 = info.getDescription(); //GET FROM DB
-        String[] choices5 = new String[size];
-        for (int i = 0; i < size; i++){
-            choices5[i] = str5.get(i);
-        }
-        //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> model5 = new SortedComboBoxModel<String>(choices5);
-        JComboBox<String> comboBox5 = new JComboBox<String>( model5 );
+        //sort the list
+        str5.sort(String::compareToIgnoreCase);
+        //remove duplicates from the list
+        LinkedHashSet<String> set5 = new LinkedHashSet<String>();
+        set5.addAll(str5);
+        str5.clear();
+        str5.addAll(set5);
+        //create the combo box
+        String[] array5 = str5.toArray(new String[str5.size()]);
+        JComboBox<String> comboBox5 = new JComboBox<>(array5);
         comboBox5.setVisible(true);
         myPanel.add(comboBox5);
 
 
         myPanel.add(new JLabel("Category:"));
         ArrayList<String> str6 = info.getCategory(); //GET FROM DB
-        String[] choices6 = new String[size];
-        for (int i = 0; i < size; i++){
-            choices6[i] = str6.get(i);
-        }
-        //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> model6 = new SortedComboBoxModel<String>(choices6);
-        JComboBox<String> comboBox6 = new JComboBox<String>( model6 );
+        //sort the list
+        str6.sort(String::compareToIgnoreCase);
+        //remove duplicates from the list
+        LinkedHashSet<String> set6 = new LinkedHashSet<String>();
+        set6.addAll(str6);
+        str6.clear();
+        str6.addAll(set6);
+        //create the combo box
+        String[] array6 = str6.toArray(new String[str6.size()]);
+        JComboBox<String> comboBox6 = new JComboBox<>(array6);
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 

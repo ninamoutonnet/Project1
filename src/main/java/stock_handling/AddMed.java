@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Vector;
 
 
@@ -61,7 +62,7 @@ public class AddMed {
         myPanel.add(new JLabel("Purchase price:"));
         myPanel.add(pprice);
 
-        // Need to extract a string from this
+        // LIMITATION
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Is it a limited medication? "));
         String[] choices = {"Yes", "No"};
@@ -73,16 +74,19 @@ public class AddMed {
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Category "));
         ArrayList<String> str1 = info.getCategory(); //GET FROM DB
-        String[] choicesCategory = new String[str1.size()];
-        for (int i = 0; i < str1.size(); i++){
-            choicesCategory[i] = str1.get(i);
-        }
-        // Should we offer the choice to detail new category?
-        //this class of combo box makes everything sorted alphabetically.
-        SortedComboBoxModel<String> modelCategory = new SortedComboBoxModel<String>(choicesCategory);
-        JComboBox<String> comboBoxCategory = new JComboBox<String>( modelCategory );
+        //sort the list
+        str1.sort(String::compareToIgnoreCase);
+        //remove duplicates from the list
+        LinkedHashSet<String> set = new LinkedHashSet<String>();
+        set.addAll(str1);
+        str1.clear();
+        str1.addAll(set);
+        //create the combo box
+        String[] array = str1.toArray(new String[str1.size()]);
+        JComboBox<String> comboBoxCategory = new JComboBox<>(array);
         comboBoxCategory.setVisible(true);
         myPanel.add(comboBoxCategory);
+
         // + need to eliminate all the strings that are the same
 
         int result = JOptionPane.showConfirmDialog(fr, myPanel,

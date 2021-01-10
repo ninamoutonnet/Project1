@@ -1,10 +1,11 @@
 package stock_handling;
 
+import java.util.*;
+
 import GUI.dummyFrame;
 import db_handling.GetDB_medicine;
-
 import javax.swing.*;
-import java.util.Vector;
+import java.util.LinkedHashSet;
 
 public class RemoveMed {
 
@@ -15,14 +16,19 @@ public class RemoveMed {
         dummyFrame df = new dummyFrame();
         JFrame frmOpt = df.dummyFrameConstruction();
 
-        //set the combo box
-        //when using the servlet, we have to go through the db and names
 
         Vector<String> name = new Vector<>();
         int size = info.getBrand().size();
         for (int i = 0; i < size; i++){
             name.addElement(info.getBrand().get(i));
         }
+        //sorts the array list and then converting it to a linkedhashset removes the duplicates
+        name.sort(String::compareToIgnoreCase);
+        LinkedHashSet<String> set = new LinkedHashSet<String>();
+        set.addAll(name);
+        name.clear();
+        name.addAll(set);
+
         final JComboBox<String> names = new JComboBox<String>(name);
         names.setVisible(true);
         JPanel myPanel = new JPanel();
