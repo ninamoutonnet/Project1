@@ -7,6 +7,12 @@ import GUI.SortedComboBoxModel;
 import db_handling.checkForMed;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
@@ -197,6 +203,12 @@ public class UpdateStock {
                 }
 
                 if(finalstep) {
+                    ArrayList<String> strID = info.getID(); //GET FROM DB
+                    Integer id1 = id.get(0)-1;
+                    Integer idToSendToDB = Integer.parseInt(strID.get(id1));
+                    System.out.println("The id is: " + idToSendToDB);
+                    UpdateRequest(idToSendToDB,qtyAddRem);
+
                     JPanel success = new JPanel();
                     success.setVisible(true);
                     //System.out.println("Quantity to add/rem is: "+qtyAddRem);
@@ -206,26 +218,46 @@ public class UpdateStock {
                     int result3 = JOptionPane.showConfirmDialog(null, success,
                             "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-                    //MODIFY THE DB
-                    //
-                    //
-                    //
-                    //
-                    //
-                    //
-                    //
-                    //
-                    //
-
-
-
                 }
             }
+        }
+    }
 
+    public static void UpdateRequest(Integer idNUM, Integer CS) {
+        try {
+            // This is the SQL query included in the body of the POST request = instructions
+            String message = "UPDATE products SET (\"currentstock\") value (\"+CS+\") where (\"id\") is \"+idNUM+\";";
+           // "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
+            byte[] body = message.getBytes(StandardCharsets.UTF_8);
 
+            // The URL maps to the servlet (check that this is the correct way to say it)
+            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess");
+            HttpURLConnection conn = null;
 
+            conn = (HttpURLConnection) myURL.openConnection();
+            // Set up the header
+            conn.setRequestMethod("POST"); // sets the HTTP method
+            conn.setRequestProperty("Accept", "text/html");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length", Integer.toString(body.length));
+            conn.setDoOutput(true);
 
+            // Write the body of the request
+            try (OutputStream outputStream = conn.getOutputStream()) {
+                outputStream.write(body, 0, body.length);
+            }
 
+            // BufferedReader is a Java class to read the text from an I stream
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            String inputLine;
+            // Read the body of the response
+            while ((inputLine = bufferedReader.readLine()) != null) {
+                System.out.println(inputLine);
+            }
+            bufferedReader.close();
+        }
+        catch(Exception e) {
+            System.out.println("Something went wrong");
         }
     }
 }
