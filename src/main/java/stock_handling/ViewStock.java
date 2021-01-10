@@ -1,4 +1,4 @@
-package stock_handling;
+/*package stock_handling;
 
 import java.util.ArrayList;
 import db_handling.GetDB_medicine;
@@ -28,3 +28,4 @@ public class ViewStock {
 
     }
 }
+*/

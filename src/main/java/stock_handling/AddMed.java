@@ -4,6 +4,7 @@ import GUI.SortedComboBoxModel;
 import db_handling.GetDB_medicine;
 import GUI.dummyFrame;
 import db_handling.checkForMed;
+import GUI.checkTheInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Vector;
 
 
 public class AddMed {
@@ -97,101 +99,33 @@ public class AddMed {
             boolean okToPost = true; //boolean that allows to ensure that all the values are valid before sending them to the db
 
             //check that current stock is an int, if not give an error
+            checkTheInput check = new checkTheInput();//use the object created for checking
+            boolean ok = false;
             Integer CS=0;
-            try{
-                CS = Integer.parseInt(qty.getText());
-            }catch (Exception e){
-                //System.out.println("Not an current stock integer ");
-                okToPost = false; //set to false to signal an issue
-
-                //construct a dummy frame using the class! since it is a redundant operation
-                dummyFrame df = new dummyFrame();
-                JFrame dummyF = df.dummyFrameConstruction();
-
-                JPanel error = new JPanel();
-                error.setVisible(true);
-                JLabel errorMsg = new JLabel("Error, current stock is not an integer ");
-                error.add(errorMsg);
-                int error1 = JOptionPane.showConfirmDialog(dummyF, error,
-                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if(error1==0){//only enter the loop when ok pressed
-                    df.dummyFrameDispose(dummyF);
-                }
-
-            }
+            ok = check.isAnInt(qty.getText(), "Current Stock");
+            if(!ok) okToPost = false;
+            else CS = Integer.parseInt(qty.getText());
 
             //check that sales price  is a double, if not give an error
-            Double SP =0.0;
-            try{
-                SP = Double.parseDouble(sprice.getText());
-            }catch (Exception e){
-                //System.out.println("Not a double sales price");
-                okToPost = false; //set to false to signal an issue
-
-                //construct a dummy frame using the class! since it is a redundant operation
-                dummyFrame df = new dummyFrame();
-                JFrame dummyF = df.dummyFrameConstruction();
-
-                JPanel error = new JPanel();
-                error.setVisible(true);
-                JLabel errorMsg = new JLabel("Error, sales price is not a double ");
-                error.add(errorMsg);
-                int error2 = JOptionPane.showConfirmDialog(dummyF, error,
-                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if(error2==0){//only enter the loop when ok pressed
-                   df.dummyFrameDispose(dummyF);
-                }
-
-            }
+            boolean ok1 = false;
+            Double SP=0.0;
+            ok1 = check.isADouble(sprice.getText(), "Sales Price");
+            if(!ok1) okToPost = false;
+            else SP = Double.parseDouble(sprice.getText());
 
             //check that  purchase price is a double, if not give an error
+            boolean ok2 = false;
             Double PP=0.0;
-            try{
-                PP = Double.parseDouble(pprice.getText());
-            }catch (Exception e){
-                //System.out.println("Not a double purchase price");
-                okToPost = false; //set to false to signal an issue
-
-                //construct a dummy frame using the class! since it is a redundant operation
-                dummyFrame df = new dummyFrame();
-                JFrame dummyF = df.dummyFrameConstruction();
-
-                JPanel error = new JPanel();
-                error.setVisible(true);
-                JLabel errorMsg = new JLabel("Error, purchase price is not a double ");
-                error.add(errorMsg);
-                int error3 = JOptionPane.showConfirmDialog(dummyF, error,
-                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if(error3==0){//only enter the loop when ok pressed
-                    df.dummyFrameDispose(dummyF);
-                }
-
-            }
+            ok2 = check.isADouble(pprice.getText(), "Purchase Price");
+            if(!ok2) okToPost = false;
+            else SP = Double.parseDouble(pprice.getText());
 
             //check that full stock is an int, if not give an error
+            boolean ok3 = false;
             Integer FS=0;
-            try{
-                FS = Integer.parseInt(fullstock.getText());
-            }catch (Exception e){
-                //System.out.println("Not an integer fullstock");
-                okToPost = false; //set to false to signal an issue
-
-                //construct a dummy frame using the class! since it is a redundant operation
-                dummyFrame df = new dummyFrame();
-                JFrame dummyF = df.dummyFrameConstruction();
-
-                JPanel error = new JPanel();
-                error.setVisible(true);
-                JLabel errorMsg = new JLabel("Error, full stock is not an integer ");
-                error.add(errorMsg);
-                int error4 = JOptionPane.showConfirmDialog(dummyF, error,
-                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if(error4==0){//only enter the loop when ok pressed
-                    df.dummyFrameDispose(dummyF);
-                }
-
-            }
-
+            ok3 = check.isAnInt(fullstock.getText(), "Full Stock");
+            if(!ok3) okToPost = false;
+            else FS = Integer.parseInt(fullstock.getText());
 
             boolean LIM2=true;
             if(LIM.equalsIgnoreCase("yes")){
@@ -202,14 +136,43 @@ public class AddMed {
 
 
             if(okToPost) {//if there was an issue in the format of the input, it will not enter the loop
-                // Include this new product in the DB on Heroku (see ProjectServlet for more details)
+                // Include this new product in the DB on Heroku (see ProjectServlet for more details) provided it is not already in
 
                 db_handling.checkForMed CFM = new checkForMed();
-                boolean notAlreadyIn =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT);
+                Vector<Integer> id;
+                boolean notAlreadyIn = false;
+                id =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT);
+                if (id.size()==0) {
+                    notAlreadyIn = true;
+                }
                 if(!notAlreadyIn) {
-                    System.out.println("It is already in the db");
+                    //construct a dummy frame using the class! since it is a redundant operation
+                    dummyFrame df = new dummyFrame();
+                    JFrame frmOpt = df.dummyFrameConstruction();
+
+                    JPanel error = new JPanel();
+                    error.setVisible(true);
+                    JLabel errorMsg = new JLabel("Error, this medicine is already in the database, you can try to update it instead");
+                    error.add(errorMsg);
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt, error,
+                            "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    if(result3==0) frmOpt.dispose(); //when ok or the cross is pressed, discard the frame
+
                 }else{
+
                     makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
+
+                    //construct a dummy frame using the class! since it is a redundant operation
+                    dummyFrame df = new dummyFrame();
+                    JFrame frmOpt = df.dummyFrameConstruction();
+
+                    JPanel success = new JPanel();
+                    success.setVisible(true);
+                    JLabel successMSG = new JLabel("The new medicine has been added to the database");
+                    success.add(successMSG);
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt, success,
+                            "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    if(result3==0) frmOpt.dispose(); //when ok or the cross is pressed, discard the frame
                     fr.dispose(); //discard of the dummy jframe
                 }
 

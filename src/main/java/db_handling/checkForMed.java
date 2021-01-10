@@ -5,10 +5,12 @@ import java.util.Vector;
 
 public class checkForMed {
 
+
     public  checkForMed(){
     }
 
-    public boolean isTheMedicineIn(String selectedName, String selectedAmount, String selectedSalesP, String selectedPurchP, String selectedDescription, String selectedCategory){
+    public Vector<Integer> isTheMedicineIn(String selectedName, String selectedAmount, String selectedSalesP, String selectedPurchP, String selectedDescription, String selectedCategory){
+        Vector<Integer> id = new Vector<>();
 
         GetDB_medicine info = new GetDB_medicine();//get info from DB
         ArrayList<String> str1 = info.getBrand(); //GET FROM DB
@@ -21,7 +23,7 @@ public class checkForMed {
         boolean itIsNotIn = false; //assume that it is in the db
 
         //get indexes of name
-        Vector<Integer> id = new Vector<>();
+
         for(int i=0; i<str1.size(); i++){
             if( selectedName.equalsIgnoreCase(str1.get(i)) ) { //use the .equals operator as it compares the content of the string and not if they are the same object.
                 id.add(i+1); //add one because index starts at 0 and id at 1
@@ -81,8 +83,6 @@ public class checkForMed {
         temp.clear();
 
 
-
-
         //verify brand and description match
         for(int i=0; i<id.size();i++){
             int index = id.get(i);
@@ -113,9 +113,12 @@ public class checkForMed {
         }
         temp.clear();
 
-        if(id.size()==0) itIsNotIn = true; //if id size is 0 it means there is no perfect match in the db and so it does not exist in the db
+        return id;
+        //if(id.size()==0) itIsNotIn = true; //if id size is 0 it means there is no perfect match in the db and so it does not exist in the db
 
-        return itIsNotIn; // true if its not in, false if it is in
+        //return itIsNotIn; // true if its not in, false if it is in
 
     }
+
+
 }

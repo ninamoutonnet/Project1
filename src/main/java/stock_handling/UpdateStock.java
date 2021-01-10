@@ -4,6 +4,7 @@ import GUI.dummyFrame;
 import db_handling.GetDB_medicine;
 import db_handling.valueHolder;
 import GUI.SortedComboBoxModel;
+import db_handling.checkForMed;
 
 import javax.print.DocFlavor;
 import javax.swing.*;
@@ -59,7 +60,7 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Quantity to add or remove:"));
-       //can take in negative numbers
+        //can take in negative numbers
         JTextField qty = new JTextField(13);
         myPanel.add(qty);
 
@@ -132,104 +133,12 @@ public class UpdateStock {
 
            // System.out.println(selectedName + " " + selectedAmount + " " + quantityAddRemove + " " + selectedSalesP + " " + selectedPurchP + " " + selectedDescription + " " + selectedCategory);
             boolean validEntry = true; //assume the entries are valid
-
-            //get indexes of name
-            Vector<Integer> id = new Vector<>();
-            for(int i=0; i<str1.size(); i++){
-                if( selectedName.equals(str1.get(i)) ) { //use the .equals operator as it compares the content of the string and not if they are the same object.
-                    id.add(i+1); //add one because index starts at 0 and id at 1
-                }
-            }
-
-            //verify those indexes match between brand name and amount
-            Vector<Integer> temp = new Vector<>();
-            for(int i=0; i<id.size();i++){
-                int index = id.get(i);
-                if(selectedAmount.equals(str2.get(index-1))) {
-                    //refine the index vector with only the medicine that we care about
-                    temp.add(index);
-                    //System.out.println(index);
-                }
-            }
-            id.clear();
-            for(int i=0; i<temp.size();i++){
-                id.add(temp.get(i)); //update the id vector
-               // System.out.println(id.get(i));
-            }
-            temp.clear();
-            //if(id.size()==0) validEntry =false; //if the id is 0, there was no match between brand name and amount and thus this is not valid
-
-
-            //verify brand and sprice match
-            for(int i=0; i<id.size();i++){
-                int index = id.get(i);
-                if(selectedSalesP.equals(str3.get(index-1))) {
-                    //refine the index vector with only the medicine that we care about
-                    temp.add(index);
-                    //System.out.println(index);
-                }
-            }
-            id.clear();
-            for(int i=0; i<temp.size();i++){
-                id.add(temp.get(i)); //update the id vector
-               // System.out.println(id.get(i));
-            }
-            temp.clear();
-            //if(id.size()==0) validEntry = false;
-
-
-
-            //verify brand and purchprice match
-            for(int i=0; i<id.size();i++){
-                int index = id.get(i);
-                if(selectedPurchP.equals(str4.get(index-1))) {
-                    //refine the index vector with only the medicine that we care about
-                    temp.add(index);
-                }
-            }
-            id.clear();
-            for(int i=0; i<temp.size();i++){
-                id.add(temp.get(i)); //update the id vector
-            }
-            temp.clear();
-            //if(id.size()==0) validEntry = false;
-
-
-
-            //verify brand and description match
-            for(int i=0; i<id.size();i++){
-                int index = id.get(i);
-                if(selectedDescription.equals(str5.get(index-1))) {
-                    //refine the index vector with only the medicine that we care about
-                    temp.add(index);
-                }
-            }
-            id.clear();
-            for(int i=0; i<temp.size();i++){
-                id.add(temp.get(i)); //update the id vector
-            }
-            temp.clear();
-           // if(id.size()==0) validEntry = false;
-
-
-            //verify brand and category match
-            for(int i=0; i<id.size();i++){
-                int index = id.get(i);
-                if(selectedCategory.equals(str6.get(index-1))) {
-                    //refine the index vector with only the medicine that we care about
-                    temp.add(index);
-                }
-            }
-            id.clear();
-            for(int i=0; i<temp.size();i++){
-                id.add(temp.get(i)); //update the id vector
-            }
-            temp.clear();
-
-            if(id.size()==0) validEntry = false;
-
-
-
+            checkForMed CFM = new checkForMed();
+            //false if the medicine is not in
+            Vector<Integer> id;
+            id = CFM.isTheMedicineIn(selectedName,selectedAmount,selectedSalesP,selectedPurchP,selectedDescription,selectedCategory);
+            if(id.size()==0) validEntry = false; // if no medicine has been found having the same values,
+            //// give an error. you cannot update a stock of smt that is not in the db
 
             //NOW CHOOSE WETHER OR NOT THE INPUT IS VALID AND YOU SHOULD UPDATE THE DB OR NOT
             if(validEntry==false){
@@ -243,6 +152,7 @@ public class UpdateStock {
             }
 
             if(validEntry==true ){
+
                 //now check the input makes sens with respoect to stock available
                 ArrayList<String> strAmount = info.getCurrentStock(); //GET FROM DB
                 System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
