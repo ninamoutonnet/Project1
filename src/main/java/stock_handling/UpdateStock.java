@@ -22,7 +22,6 @@ public class UpdateStock {
 
     //constructor
     public  UpdateStock() {
-
         //create a dummy jframe in order to set the option pane on top
         //construct a dummy frame using the class! since it is a redundant operation
         dummyFrame df = new dummyFrame();
@@ -31,7 +30,6 @@ public class UpdateStock {
         JPanel myPanel = new JPanel();
         myPanel.setLocation(200,100);
         myPanel.setLayout(new GridLayout(8, 2));
-
 
         // MED NAME
         myPanel.add(new JLabel("Medicine Name:"));
@@ -50,7 +48,6 @@ public class UpdateStock {
         comboBox.setVisible(true);
         myPanel.add(comboBox);
 
-
         myPanel.add(new JLabel("Amount per box/bottle:"));
         ArrayList<String> str2 = info.getAmount(); //GET FROM DB
         //sort the list
@@ -66,12 +63,10 @@ public class UpdateStock {
         comboBox2.setVisible(true);
         myPanel.add(comboBox2);
 
-
         myPanel.add(new JLabel("Quantity to add or remove:"));
         //can take in negative numbers
         JTextField qty = new JTextField(13);
         myPanel.add(qty);
-
 
         myPanel.add(new JLabel("Sale price :"));
         ArrayList<String> str3 = info.getSPrice(); //GET FROM DB

@@ -32,7 +32,7 @@ public class GetDB_medicine {
 
     public GetDB_medicine() {
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess");
+            URL myURL = new URL("https://projectservlet.herokuapp.com/products");
             HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -86,8 +86,6 @@ public class GetDB_medicine {
         //System.out.println(Category);
         //System.out.println(ID);
         //System.out.println(CurrentStock);
-
-
     }
 
     public ArrayList<String> getBrand() { return Brand; }
@@ -96,7 +94,7 @@ public class GetDB_medicine {
 
     public ArrayList<String> getSPrice() { return SPrice; }
 
-    public ArrayList<String> getPPrice(){ return PPrice; }
+    public ArrayList<String> getPPrice() { return PPrice; }
 
     public ArrayList<String> getFullStock() { return FullStock; }
 
@@ -104,7 +102,7 @@ public class GetDB_medicine {
 
     public ArrayList<String> getDescription() { return Description; }
 
-    public ArrayList<String> getCategory(){ return Category; }
+    public ArrayList<String> getCategory() { return Category; }
 
     public ArrayList<String> getID() { return ID; }
 

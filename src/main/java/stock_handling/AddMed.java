@@ -188,8 +188,7 @@ public class AddMed {
         }
     }
 
-
-    // Method making a POST request to the servlet to add a new client to the DB - check that POST is the correct method (could be PUT)
+    // Method making a POST request to the servlet to add a new medicine to the DB - check that POST is the correct method (could be PUT)
     public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS) {
         try {
             // This is the SQL query included in the body of the POST request = instructions
@@ -226,8 +225,5 @@ public class AddMed {
             System.out.println("Something went wrong");
         }
     }
-
-
-
 }
 

@@ -30,7 +30,7 @@ public class GetDB_clients {
 
     public GetDB_clients() {
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess");
+            URL myURL = new URL("https://projectservlet.herokuapp.com/clients");
             HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -67,8 +67,6 @@ public class GetDB_clients {
             expDate.add(clients.get(4));
             password.add(clients.get(5));
             ID.add(clients.get(6));
-
-
         }
 
         System.out.println(lastName);
@@ -78,9 +76,6 @@ public class GetDB_clients {
         System.out.println(expDate);
         System.out.println(password);
         System.out.println(ID);
-
-
-
     }
 
     public ArrayList<String> getLastName() { return lastName; }
@@ -89,13 +84,11 @@ public class GetDB_clients {
 
     public ArrayList<String> getCardNumber() { return CardNumber; }
 
-    public ArrayList<String> getCCV(){ return CCV; }
+    public ArrayList<String> getCCV() { return CCV; }
 
     public ArrayList<String> getExpDate() { return expDate; }
 
     public ArrayList<String> getPassword() { return password; }
 
     public ArrayList<String> getID() { return ID; }
-
-
 }
