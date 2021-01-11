@@ -1,6 +1,7 @@
 package main_screen;
 
 import GUI.GradientPanel;
+import db_handling.GetDB_clients;
 import db_handling.GetDB_medicine;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
@@ -25,6 +27,7 @@ public class UI extends JPanel{
         mainPanel.setLayout(new GridLayout(4, 4));
 
         GetDB_medicine DB = new GetDB_medicine();
+        GetDB_clients clientDB = new GetDB_clients();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
 
@@ -99,18 +102,19 @@ public class UI extends JPanel{
         cb.setVisible(true);
         String varName = (String)cb.getSelectedItem();
         //problem with this is that the value is the initial one, ie always 1
-        System.out.println("the selected number of medication is: " + varName);
+        //System.out.println("the selected number of medication is: " + varName);
         mainPanel.add(cb);
 
         //set the combo box
         //when using the servlet, we have to go through the db and names
-        Vector<String> name = new Vector<String>();
-        name.addElement("Select a customer");
-        name.addElement("Jon Smith");
-        name.addElement("Louise Baron");
-        name.addElement("Nina Moutonnet");
-        name.addElement("Irene Mangialomini");
-        final JComboBox<String> names = new JComboBox<String>(name);
+        int sizeName = clientDB.getFirstName().size();
+        //System.out.println(clientDB.getFirstName());
+        Vector<String> fullName = new Vector<>();
+        for(int i=0; i<sizeName; i++){
+            fullName.add(clientDB.getFirstName().get(i) +" "+ clientDB.getLastName().get(i));
+        }
+        fullName.add(0, "Select a customer");
+        final JComboBox<String> names = new JComboBox<String>(fullName);
         names.setVisible(true);
         mainPanel.add(names);
 
