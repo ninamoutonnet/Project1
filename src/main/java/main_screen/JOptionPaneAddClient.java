@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,6 +32,31 @@ public class JOptionPaneAddClient {
             }
         }
         return true;
+    }
+
+    public String encryption (String psw)
+    {
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(psw.getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return (generatedPassword);
     }
 
     public JOptionPaneAddClient() throws SQLException {
@@ -95,9 +122,10 @@ public class JOptionPaneAddClient {
             String ED = expDate.getText();
             String PW = password.getText();
 
-            // Include this new client in the DB on Heroku (see ProjectServlet for more details)
-            makePostRequest(FN, GN, CN, Ccv, ED, PW); // make sure that the client is not added if he/she is already in the DB - need to find a solution for that
+            String PW_encrypted = encryption(PW);
 
+            // Include this new client in the DB on Heroku (see ProjectServlet for more details)
+            makePostRequest(FN, GN, CN, Ccv, ED, PW_encrypted); // make sure that the client is not added if he/she is already in the DB - need to find a solution for that
         }
     }
 
