@@ -30,7 +30,7 @@ public class GetDB_clients {
 
     public GetDB_clients() {
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/clients?item=clients");
+            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients");
             HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");

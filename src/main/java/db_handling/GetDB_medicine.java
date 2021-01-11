@@ -32,7 +32,7 @@ public class GetDB_medicine {
 
     public GetDB_medicine() {
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/clients?item=products");
+            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
             HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
