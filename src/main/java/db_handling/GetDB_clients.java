@@ -46,6 +46,7 @@ public class GetDB_clients {
 
             Gson gson = new Gson();
             AllClients = gson.fromJson(jsonS, ArrayList.class);
+            System.out.println(AllClients);
 
 
         } catch (Exception e) {
@@ -67,7 +68,7 @@ public class GetDB_clients {
             password.add(clients.get(5));
             ID.add(clients.get(6));
 
-            //System.out.println(product);
+
         }
 
         System.out.println(lastName);
