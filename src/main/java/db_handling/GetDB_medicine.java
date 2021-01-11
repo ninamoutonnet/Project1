@@ -76,16 +76,16 @@ public class GetDB_medicine {
             //System.out.println(product);
         }
 
-       /* System.out.println(Brand);
-        System.out.println(Amount);
-        System.out.println(SPrice);
-        System.out.println(PPrice);
-        System.out.println(FullStock);
-        System.out.println(Limit);
-        System.out.println(Description);
-        System.out.println(Category);
-        System.out.println(ID);
-        System.out.println(CurrentStock);*/
+        //System.out.println(Brand);
+        //System.out.println(Amount);
+       // System.out.println(SPrice);
+        //System.out.println(PPrice);
+        //System.out.println(FullStock);
+       // System.out.println(Limit);
+        //System.out.println(Description);
+        //System.out.println(Category);
+        //System.out.println(ID);
+        //System.out.println(CurrentStock);
 
 
     }
