@@ -1,11 +1,13 @@
 import com.google.gson.Gson;
 import db_handling.GetDB_clients;
 import db_handling.GetDB_medicine;
+import db_handling.checkForMed;
 import org.junit.Test;
 import org.junit.Assert;
 import static org.hamcrest.CoreMatchers.hasItems;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class TestDBHandling {
     @Test
@@ -32,5 +34,19 @@ public class TestDBHandling {
         Assert.assertThat(testDBc.getPassword(),hasItems("nina13","dudu3298","PoTC","footBall199321"));
         Assert.assertThat(testDBc.getID(),hasItems("16","21","22","24"));
     }
+    @Test
+    public void TestCheckForMed(){ //testing if GetDB clients work
+        checkForMed testCFM= new checkForMed();
+        Vector<Integer> testid1;
+        Vector<Integer> testid27;
+        Vector<Integer> testwrongid;
+        testid1=testCFM.isTheMedicineIn("Benadryl","24 caps","18","7.1","Relief","Allergy");
+        testid27 = testCFM.isTheMedicineIn("E45","50 mL","12","16","Psoriasis cream", "Skincare");
+        testwrongid = testCFM.isTheMedicineIn("Adeiz","0","0", "Hfzei","Kofjzi","Kdijiz");
+        Assert.assertEquals(1, testid1.size());
+        Assert.assertEquals(1, testid27.size());
+        Assert.assertEquals(0, testwrongid.size());
+    }
+
 
 }
