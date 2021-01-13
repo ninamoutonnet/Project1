@@ -10,7 +10,7 @@ public class TestDBHandling {
     @Test
     public void TestGetDB_medicine(){ //testing if GetDB methods work
         GetDB_medicine testDB = new GetDB_medicine();
-        Assert.assertThat(testDB.getBrand(),hasItems("Benadryl","Piriteze","Beconase","Dettol"));
+        Assert.assertThat(testDB.getBrand(),hasItems("Benadryl","Dettol","Nurofen","E45"));
         Assert.assertThat(testDB.getAmount(),hasItems("24 caps","7 tablets","100 sprays"));
         Assert.assertThat(testDB.getSPrice(),hasItems("18","6","12","6.4"));
         Assert.assertThat(testDB.getPPrice(),hasItems("7.1","2.3","4","3"));

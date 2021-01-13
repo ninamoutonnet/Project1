@@ -33,8 +33,12 @@ public class GradientPanel extends JPanel {
         Color color7 = new Color(55,0,104);
         Color color8 = new Color(122,0,122);
 
+        //Green option
+        Color color9 = new Color(40,128,40);
+        Color color10 = new Color(144,190,144);
 
-        GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+
+        GradientPaint gp = new GradientPaint(0, 0, color9, 0, h, color10);
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, w, h);
     }

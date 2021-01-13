@@ -1,6 +1,8 @@
 import GUI.SortedComboBoxModel;
+import GUI.checkTheInput;
 import org.junit.Assert;
 import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
 
 import java.util.Vector;
 
@@ -18,4 +20,13 @@ public class TestGUI {
         Assert.assertEquals("Cetaphil", sortedModel.getElementAt(2));
         Assert.assertEquals("Cuprofen", sortedModel.getElementAt(3));
     }
+    @Test
+    public void testCheckTheInput(){
+        checkTheInput testCheck = new checkTheInput();
+        boolean testIntOk=testCheck.isAnInt("1","Current Stock");
+        Assert.assertThat(testIntOk,is(true));
+        boolean testDoubleOk=testCheck.isADouble("1.1","Sales Price");
+        Assert.assertThat(testDoubleOk,is(true));
+    }
+
 }
