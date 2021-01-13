@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import db_handling.GetDB_clients;
 import db_handling.GetDB_medicine;
 import org.junit.Test;
 import org.junit.Assert;
@@ -20,4 +21,16 @@ public class TestDBHandling {
         Assert.assertThat(testDB.getCategory(),hasItems("Allergy","First aid", "Cold and Flu","Digestion"));
         Assert.assertThat(testDB.getID(),hasItems("1","14","35","48"));
     }
+    @Test
+    public void TestGetDB_clients(){ //testing if GetDB clients work
+        GetDB_clients testDBc = new GetDB_clients();
+        Assert.assertThat(testDBc.getLastName(),hasItems("Moutonnet","Baron","Jolie","Beckham"));
+        Assert.assertThat(testDBc.getFirstName(),hasItems("Nina","Louise","Napoleon","David"));
+        Assert.assertThat(testDBc.getCardNumber(),hasItems("1234567891234567","8979000033334444","1387240913687829","9999999922229999"));
+        Assert.assertThat(testDBc.getCCV(),hasItems("123","963","470","133"));
+        Assert.assertThat(testDBc.getExpDate(),hasItems("23/05/25","23/10/21","05/06/22","09/12/22"));
+        Assert.assertThat(testDBc.getPassword(),hasItems("nina13","dudu3298","PoTC","footBall199321"));
+        Assert.assertThat(testDBc.getID(),hasItems("16","21","22","24"));
+    }
+
 }
