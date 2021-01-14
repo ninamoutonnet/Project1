@@ -1,5 +1,6 @@
 package db_handling;
 
+import Requests.Get;
 import com.google.gson.Gson;
 
 import javax.smartcardio.Card;
@@ -30,31 +31,15 @@ public class GetDB_clients {
 
     public GetDB_clients() {
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients");
-            HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", "utf-8");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(myURL.openStream()));
-            String inputLine;
-            //read the body of the response:
-            while ((inputLine = in.readLine()) != null) {
-                jsonS += inputLine;
-            }
-            in.close();
-
-            Gson gson = new Gson();
-            AllClients = gson.fromJson(jsonS, ArrayList.class);
-            System.out.println(AllClients);
-
-
-        } catch (Exception e) {
+            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
+            Get getRequest = new Get();
+            AllClients = getRequest.Response(myURL);
+        }
+        catch (Exception e) {
             System.out.println("Something went wrong");
         }
 
-
-        // arrays that will store the info by type
+        // Arrays that will store the info by type
 
         for(int i = 0; i<AllClients.size(); i++){
             ArrayList<String> clients = new ArrayList<String>();

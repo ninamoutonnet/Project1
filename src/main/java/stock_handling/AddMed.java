@@ -1,19 +1,13 @@
 package stock_handling;
 
-import GUI.SortedComboBoxModel;
 import db_handling.GetDB_medicine;
 import GUI.dummyFrame;
 import db_handling.checkForMed;
 import GUI.checkTheInput;
+import Requests.Post;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
@@ -190,40 +184,9 @@ public class AddMed {
 
     // Method making a POST request to the servlet to add a new medicine to the DB - check that POST is the correct method (could be PUT)
     public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS) {
-        try {
             // This is the SQL query included in the body of the POST request = instructions
-            String message = "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
-            byte[] body = message.getBytes(StandardCharsets.UTF_8);
-
-            // The URL maps to the servlet (check that this is the correct way to say it)
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access");
-            HttpURLConnection conn = null;
-
-            conn = (HttpURLConnection) myURL.openConnection();
-            // Set up the header
-            conn.setRequestMethod("POST"); // sets the HTTP method
-            conn.setRequestProperty("Accept", "text/html");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setRequestProperty("Content-Length", Integer.toString(body.length));
-            conn.setDoOutput(true);
-
-            // Write the body of the request
-            try (OutputStream outputStream = conn.getOutputStream()) {
-                outputStream.write(body, 0, body.length);
-            }
-
-            // BufferedReader is a Java class to read the text from an I stream
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-            String inputLine;
-            // Read the body of the response
-            while ((inputLine = bufferedReader.readLine()) != null) {
-                System.out.println(inputLine);
-            }
-            bufferedReader.close();
-        }
-        catch(Exception e) {
-            System.out.println("Something went wrong");
-        }
+            String query = "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
+            new Post(query);
     }
 }
 
