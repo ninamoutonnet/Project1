@@ -71,7 +71,7 @@ public class JOptionPaneAddClient {
         myPanel.add(new JLabel("CCV:"));
         myPanel.add(CCV);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Exp date:"));
+        myPanel.add(new JLabel("Exp date (dd/mm/yy) :"));
         myPanel.add(expDate);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Password:"));
