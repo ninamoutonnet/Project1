@@ -169,8 +169,8 @@ public class UI extends JPanel{
             String ChosenBrand = (String)med.getSelectedItem();
             String ChosenAmount = (String)cb.getSelectedItem();
             String ChosenClient = (String)names.getSelectedItem();
-            int Branch = (int)branches.getSelectedItem();
-            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, Branch );
+            //int Branch = (int)branches.getSelectedItem();
+            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, 1 );
             System.out.println("category: " + ChosenCat + " Brand " + ChosenBrand + " Amount " + ChosenAmount);
         }
         });
