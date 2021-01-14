@@ -41,7 +41,7 @@ public class GetDB_medicine {
             }
         }
 
-        if (branchnb == 1) {
+        if (branchnb == 2) {
             try {
                 URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=2");
                 Get getRequest = new Get();
@@ -51,7 +51,7 @@ public class GetDB_medicine {
             }
         }
 
-        if (branchnb == 1) {
+        if (branchnb == 3) {
             try {
                 URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=3");
                 Get getRequest = new Get();

@@ -131,13 +131,21 @@ public class RemoveMed {
         comboBoxBranch.setVisible(true);
         myPanel.add(comboBoxBranch);
 
+
         frmOpt.add(myPanel);
 
         int result = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Please Enter the details of the medicine you wish to remove", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
+            String Branch = comboBoxBranch.getSelectedItem().toString();
+            //relate the different branches to the different databases tables
+            Integer branchNB =0;
+            if(Branch.equalsIgnoreCase("Paddington")) branchNB =2;
+            if(Branch.equalsIgnoreCase("Green Park")) branchNB =1;
+            if(Branch.equalsIgnoreCase("East End")) branchNB =3;
+
             checkForMed idIfMedIsInDB = new checkForMed();
-            Vector<Integer> id = idIfMedIsInDB.isTheMedicineIn(names.getSelectedItem().toString(), amountCB.getSelectedItem().toString(), spriceCB.getSelectedItem().toString(), ppriceCB.getSelectedItem().toString(), descriptionCB.getSelectedItem().toString(), categoryCB.getSelectedItem().toString());
+            Vector<Integer> id = idIfMedIsInDB.isTheMedicineIn(names.getSelectedItem().toString(), amountCB.getSelectedItem().toString(), spriceCB.getSelectedItem().toString(), ppriceCB.getSelectedItem().toString(), descriptionCB.getSelectedItem().toString(), categoryCB.getSelectedItem().toString(), branchNB);
             if(id.size()==0){
                 //if the medicine to  remove is not found in the db
                 dummyFrame df1 = new dummyFrame();

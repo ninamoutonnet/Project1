@@ -40,9 +40,9 @@ public class TestDBHandling {
         Vector<Integer> testid1;
         Vector<Integer> testid27;
         Vector<Integer> testwrongid;
-        testid1=testCFM.isTheMedicineIn("Benadryl","24 caps","18","7.1","Relief","Allergy");
-        testid27 = testCFM.isTheMedicineIn("E45","50 mL","12","16","Psoriasis cream", "Skincare");
-        testwrongid = testCFM.isTheMedicineIn("Adeiz","0","0", "Hfzei","Kofjzi","Kdijiz");
+        testid1=testCFM.isTheMedicineIn("Benadryl","24 caps","18","7.1","Relief","Allergy", 1);
+        testid27 = testCFM.isTheMedicineIn("E45","50 mL","12","16","Psoriasis cream", "Skincare", 1);
+        testwrongid = testCFM.isTheMedicineIn("Adeiz","0","0", "Hfzei","Kofjzi","Kdijiz",1);
         Assert.assertEquals(1, testid1.size());
         Assert.assertEquals(1, testid27.size());
         Assert.assertEquals(0, testwrongid.size());
