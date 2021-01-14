@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.Vector;
 
 public class UpdateStock {
-    GetDB_medicine info = new GetDB_medicine();
+    GetDB_medicine info = new GetDB_medicine(1);
 
     //constructor
     public  UpdateStock() {
@@ -128,6 +128,13 @@ public class UpdateStock {
         JComboBox<String> comboBox6 = new JComboBox<>(array6);
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
+
+        //Branch name
+        myPanel.add(new JLabel("Branch "));
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
 
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,

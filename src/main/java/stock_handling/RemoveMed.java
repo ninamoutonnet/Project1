@@ -17,7 +17,7 @@ import java.util.LinkedHashSet;
 
 public class RemoveMed {
 
-    GetDB_medicine info = new GetDB_medicine();
+    GetDB_medicine info = new GetDB_medicine(1);
 
     public RemoveMed(){
         //construct a dummy frame using the class! since it is a redundant operation
@@ -25,7 +25,7 @@ public class RemoveMed {
         JFrame frmOpt = df.dummyFrameConstruction();
 
         JPanel myPanel = new JPanel();
-        myPanel.setLayout(new GridLayout(6,1));
+        myPanel.setLayout(new GridLayout(7,1));
 
 
         Vector<String> name = new Vector<>();
@@ -124,6 +124,12 @@ public class RemoveMed {
         JComboBox<String> categoryCB = new JComboBox<String>(category);
         categoryCB.setVisible(true);
         myPanel.add(categoryCB);
+
+        //Branch name
+        String[] arrayBranches = {"Branch","East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
 
         frmOpt.add(myPanel);
 

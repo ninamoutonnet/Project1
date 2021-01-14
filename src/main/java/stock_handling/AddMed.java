@@ -14,7 +14,7 @@ import java.util.Vector;
 
 
 public class AddMed {
-    GetDB_medicine info = new GetDB_medicine();
+    GetDB_medicine info = new GetDB_medicine(1);
 
     public AddMed() {
         JFrame fr = new JFrame(); //dummy JFrame to ensure that the window popping up is on top of anything else
@@ -32,6 +32,7 @@ public class AddMed {
         String LIM = "";
         String CAT = "";
         String DES = "";
+        String Branch ="";
 
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(10, 2));
@@ -81,12 +82,21 @@ public class AddMed {
         comboBoxCategory.setVisible(true);
         myPanel.add(comboBoxCategory);
 
+        //Branch name
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Branch "));
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
+
         // + need to eliminate all the strings that are the same
 
         int result = JOptionPane.showConfirmDialog(fr, myPanel,
                 "Please Enter the medicine details", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             //get the values of combobox once OK is pressed
+            Branch = comboBoxBranch.getSelectedItem().toString();
             LIM = limited.getSelectedItem().toString();
             CAT = comboBoxCategory.getSelectedItem().toString();
             // Get the inputs from the person using the app --> information for one client
@@ -139,7 +149,27 @@ public class AddMed {
                 db_handling.checkForMed CFM = new checkForMed();
                 Vector<Integer> id;
                 boolean notAlreadyIn = false;
-                id =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT);
+                //
+
+
+
+
+
+
+
+                //PUT IN THE BRANCH NAME IN THE IS THE MED IN METHOD!
+
+
+
+
+
+
+
+
+
+
+                //
+                id =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT); //returns the id of the medicine in the database
                 if (id.size()==0) {
                     notAlreadyIn = true;
                 }
@@ -157,6 +187,10 @@ public class AddMed {
                     if(result3==0) frmOpt.dispose(); //when ok or the cross is pressed, discard the frame
 
                 }else{
+
+                    //CHECK HERE FOR THE WHICH DB TO POST AT!!!
+
+
 
                     makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
 

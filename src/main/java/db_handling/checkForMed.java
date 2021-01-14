@@ -12,7 +12,7 @@ public class checkForMed {
     public Vector<Integer> isTheMedicineIn(String selectedName, String selectedAmount, String selectedSalesP, String selectedPurchP, String selectedDescription, String selectedCategory){
         Vector<Integer> id = new Vector<>();
 
-        GetDB_medicine info = new GetDB_medicine();//get info from DB
+        GetDB_medicine info = new GetDB_medicine(1);//get info from DB
         ArrayList<String> str1 = info.getBrand(); //GET FROM DB
         ArrayList<String> str2 = info.getAmount(); //GET FROM DB
         ArrayList<String> str3 = info.getSPrice(); //GET FROM DB
@@ -96,7 +96,6 @@ public class checkForMed {
             id.add(temp.get(i)); //update the id vector
         }
         temp.clear();
-
 
 
         //verify brand and category match

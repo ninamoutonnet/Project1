@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.FileSystemNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -27,8 +28,8 @@ public class UI extends JPanel{
 
         mainPanel.setLayout(new GridLayout(4, 4));
 
-        GetDB_medicine DB = new GetDB_medicine();
-        GetDB_clients clientDB = new GetDB_clients();
+        GetDB_medicine DB = new GetDB_medicine(1);
+        GetDB_clients clientDB = new GetDB_clients(1);
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
 
@@ -92,7 +93,7 @@ public class UI extends JPanel{
         mainPanel.add(med);
 
 
-        //set the combo box
+        //set the combo box - should we make sure that it only proposes available quantities?
         Vector<String> choices = new Vector<String>();
         choices.addElement("Select amount");
         choices.addElement("1");
@@ -108,7 +109,6 @@ public class UI extends JPanel{
         //set the combo box
         //when using the servlet, we have to go through the db and names
         int sizeName = clientDB.getFirstName().size();
-        //System.out.println(clientDB.getFirstName());
         Vector<String> fullName = new Vector<>();
         for(int i=0; i<sizeName; i++){
             fullName.add(clientDB.getFirstName().get(i) +" "+ clientDB.getLastName().get(i));

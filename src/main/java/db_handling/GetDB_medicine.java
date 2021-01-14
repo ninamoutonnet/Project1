@@ -30,15 +30,35 @@ public class GetDB_medicine {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> CurrentStock = new ArrayList<>();
 
-
-    public GetDB_medicine() {
-        try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
-            Get getRequest = new Get();
-            AllProducts = getRequest.Response(myURL);
+    public GetDB_medicine(int branchnb) {
+        if (branchnb == 1) {
+            try {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=1");
+                Get getRequest = new Get();
+                AllProducts = getRequest.Response(myURL);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
         }
-        catch (Exception e) {
-            System.out.println("Something went wrong");
+
+        if (branchnb == 1) {
+            try {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=2");
+                Get getRequest = new Get();
+                AllProducts = getRequest.Response(myURL);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
+        }
+
+        if (branchnb == 1) {
+            try {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=3");
+                Get getRequest = new Get();
+                AllProducts = getRequest.Response(myURL);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
         }
 
        // Arrays that will store the info by type
