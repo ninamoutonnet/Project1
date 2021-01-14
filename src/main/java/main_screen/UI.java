@@ -125,7 +125,7 @@ public class UI extends JPanel{
 
 
         //Handling the stock
-        HandleS = new JButton("stock_handling");
+        HandleS = new JButton("Stock Handling");
         mainPanel.add(HandleS);
         HandleS.addActionListener(new ActionListener() {
             @Override
