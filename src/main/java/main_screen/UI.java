@@ -9,9 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.file.FileSystemNotFoundException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
@@ -42,6 +40,10 @@ public class UI extends JPanel{
         JPanel border3 = new JPanel();
         border3.setOpaque(false);
         mainPanel.add(border3);
+
+
+
+
 
         Vector<String> branch = new Vector<String>();
         // add a condition for the prices if one of these is selected
@@ -192,6 +194,14 @@ public class UI extends JPanel{
     public JPanel getMainPanel(){
         return mainPanel;
     }
+
+
+
+
+
+
+
+
 
 }
 

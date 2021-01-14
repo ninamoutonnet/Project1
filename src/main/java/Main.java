@@ -21,8 +21,10 @@ public class Main {
 
         UI dUIc = new UI();
         frame.add(dUIc.getMainPanel());
-
         frame.setVisible(true);
+
+
+
     }
 
     public void MakeGetRequest() {

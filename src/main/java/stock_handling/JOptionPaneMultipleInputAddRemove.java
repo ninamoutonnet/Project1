@@ -40,7 +40,22 @@ public class JOptionPaneMultipleInputAddRemove {
         remove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemoveMed remMed = new RemoveMed();
+                dummyFrame df = new dummyFrame();
+                JFrame frmOpt = df.dummyFrameConstruction();
+                frmOpt.setVisible(false);
+
+                JPanel myPanel = new JPanel();
+                String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+                JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+                comboBoxBranch.setVisible(true);
+                myPanel.add(comboBoxBranch);
+
+                int result = JOptionPane.showConfirmDialog(frmOpt, myPanel,"Select the branch",JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+                if(result==0) {
+                    String branch = comboBoxBranch.getSelectedItem().toString();
+                    RemoveMed remMed = new RemoveMed(branch);
+
+                }
             }
         });
 
