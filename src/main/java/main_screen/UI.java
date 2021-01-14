@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.FileSystemNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -108,7 +109,6 @@ public class UI extends JPanel{
         //set the combo box
         //when using the servlet, we have to go through the db and names
         int sizeName = clientDB.getFirstName().size();
-        //System.out.println(clientDB.getFirstName());
         Vector<String> fullName = new Vector<>();
         for(int i=0; i<sizeName; i++){
             fullName.add(clientDB.getFirstName().get(i) +" "+ clientDB.getLastName().get(i));

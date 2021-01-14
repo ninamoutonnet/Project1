@@ -129,6 +129,13 @@ public class UpdateStock {
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 
+        //Branch name
+        myPanel.add(new JLabel("Branch "));
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
+
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Update Stock", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
