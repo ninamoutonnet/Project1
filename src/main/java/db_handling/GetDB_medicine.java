@@ -1,5 +1,6 @@
 package db_handling;
 
+import Requests.Get;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -33,29 +34,14 @@ public class GetDB_medicine {
     public GetDB_medicine() {
         try {
             URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
-            HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", "utf-8");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(myURL.openStream()));
-            String inputLine;
-            //read the body of the response:
-            while ((inputLine = in.readLine()) != null) {
-                jsonS += inputLine;
-            }
-            in.close();
-
-            Gson gson = new Gson();
-            AllProducts = gson.fromJson(jsonS, ArrayList.class);
-
-
-        } catch (Exception e) {
+            Get getRequest = new Get();
+            AllProducts = getRequest.Response(myURL);
+        }
+        catch (Exception e) {
             System.out.println("Something went wrong");
         }
 
-
-       // arrays that will store the info by type
+       // Arrays that will store the info by type
 
         for(int i = 0; i<AllProducts.size(); i++){
             ArrayList<String> product = new ArrayList<String>();

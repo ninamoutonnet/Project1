@@ -31,7 +31,7 @@ public class GetDB_clients {
 
     public GetDB_clients() {
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
+            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients");
             Get getRequest = new Get();
             AllClients = getRequest.Response(myURL);
         }
