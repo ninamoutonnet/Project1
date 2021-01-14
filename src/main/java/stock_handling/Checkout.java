@@ -40,24 +40,20 @@ public class Checkout {
         }
 
         if (!match) {
-            /*dummyFrame df2 = new dummyFrame();
-            JFrame f1 = df2.dummyFrameConstruction();
-            JPanel fail = new JPanel();
-            fail.setVisible(true);
-            JLabel errorMsg = new JLabel("Checkout unsuccessful, please try again");
-            fail.add(errorMsg);*/
-            System.out.println("not a match bitch");
+            JOptionPane.showMessageDialog(null, "Checkout unsuccessful, please try again", " " , JOptionPane.PLAIN_MESSAGE);
+            //System.out.println("not a match");
         }
         else {
             DBout(IDCheckout, amt);
-            System.out.println("The ID is " + IDCheckout + " The amount is " + amt);
+            JOptionPane.showMessageDialog(null, "Checkout successful", " " , JOptionPane.PLAIN_MESSAGE);
+            //System.out.println("The ID is " + IDCheckout + " The amount is " + amt);
         }
 
     }
 
     public static void DBout (int idNUM, String amount) {
         try {
-            System.out.println("The ID is " + idNUM + " The amount is " + amount);
+            //System.out.println("The ID is " + idNUM + " The amount is " + amount);
             // This is the SQL query included in the body of the POST request = instructions
             String message = "UPDATE products SET currentstock = currenstock - "+amount+" where id = "+idNUM+";";
             byte[] body = message.getBytes(StandardCharsets.UTF_8);

@@ -77,7 +77,7 @@ public class UI extends JPanel{
         //ideally it would go through the heroku db and select all the names of the available medicine --> will do that soon
 
         Vector<String> medname = new Vector<String>();
-        medname.addElement("Select a medicine brand");
+        //medname.addElement("Select a medicine brand");
         for(int i = 0; i< size; i++){
             medname.addElement(DB.getBrand().get(i));
         }
@@ -169,8 +169,8 @@ public class UI extends JPanel{
             String ChosenBrand = (String)med.getSelectedItem();
             String ChosenAmount = (String)cb.getSelectedItem();
             String ChosenClient = (String)names.getSelectedItem();
-            int Branch = (int)branches.getSelectedItem();
-            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, Branch );
+            //int Branch = (int)branches.getSelectedItem();
+            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, 1 );
             System.out.println("category: " + ChosenCat + " Brand " + ChosenBrand + " Amount " + ChosenAmount);
         }
         });
