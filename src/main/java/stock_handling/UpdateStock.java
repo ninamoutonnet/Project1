@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.Vector;
 
 public class UpdateStock {
-    GetDB_medicine info = new GetDB_medicine();
+    GetDB_medicine info = new GetDB_medicine(1);
 
     //constructor
     public  UpdateStock() {

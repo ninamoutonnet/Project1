@@ -19,6 +19,8 @@ public class GetDB_clients {
     ArrayList<ArrayList> AllClients = new ArrayList<ArrayList>();
     String jsonS = "";
 
+    int branchnb = 1;
+
     // Arrays into which the info will be moved to be used in the other classes:
     ArrayList<String> lastName = new ArrayList<>();
     ArrayList<String> firstName = new ArrayList<>();
@@ -28,15 +30,35 @@ public class GetDB_clients {
     ArrayList<String> password = new ArrayList<>();
     ArrayList<String> ID = new ArrayList<>();
 
-
-    public GetDB_clients() {
-        try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients");
-            Get getRequest = new Get();
-            AllClients = getRequest.Response(myURL);
+    public GetDB_clients(int branchnb) {
+        if (branchnb == 1) {
+            try {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients&nb=1");
+                Get getRequest = new Get();
+                AllClients = getRequest.Response(myURL);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
         }
-        catch (Exception e) {
-            System.out.println("Something went wrong");
+
+        if (branchnb == 1) {
+            try {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients&nb=2");
+                Get getRequest = new Get();
+                AllClients = getRequest.Response(myURL);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
+        }
+
+        if (branchnb == 1) {
+            try {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=clients&nb=3");
+                Get getRequest = new Get();
+                AllClients = getRequest.Response(myURL);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
         }
 
         // Arrays that will store the info by type

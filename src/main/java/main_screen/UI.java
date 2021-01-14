@@ -26,8 +26,8 @@ public class UI extends JPanel{
 
         mainPanel.setLayout(new GridLayout(4, 4));
 
-        GetDB_medicine DB = new GetDB_medicine();
-        GetDB_clients clientDB = new GetDB_clients();
+        GetDB_medicine DB = new GetDB_medicine(1);
+        GetDB_clients clientDB = new GetDB_clients(1);
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
 
@@ -91,7 +91,7 @@ public class UI extends JPanel{
         mainPanel.add(med);
 
 
-        //set the combo box
+        //set the combo box - should we make sure that it only proposes available quantities?
         Vector<String> choices = new Vector<String>();
         choices.addElement("Select amount");
         choices.addElement("1");
