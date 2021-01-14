@@ -191,7 +191,7 @@ public class RemoveMed {
             byte[] body = message.getBytes(StandardCharsets.UTF_8);
 
             // The URL maps to the servlet (check that this is the correct way to say it)
-            URL myURL = new URL("https://projectservlet.herokuapp.com/DBaccess");
+            URL myURL = new URL("https://projectservlet.herokuapp.com/access");
             HttpURLConnection conn = null;
 
             conn = (HttpURLConnection) myURL.openConnection();
