@@ -13,11 +13,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Vector;
 
 public class Checkout {
-    GetDB_medicine info = new GetDB_medicine();
 
     private String amt;
 
-    public Checkout(String cat, String brand, String amount, String customer) {
+    public Checkout(String cat, String brand, String amount, String customer, int branch) {
+
+        GetDB_medicine info = new GetDB_medicine(branch);
 
         boolean found = false;
         boolean match = false;

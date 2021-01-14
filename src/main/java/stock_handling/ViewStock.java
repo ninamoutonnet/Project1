@@ -23,7 +23,8 @@ public class ViewStock {
         myPanel.setLocation(5,2);
         myPanel.setLayout(new GridLayout(200, 150));
 
-        GetDB_medicine info = new GetDB_medicine();
+
+        GetDB_medicine info = new GetDB_medicine(1);
 
         int size = info.getCurrentStock().size();
 

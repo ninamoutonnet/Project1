@@ -29,7 +29,7 @@ public class UI extends JPanel{
         mainPanel.setLayout(new GridLayout(4, 4));
 
         GetDB_medicine DB = new GetDB_medicine(1);
-        GetDB_clients clientDB = new GetDB_clients(1);
+        GetDB_clients clientDB = new GetDB_clients();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
 
@@ -169,7 +169,8 @@ public class UI extends JPanel{
             String ChosenBrand = (String)med.getSelectedItem();
             String ChosenAmount = (String)cb.getSelectedItem();
             String ChosenClient = (String)names.getSelectedItem();
-            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient );
+            int Branch = (int)branches.getSelectedItem();
+            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, Branch );
             System.out.println("category: " + ChosenCat + " Brand " + ChosenBrand + " Amount " + ChosenAmount);
         }
         });
