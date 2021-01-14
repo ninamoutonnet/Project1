@@ -3,6 +3,7 @@ package main_screen;
 import GUI.GradientPanel;
 import db_handling.GetDB_clients;
 import db_handling.GetDB_medicine;
+import stock_handling.Checkout;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,7 +67,7 @@ public class UI extends JPanel{
         cat.add(0,"Select a medicine category"); //ad it after sorting alphabetically!
         final JComboBox<String> categories = new JComboBox<String>(cat);
         categories.setVisible(true);
-        String var = (String)categories.getSelectedItem();
+
         //problem with this is that the value is the initial one, ie always 1
        // System.out.println("the selected type of medication is: " + var);
         mainPanel.add(categories);
@@ -100,7 +101,6 @@ public class UI extends JPanel{
         choices.addElement("4");
         final JComboBox<String> cb = new JComboBox<String>(choices);
         cb.setVisible(true);
-        String varName = (String)cb.getSelectedItem();
         //problem with this is that the value is the initial one, ie always 1
         //System.out.println("the selected number of medication is: " + varName);
         mainPanel.add(cb);
@@ -164,7 +164,13 @@ public class UI extends JPanel{
         checkout.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(null, "Checkout successful", " " , JOptionPane.PLAIN_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Checkout successful", " " , JOptionPane.PLAIN_MESSAGE);
+            String ChosenCat = (String)categories.getSelectedItem();
+            String ChosenBrand = (String)med.getSelectedItem();
+            String ChosenAmount = (String)cb.getSelectedItem();
+            String ChosenClient = (String)names.getSelectedItem();
+            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient );
+            System.out.println("category: " + ChosenCat + " Brand " + ChosenBrand + " Amount " + ChosenAmount);
         }
         });
 

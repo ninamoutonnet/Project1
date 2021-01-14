@@ -2,6 +2,7 @@ package main_screen;
 
 import stock_handling.JOptionPaneMultipleInputAddRemove;
 import stock_handling.UpdateStock;
+import stock_handling.ViewStock;
 //import stock_handling.ViewStock;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class HandlingStock {
        View_stock.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            //ViewStock VS = new ViewStock();
+                ViewStock VS = new ViewStock();
             }
         });
 

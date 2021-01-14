@@ -168,7 +168,6 @@ public class RemoveMed {
         }else{
             frmOpt.dispose(); //discard of the dummy jframe
         }
-
     }
 
     public static void Delete(Integer idNUM) {

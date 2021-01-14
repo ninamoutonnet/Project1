@@ -9,7 +9,7 @@ public class dummyFrame {
     }
 
     public JFrame dummyFrameConstruction(){
-        JFrame frmOpt;//dummy JFrame
+        JFrame frmOpt; //dummy JFrame
         frmOpt = new JFrame();
         frmOpt.setVisible(false);
         frmOpt.setLocation(100, 100);
