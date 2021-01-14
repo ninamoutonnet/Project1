@@ -77,7 +77,7 @@ public class UI extends JPanel{
         //ideally it would go through the heroku db and select all the names of the available medicine --> will do that soon
 
         Vector<String> medname = new Vector<String>();
-        medname.addElement("Select a medicine brand");
+        //medname.addElement("Select a medicine brand");
         for(int i = 0; i< size; i++){
             medname.addElement(DB.getBrand().get(i));
         }
