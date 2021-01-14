@@ -18,7 +18,7 @@ public class Checkout {
 
     public Checkout(String cat, String brand, String amount, String customer, int branch) {
 
-        GetDB_medicine info = new GetDB_medicine(branch);
+        GetDB_medicine info = new GetDB_medicine();
 
         boolean found = false;
         boolean match = false;

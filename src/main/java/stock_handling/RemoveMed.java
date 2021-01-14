@@ -17,7 +17,7 @@ import java.util.LinkedHashSet;
 
 public class RemoveMed {
 
-    GetDB_medicine info = new GetDB_medicine(1);
+    GetDB_medicine info = new GetDB_medicine();
 
     public RemoveMed(){
         //construct a dummy frame using the class! since it is a redundant operation

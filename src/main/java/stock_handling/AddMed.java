@@ -14,7 +14,7 @@ import java.util.Vector;
 
 
 public class AddMed {
-    GetDB_medicine info = new GetDB_medicine(1);
+    GetDB_medicine info = new GetDB_medicine();
 
     public AddMed() {
         JFrame fr = new JFrame(); //dummy JFrame to ensure that the window popping up is on top of anything else
