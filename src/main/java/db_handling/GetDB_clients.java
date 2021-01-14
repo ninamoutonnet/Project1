@@ -76,7 +76,7 @@ public class GetDB_clients {
             ID.add(clients.get(6));
         }
 
-       /* System.out.println(lastName);
+        /*System.out.println(lastName);
         System.out.println(firstName);
         System.out.println(CardNumber);
         System.out.println(CCV);
