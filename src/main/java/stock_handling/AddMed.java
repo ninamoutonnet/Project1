@@ -14,7 +14,7 @@ import java.util.Vector;
 
 
 public class AddMed {
-    GetDB_medicine info = new GetDB_medicine();
+    GetDB_medicine info = new GetDB_medicine(2);
 
     public AddMed() {
         JFrame fr = new JFrame(); //dummy JFrame to ensure that the window popping up is on top of anything else
@@ -205,7 +205,7 @@ public class AddMed {
     // Method making a POST request to the servlet to add a new medicine to the DB - check that POST is the correct method (could be PUT)
     public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS, String prodDB) {
         // This is the SQL query included in the body of the POST request = instructions
-        String query = "INSERT INTO "+prodDB+" (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
+        String query = "INSERT INTO "+prodDB+" (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+","+LIM+",'"+DES+"','"+CAT+"',"+CS+");";
         new Post(query);
     }
 

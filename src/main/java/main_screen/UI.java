@@ -28,7 +28,7 @@ public class UI extends JPanel{
 
         mainPanel.setLayout(new GridLayout(4, 4));
 
-        GetDB_medicine DB = new GetDB_medicine();
+        GetDB_medicine DB = new GetDB_medicine(2);
         GetDB_clients clientDB = new GetDB_clients();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there

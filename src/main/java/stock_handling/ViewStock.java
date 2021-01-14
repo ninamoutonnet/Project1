@@ -24,7 +24,7 @@ public class ViewStock {
         myPanel.setLayout(new GridLayout(200, 150));
 
 
-        GetDB_medicine info = new GetDB_medicine();
+        GetDB_medicine info = new GetDB_medicine(2);
 
         int size = info.getCurrentStock().size();
 

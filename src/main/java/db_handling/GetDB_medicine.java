@@ -30,7 +30,7 @@ public class GetDB_medicine {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> CurrentStock = new ArrayList<>();
 
-    public GetDB_medicine() {
+    public GetDB_medicine(int nb) {
         /*
         if (branchnb == 1) {
             try {
@@ -42,11 +42,22 @@ public class GetDB_medicine {
             }
         }
         */
-
         try {
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
-            Get getRequest = new Get();
-            AllProducts = getRequest.Response(myURL);
+            if (nb == 1) {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
+                Get getRequest = new Get();
+                AllProducts = getRequest.Response(myURL);
+            }
+            else if (nb == 2) {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products2");
+                Get getRequest = new Get();
+                AllProducts = getRequest.Response(myURL);
+            }
+            else if (nb == 3) {
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products2");
+                Get getRequest = new Get();
+                AllProducts = getRequest.Response(myURL);
+            }
         }
         catch (Exception e) {
                 System.out.println("Something went wrong");
