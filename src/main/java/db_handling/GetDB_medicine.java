@@ -54,7 +54,7 @@ public class GetDB_medicine {
                 AllProducts = getRequest.Response(myURL);
             }
             else if (nb == 3) {
-                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products2");
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products3");
                 Get getRequest = new Get();
                 AllProducts = getRequest.Response(myURL);
             }
