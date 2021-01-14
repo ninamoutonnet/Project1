@@ -150,13 +150,20 @@ public class UpdateStock {
             String selectedPurchP = comboBox4.getSelectedItem().toString();
             String selectedDescription = comboBox5.getSelectedItem().toString();
             String selectedCategory = comboBox6.getSelectedItem().toString();
+            String Branch = comboBoxBranch.getSelectedItem().toString();
+
+            //relate the different branches to the different databases tables
+            Integer branchNB =0;
+            if(Branch.equalsIgnoreCase("Paddington")) branchNB =2;
+            if(Branch.equalsIgnoreCase("Green Park")) branchNB =1;
+            if(Branch.equalsIgnoreCase("East End")) branchNB =3;
 
            // System.out.println(selectedName + " " + selectedAmount + " " + quantityAddRemove + " " + selectedSalesP + " " + selectedPurchP + " " + selectedDescription + " " + selectedCategory);
             boolean validEntry = true; //assume the entries are valid
             checkForMed CFM = new checkForMed();
             //false if the medicine is not in
             Vector<Integer> id;
-            id = CFM.isTheMedicineIn(selectedName,selectedAmount,selectedSalesP,selectedPurchP,selectedDescription,selectedCategory);
+            id = CFM.isTheMedicineIn(selectedName,selectedAmount,selectedSalesP,selectedPurchP,selectedDescription,selectedCategory, branchNB);
             if(id.size()==0) validEntry = false; // if no medicine has been found having the same values,
             //// give an error. you cannot update a stock of smt that is not in the db
 

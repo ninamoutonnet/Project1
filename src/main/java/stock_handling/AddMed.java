@@ -149,27 +149,14 @@ public class AddMed {
                 db_handling.checkForMed CFM = new checkForMed();
                 Vector<Integer> id;
                 boolean notAlreadyIn = false;
-                //
 
+                //relate the different branches to the different databases tables
+                Integer branchNB =0;
+                if(Branch.equalsIgnoreCase("Paddington")) branchNB =2;
+                if(Branch.equalsIgnoreCase("Green Park")) branchNB =1;
+                if(Branch.equalsIgnoreCase("East End")) branchNB =3;
 
-
-
-
-
-
-                //PUT IN THE BRANCH NAME IN THE IS THE MED IN METHOD!
-
-
-
-
-
-
-
-
-
-
-                //
-                id =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT); //returns the id of the medicine in the database
+                id =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT,branchNB); //returns the id of the medicine in the database
                 if (id.size()==0) {
                     notAlreadyIn = true;
                 }
@@ -188,11 +175,10 @@ public class AddMed {
 
                 }else{
 
-                    //CHECK HERE FOR THE WHICH DB TO POST AT!!!
 
-
-
-                    makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS); //check that it does not already exist
+                    if(branchNB==1) makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS, "products"); //check that it does not already exist
+                    else if(branchNB==2) makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS,"products2");
+                    else if(branchNB==3) makePostRequest(N, A, SP, PP, FS, LIM2, DES, CAT, CS, "products3");
 
                     //construct a dummy frame using the class! since it is a redundant operation
                     dummyFrame df = new dummyFrame();
@@ -217,10 +203,12 @@ public class AddMed {
     }
 
     // Method making a POST request to the servlet to add a new medicine to the DB - check that POST is the correct method (could be PUT)
-    public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS) {
-            // This is the SQL query included in the body of the POST request = instructions
-            String query = "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
-            new Post(query);
+    public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS, String prodDB) {
+        // This is the SQL query included in the body of the POST request = instructions
+        String query = "INSERT INTO "+prodDB+" (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
+        new Post(query);
     }
+
+
 }
 
