@@ -36,7 +36,7 @@ public class Get {
             Gson gson = new Gson();
             // Get JSON object which is an ArrayList of ArrayLists
             AllItems = gson.fromJson(jsonS, ArrayList.class);
-            System.out.println(AllItems);
+           // System.out.println(AllItems);
         }
         catch (Exception e) {
             System.out.println("Something went wrong");

@@ -214,7 +214,7 @@ public class UpdateStock {
                 if(branchNB==2)  strAmount = info2.getCurrentStock();
                 if(branchNB==3)  strAmount = info3.getCurrentStock();
 
-                System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
+                //System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
                 //check that the number in the database is superior than the quantity to remove if it is a removal
                 boolean finalstep = true;
                 int qtyAddRem = 0;
@@ -222,23 +222,33 @@ public class UpdateStock {
                     qtyAddRem = Integer.parseInt(quantityAddRemove); //this will give an error if the string has smt else than numbers
                     //this is good as even 4.3 gives an error, and we can only work with ints
                     if( ( qtyAddRem + Integer.parseInt(strAmount.get(id.get(0)-1)) )<0){
+                        //create a dummy frame to put the message on top
+                        dummyFrame df2 = new dummyFrame();
+                        JFrame frmOpt4 = df2.dummyFrameConstruction();
+
 
                         //if the quantity to add/remove + what is in stock is negative, you have a problem
                         JPanel error = new JPanel();
                         error.setVisible(true);
                         JLabel errorMsg = new JLabel("Error, you wish to remove more medicine than you have in stock");
                         error.add(errorMsg);
-                        int result3 = JOptionPane.showConfirmDialog(null, error,
+                        int result3 = JOptionPane.showConfirmDialog(frmOpt4, error,
                                 "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        if(result3==0) frmOpt4.dispose();
                         finalstep=false;
                     }
                 }catch(Exception e){
+                    //create a dummy frame to put the message on top
+                    dummyFrame df2 = new dummyFrame();
+                    JFrame frmOpt3 = df2.dummyFrameConstruction();
+
                     JPanel error = new JPanel();
                     error.setVisible(true);
                     JLabel errorMsg = new JLabel("Error, you have to enter a valid number for the quantity");
                     error.add(errorMsg);
-                    int result3 = JOptionPane.showConfirmDialog(null, error,
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt3, error,
                             "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    if(result3==0) frmOpt3.dispose();
 
                     finalstep=false;
                 }
@@ -260,15 +270,19 @@ public class UpdateStock {
 
                     UpdateRequest(idToSendToDB,updatedAmount, branchname);
 
+                    //create a dummy frame to put the message on top
+                    dummyFrame df2 = new dummyFrame();
+                    JFrame frmOpt2 = df2.dummyFrameConstruction();
+
                     JPanel success = new JPanel();
                     success.setVisible(true);
                     //System.out.println("Quantity to add/rem is: "+qtyAddRem);
                     JLabel successMsg = new JLabel("Success!");
                     success.add(successMsg);
                     // dialog box - for now no icon (Plain message)
-                    int result3 = JOptionPane.showConfirmDialog(null, success,
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt2, success,
                             "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
-
+                    if(result3==0) frmOpt2.dispose();
                 }
             }
         }
