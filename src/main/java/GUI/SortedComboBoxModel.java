@@ -5,6 +5,11 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
+/*this class does the following*/
+//this allows you to have a sorted combo box directly when declaring it
+//it overrides the default constructor of the jcombobox object
+// credit: https://stackoverflow.com/questions/17061314/how-to-sort-the-jcombobox-elements-in-java-swing
+
 public class SortedComboBoxModel<E> extends DefaultComboBoxModel<E> {
     private Comparator comparator;
      // Create an empty model that will use the natural sort order of the item

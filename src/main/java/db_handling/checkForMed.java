@@ -5,6 +5,20 @@ import java.util.Vector;
 
 /* This class checks if a medicine is already in the list of products sold at one particular branch */
 
+//you give a name, amount, sales price, purchase price, description, category and branch nunber
+// the branchnumber allows you to check if a medicine with those fields is present in the branch of interest
+//branchNB is 1 for the Green Park branch
+//branchNB is 2 for the paddington branch
+//branchNB is 3 for the east end branch
+//you then go through the info obtained about the branch of interest
+//you then use the id vector to store the indexes of the medicines that could be a perfect match to the input
+// you slowly refine the search and if id ends up empty it means that the medicine designed does not exist in the db
+//return the vector id. If it is not empty, it has the index of the medicine that is a perfect match
+
+//useful to check that the medicine you are adding is not already in the db
+//also useful to check that the medicine to update is indeed in the database
+//finally, useful to check that the medicine to remove is indedd in the db
+
 public class checkForMed {
 
     public  checkForMed(){
@@ -21,7 +35,7 @@ public class checkForMed {
         ArrayList<String> str5 = info.getDescription(); //GET FROM DB
         ArrayList<String> str6 = info.getCategory(); //GET FROM DB
 
-        boolean itIsNotIn = false; //assume that it is in the db
+
 
         //get indexes of name
 
