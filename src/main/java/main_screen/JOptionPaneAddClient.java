@@ -1,5 +1,6 @@
 package main_screen;
 
+import GUI.dummyFrame;
 import Requests.Post;
 
 import javax.swing.*;
@@ -118,6 +119,19 @@ public class JOptionPaneAddClient {
 
             // Include this new client in the DB on Heroku (see ProjectServlet for more details)
             makePostRequest(FN, GN, CN, Ccv, ED, PW_encrypted); // make sure that the client is not added if he/she is already in the DB - need to find a solution for that
+
+            //dummy JFrame to have a pop up message to inform the pharmacist that the client was added
+            dummyFrame df2 = new dummyFrame();
+            JFrame frmOpt2 = df2.dummyFrameConstruction();
+
+            JPanel success = new JPanel();
+            success.setVisible(true);
+            JLabel errorMsg = new JLabel("The client has been successfully added to the database");
+            success.add(errorMsg);
+            int result3 = JOptionPane.showConfirmDialog(frmOpt2, success,
+                    "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+            if(result3==0) frmOpt2.dispose();
+
         }
     }
 
