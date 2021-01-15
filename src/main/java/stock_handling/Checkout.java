@@ -27,9 +27,11 @@ public class Checkout {
     GetDB_medicine info2 = new GetDB_medicine(2);
     GetDB_medicine info3 = new GetDB_medicine(3);
     String Branch = "";
+    Double profit = 0.0;
 
-    public Checkout(String branch) {
+    public Checkout(String branch, Double Profit) {
 
+        profit = Profit;
         Branch = branch;
 
         //construct a dummy frame using the class! since it is a redundant operation
@@ -207,10 +209,10 @@ public class Checkout {
         //set the combo box - should we make sure that it only proposes available quantities?
         Vector<String> choices = new Vector<String>();
         choices.addElement("Select amount");
-        choices.addElement("1");
-        choices.addElement("2");
-        choices.addElement("3");
-        choices.addElement("4");
+        for(Integer i=1;i<101;i++){
+            String nb = i.toString();
+            choices.addElement(nb);
+        }
         final JComboBox<String> cb = new JComboBox<String>(choices);
         cb.setVisible(true);
         //problem with this is that the value is the initial one, ie always 1
@@ -283,10 +285,10 @@ public class Checkout {
                     //System.out.println("the col id is "+columId);
                     boolean lim = true;
                     String limit = "";
-                    if (branchNB==1) limit = info.getLimit().get(columId).toString();
-                    else if (branchNB==2) limit= info2.getLimit().get(columId).toString();
-                    else if (branchNB==3) limit= info3.getLimit().get(columId).toString();
-                    if(limit.equalsIgnoreCase("false")) lim = false;
+                    if (branchNB==1) limit = info.getLimit().get(columId);
+                    else if (branchNB==2) limit= info2.getLimit().get(columId);
+                    else if (branchNB==3) limit= info3.getLimit().get(columId);
+                    if(limit.equalsIgnoreCase("f")) lim = false;
 
                     if(lim==true && qtySold>1) {
                         JPanel error = new JPanel();
@@ -334,6 +336,12 @@ public class Checkout {
                     //System.out.println("Quantity to add/rem is: "+qtyAddRem);
                     JLabel successMsg = new JLabel("Success! You have sold " +qtySold +" "+ selectedName+ " to " +selectedClient);
                     success.add(successMsg);
+
+                    //update prior profit with new profit
+                    //we tried to implement profit but needed more time
+                    //profit = profit + qtySold*(Double.parseDouble(selectedSalesP)-Double.parseDouble(selectedPurchP));
+                    //System.out.println("the profit is: "+profit);
+
                     // dialog box - for now no icon (Plain message)
                     int result3 = JOptionPane.showConfirmDialog(null, success,
                             "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -347,5 +355,9 @@ public class Checkout {
         // This is the SQL query included in the body of the POST request = instructions
         String query = "UPDATE " + branchName + " SET currentstock = " + CS + " where id = " + idNUM + ";";
         new Post(query);
+    }
+
+    public Double returnProfit(){
+        return profit;
     }
 }

@@ -24,6 +24,7 @@ public class UI extends JPanel {
     private JPanel logoPanel;
     JButton addClient;
     JButton HandleS;
+    Double Profit =0.0;
 
     public UI(){ //constructor
 
@@ -108,7 +109,9 @@ public class UI extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 String branch = branches.getSelectedItem().toString(); //get the branch selected
-                Checkout ch = new Checkout(branch); // pass in the branch name as argument
+                Checkout ch = new Checkout(branch, Profit); // pass in the branch name as argument
+               // Profit = ch.returnProfit();
+               // System.out.println("the profit is " + Profit);
 
             }
         });
@@ -116,6 +119,8 @@ public class UI extends JPanel {
         JPanel border6 = new JPanel();
         border6.setOpaque(false);
         mainPanel.add(border6);
+        //Panel would have been replaced with profit amount had it worked
+
         JPanel border7 = new JPanel();
         border7.setOpaque(false);
         mainPanel.add(border7);
