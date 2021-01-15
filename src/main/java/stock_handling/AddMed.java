@@ -143,7 +143,7 @@ public class AddMed {
             Double PP=0.0;
             ok2 = check.isADouble(pprice.getText(), "Purchase Price");
             if(!ok2) okToPost = false;
-            else SP = Double.parseDouble(pprice.getText());
+            else PP = Double.parseDouble(pprice.getText());
 
             //check that full stock is an int, if not give an error
             //same logic as above
@@ -152,6 +152,16 @@ public class AddMed {
             ok3 = check.isAnInt(fullstock.getText(), "Full Stock");
             if(!ok3) okToPost = false;
             else FS = Integer.parseInt(fullstock.getText());
+
+            //check that brand name is not empty, if not give an error
+            if (name.getText().isEmpty()==true ) okToPost =false;
+
+            //check that brand description is not empty, if not give an error
+            if (description.getText().isEmpty()==true ) okToPost =false;
+
+            //check that brand amount/box is not empty, if not give an error
+            if (amount.getText().isEmpty()==true ) okToPost =false;
+
 
             boolean LIM2=true;
             if(LIM.equalsIgnoreCase("yes")){
@@ -220,18 +230,50 @@ public class AddMed {
             }
             else{
                 //only enters this loop if there was an issue in the entered values.
-                dummyFrame df1 = new dummyFrame();
-                JFrame frmOpt1 = df1.dummyFrameConstruction();
+                if(name.getText().isEmpty()==true){
+                    //if the medicine to  remove is not found in the db
+                    dummyFrame df1 = new dummyFrame();
+                    JFrame frmOpt1 = df1.dummyFrameConstruction();
 
-                JPanel error = new JPanel();
-                error.setVisible(true);
-                JLabel errorMsg = new JLabel("Error, the fields entered are not valid ");
-                error.add(errorMsg);
-                int result3 = JOptionPane.showConfirmDialog(frmOpt1, error,
-                        "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    JPanel error = new JPanel();
+                    error.setVisible(true);
+                    JLabel errorMsg = new JLabel("Error, you must enter a value for the name of the medicine ");
+                    error.add(errorMsg);
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt1, error,
+                            "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-                if(result3==0) frmOpt1.dispose(); //discard the frame when you  close the pop up error message
+                    if(result3==0) frmOpt1.dispose();
+                }
+                if(amount.getText().isEmpty()==true){
+                    //if the medicine to  remove is not found in the db
+                    dummyFrame df1 = new dummyFrame();
+                    JFrame frmOpt1 = df1.dummyFrameConstruction();
 
+                    JPanel error = new JPanel();
+                    error.setVisible(true);
+                    JLabel errorMsg = new JLabel("Error, you must enter a value for the amount per box of the medicine ");
+                    error.add(errorMsg);
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt1, error,
+                            "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                    if(result3==0) frmOpt1.dispose();
+
+                }
+                if(description.getText().isEmpty()==true){
+                    //if the medicine to  remove is not found in the db
+                    dummyFrame df1 = new dummyFrame();
+                    JFrame frmOpt1 = df1.dummyFrameConstruction();
+
+                    JPanel error = new JPanel();
+                    error.setVisible(true);
+                    JLabel errorMsg = new JLabel("Error, you must enter a value for the description of the medicine ");
+                    error.add(errorMsg);
+                    int result3 = JOptionPane.showConfirmDialog(frmOpt1, error,
+                            "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                    if(result3==0) frmOpt1.dispose();
+
+                }
             }
 
         }
