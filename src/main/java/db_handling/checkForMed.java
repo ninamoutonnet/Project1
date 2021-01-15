@@ -65,8 +65,6 @@ public class checkForMed {
         }
         temp.clear();
 
-
-
         //verify brand and purchprice match
         for(int i=0; i<id.size();i++){
             int index = id.get(i);
@@ -80,7 +78,6 @@ public class checkForMed {
             id.add(temp.get(i)); //update the id vector
         }
         temp.clear();
-
 
         //verify brand and description match
         for(int i=0; i<id.size();i++){

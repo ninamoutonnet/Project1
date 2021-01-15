@@ -1,6 +1,7 @@
 package stock_handling;
 
 import GUI.dummyFrame;
+import Requests.Post;
 import db_handling.GetDB_medicine;
 import db_handling.valueHolder;
 import GUI.SortedComboBoxModel;
@@ -234,41 +235,10 @@ public class UpdateStock {
     }
 
     public static void UpdateRequest(Integer idNUM, Integer CS) {
-        try {
             // This is the SQL query included in the body of the POST request = instructions
-            String message = "UPDATE products SET currentstock = "+CS+" where id = "+idNUM+";";
+            String query = "UPDATE products SET currentstock = "+CS+" where id = "+idNUM+";";
+            new Post(query);
            // "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
-            byte[] body = message.getBytes(StandardCharsets.UTF_8);
-
-            // The URL maps to the servlet (check that this is the correct way to say it)
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access");
-            HttpURLConnection conn = null;
-
-            conn = (HttpURLConnection) myURL.openConnection();
-            // Set up the header
-            conn.setRequestMethod("POST"); // sets the HTTP method
-            conn.setRequestProperty("Accept", "text/html");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setRequestProperty("Content-Length", Integer.toString(body.length));
-            conn.setDoOutput(true);
-
-            // Write the body of the request
-            try (OutputStream outputStream = conn.getOutputStream()) {
-                outputStream.write(body, 0, body.length);
-            }
-
-            // BufferedReader is a Java class to read the text from an I stream
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-            String inputLine;
-            // Read the body of the response
-            while ((inputLine = bufferedReader.readLine()) != null) {
-                System.out.println(inputLine);
-            }
-            bufferedReader.close();
-        }
-        catch(Exception e) {
-            System.out.println("Something went wrong");
-        }
     }
 }
 
