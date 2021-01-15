@@ -62,14 +62,9 @@ public class Checkout {
 
 
     public static void DBout (int idNUM, String amount) {
-        try {
             //System.out.println("The ID is " + idNUM + " The amount is " + amount);
             // This is the SQL query included in the body of the POST request = instructions
             String query = "UPDATE products SET currentstock = currenstock - "+amount+" where id = "+idNUM+";";
             new Post(query);
-        }
-        catch(Exception e) {
-            System.out.println("Something went wrong");
-        }
     }
 }

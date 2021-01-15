@@ -34,8 +34,7 @@ public class GetDB_medicine {
         /*
         if (branchnb == 1) {
             try {
-                URL myURL = new URL("https://projectservlet.herokuapp.com/access");
-                // https://projectservlet.herokuapp.com/access?item=products&nb=1
+                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=1");
                 Get getRequest = new Get();
                 AllProducts = getRequest.Response(myURL);
             } catch (Exception e) {
