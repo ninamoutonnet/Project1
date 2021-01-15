@@ -68,7 +68,7 @@ public class ViewStock {
             }
         }
 
-        JButton button1 = new JButton("Send restock request");
+        JButton button1 = new JButton("Send a restock request");
         myPanel.add(button1);
         button1.addActionListener(new ActionListener() {
             @Override
