@@ -53,13 +53,11 @@ public class checkForMed {
             if(selectedAmount.equalsIgnoreCase(str2.get(index-1))) {
                 //refine the index vector with only the medicine that we care about
                 temp.add(index);
-                //System.out.println(index);
             }
         }
         id.clear();
         for(int i=0; i<temp.size();i++){
             id.add(temp.get(i)); //update the id vector
-            // System.out.println(id.get(i));
         }
         temp.clear();
         // at this point the vector id only contains the id of the medicines in the db that have both the same name AND amount per box
@@ -70,13 +68,11 @@ public class checkForMed {
             if(selectedSalesP.equalsIgnoreCase(str3.get(index-1))) {
                 //refine the index vector with only the medicine that we care about
                 temp.add(index);
-                //System.out.println(index);
             }
         }
         id.clear();
         for(int i=0; i<temp.size();i++){
             id.add(temp.get(i)); //update the id vector
-            // System.out.println(id.get(i));
         }
         temp.clear();
 
@@ -124,10 +120,6 @@ public class checkForMed {
         temp.clear();
 
         return id;
-        //if(id.size()==0) itIsNotIn = true; //if id size is 0 it means there is no perfect match in the db and so it does not exist in the db
-
-        //return itIsNotIn; // true if its not in, false if it is in
-
     }
 
 

@@ -30,7 +30,6 @@ public class JOptionPaneMultipleInputAddRemove {
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(remove);
 
-
         adding.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

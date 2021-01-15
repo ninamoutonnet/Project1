@@ -22,10 +22,7 @@ public class UI extends JPanel {
 
     GradientPanel mainPanel = new GradientPanel();
     private JPanel logoPanel;
-    //JButton View_stock;
     JButton addClient;
-    //JButton updateStock;
-    //JButton add_remove_med;
     JButton HandleS;
 
     public UI(){ //constructor
@@ -98,7 +95,7 @@ public class UI extends JPanel {
         border5.setOpaque(false); // make the panel transparent
         mainPanel.add(border5);
 
-        // register a new purhase
+        // register a new purchase
         JButton checkout = new JButton("Make a purchase");
         Color color6 = new Color(102,204,0);
         checkout.setBackground(color6);
@@ -111,7 +108,7 @@ public class UI extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 String branch = branches.getSelectedItem().toString(); //get the branch selected
-                Checkout ch = new Checkout(branch); // pas in the branch name as argument
+                Checkout ch = new Checkout(branch); // pass in the branch name as argument
 
             }
         });

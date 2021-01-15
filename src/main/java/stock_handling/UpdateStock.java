@@ -32,7 +32,7 @@ public class UpdateStock {
 
         //get the branch name
         Branch = Branch;
-       // System.out.println("the branch is " + Branch);
+        System.out.println("the branch is " + Branch);
 
         //relate the different branches to the different databases tables
         Integer branchNB =0;
@@ -166,6 +166,12 @@ public class UpdateStock {
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 
+        //Branch name
+        myPanel.add(new JLabel("Branch "));
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
 
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
@@ -196,18 +202,13 @@ public class UpdateStock {
 
 
             if(validEntry==false){
-                //create a dummy frame for the message to pop on top of all the windows
-                dummyFrame df2 = new dummyFrame();
-                JFrame frmOpt2 = df2.dummyFrameConstruction();
-
                 JPanel error = new JPanel();
                 error.setVisible(true);
                 JLabel errorMsg = new JLabel("Error, this medicine does not exist in the current stock, add it to the stock and try to update it afterwards");
                 error.add(errorMsg);
                 // dialog box - for now no icon (Plain message)
-                int result3 = JOptionPane.showConfirmDialog(frmOpt2, error,
+                int result3 = JOptionPane.showConfirmDialog(null, error,
                         "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if(result3==0) frmOpt2.dispose();
             }
 
             if(validEntry==true ){
@@ -218,7 +219,7 @@ public class UpdateStock {
                 if(branchNB==2)  strAmount = info2.getCurrentStock();
                 if(branchNB==3)  strAmount = info3.getCurrentStock();
 
-                //System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
+                System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
                 //check that the number in the database is superior than the quantity to remove if it is a removal
                 boolean finalstep = true;
                 int qtyAddRem = 0;
@@ -228,33 +229,23 @@ public class UpdateStock {
                     if( ( qtyAddRem + Integer.parseInt(strAmount.get(id.get(0)-1)) )<0){
 
                         //if the quantity to add/remove + what is in stock is negative, you have a problem
-                        //create a dummy frame for the message to pop on top of all the windows
-                        dummyFrame df2 = new dummyFrame();
-                        JFrame frmOpt3 = df2.dummyFrameConstruction();
-
                         JPanel error = new JPanel();
                         error.setVisible(true);
                         JLabel errorMsg = new JLabel("Error, you wish to remove more medicine than you have in stock");
                         error.add(errorMsg);
-                        int result3 = JOptionPane.showConfirmDialog(frmOpt3, error,
+                        int result3 = JOptionPane.showConfirmDialog(null, error,
                                 "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
                         finalstep=false;
-                        if(result3==0) frmOpt3.dispose();
                     }
                 }catch(Exception e){
-                    //create a dummy frame for the message to pop on top of all the windows
-                    dummyFrame df2 = new dummyFrame();
-                    JFrame frmOpt4 = df2.dummyFrameConstruction();
-
-
                     JPanel error = new JPanel();
                     error.setVisible(true);
                     JLabel errorMsg = new JLabel("Error, you have to enter a valid number for the quantity");
                     error.add(errorMsg);
-                    int result3 = JOptionPane.showConfirmDialog(frmOpt4, error,
+                    int result3 = JOptionPane.showConfirmDialog(null, error,
                             "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+
                     finalstep=false;
-                    if(result3==0) frmOpt4.dispose();
                 }
 
                 if(finalstep) {
@@ -273,16 +264,14 @@ public class UpdateStock {
                     if(branchNB==3) branchname="products3";
 
                     UpdateRequest(idToSendToDB,updatedAmount, branchname);
-                    dummyFrame df2 = new dummyFrame();
-                    JFrame frmOpt2 = df2.dummyFrameConstruction();
 
                     JPanel success = new JPanel();
                     success.setVisible(true);
                     //System.out.println("Quantity to add/rem is: "+qtyAddRem);
-                    JLabel successMsg = new JLabel("Success! ");
+                    JLabel successMsg = new JLabel("Success, needs to be updated: " + id.get(0));
                     success.add(successMsg);
                     // dialog box - for now no icon (Plain message)
-                    int result3 = JOptionPane.showConfirmDialog(frmOpt2, success,
+                    int result3 = JOptionPane.showConfirmDialog(null, success,
                             "Success", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
                 }

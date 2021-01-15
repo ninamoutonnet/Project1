@@ -26,10 +26,8 @@ public class RemoveMed {
     GetDB_medicine info3 = new GetDB_medicine(3);
     String Branch = "";
 
-
     public RemoveMed(String branch) {
         Branch = branch;
-        //System.out.println("the branch is" + Branch);
 
         //construct a dummy frame using the class! since it is a redundant operation
         dummyFrame df = new dummyFrame();
@@ -65,7 +63,6 @@ public class RemoveMed {
             }
         }
 
-
         //sorts the array list and then converting it to a linkedhashset removes the duplicates
         name.sort(String::compareToIgnoreCase);
         LinkedHashSet<String> set = new LinkedHashSet<String>();
@@ -77,8 +74,6 @@ public class RemoveMed {
         JComboBox<String> names = new JComboBox<String>(name);
         names.setVisible(true);
         myPanel.add(names);
-
-
 
         Vector<String> amount = new Vector<>();
         if(branchNB==1) {
@@ -106,8 +101,6 @@ public class RemoveMed {
         amountCB.setVisible(true);
         myPanel.add(amountCB);
 
-
-
         Vector<String> sprice = new Vector<>();
         if(branchNB==1) {
             for (int i = 0; i < size1; i++) {
@@ -133,9 +126,6 @@ public class RemoveMed {
         JComboBox<String> spriceCB = new JComboBox<String>(sprice);
         spriceCB.setVisible(true);
         myPanel.add(spriceCB);
-
-
-
 
         Vector<String> pprice = new Vector<>();
         if(branchNB==1) {
@@ -163,9 +153,6 @@ public class RemoveMed {
         ppriceCB.setVisible(true);
         myPanel.add(ppriceCB);
 
-
-
-
         Vector<String> description = new Vector<>();
         if(branchNB==1) {
             for (int i = 0; i < size1; i++) {
@@ -191,8 +178,6 @@ public class RemoveMed {
         JComboBox<String> descriptionCB = new JComboBox<String>(description);
         descriptionCB.setVisible(true);
         myPanel.add(descriptionCB);
-
-
 
         Vector<String> category = new Vector<>();
         if(branchNB==1) {
@@ -220,15 +205,11 @@ public class RemoveMed {
         categoryCB.setVisible(true);
         myPanel.add(categoryCB);
 
-
-
         frmOpt.add(myPanel);
 
         int result = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Please Enter the details of the medicine you wish to remove", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
-
-
             checkForMed idIfMedIsInDB = new checkForMed();
             Vector<Integer> id = idIfMedIsInDB.isTheMedicineIn(names.getSelectedItem().toString(), amountCB.getSelectedItem().toString(), spriceCB.getSelectedItem().toString(), ppriceCB.getSelectedItem().toString(), descriptionCB.getSelectedItem().toString(), categoryCB.getSelectedItem().toString(), branchNB);
 
@@ -264,14 +245,9 @@ public class RemoveMed {
                     }
                 }
 
-                //System.out.println("what fucks up: "+ (id.get(0)-1));
-
                if(branchNB==1) Delete(ids.get(id.get(0)-1), "products"); //delete query for the sql db
                else if(branchNB==2) Delete(ids.get(id.get(0)-1), "products2");
                else if(branchNB==3) Delete(ids.get(id.get(0)-1), "products3");
-
-
-               // Delete(ids.get(id.get(0)-1)); //delete query for the sql db
 
                 dummyFrame df2 = new dummyFrame();
                 JFrame frmOpt2 = df2.dummyFrameConstruction();
