@@ -187,6 +187,7 @@ public class AddMed {
                 //id will store the index of the medicine that corrresponds to the input
                 //if the medicine does not exist in that branch, id will be empty and thus you will be allowed to add it
                 //if id is not empty, it means that the medicine was found in the database of the specified branch, you will not be able to add it
+                //note that this does not dependent on current stock and fullstock!
                 id =  CFM.isTheMedicineIn(N, A, sprice.getText(),pprice.getText(),DES,CAT,branchNB); //returns the id of the medicine in the database
 
                 if (id.size()==0) {
