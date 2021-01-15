@@ -1,6 +1,7 @@
 package main_screen;
 
 import GUI.GradientPanel;
+import GUI.LogoPanel;
 import GUI.dummyFrame;
 import db_handling.GetDB_clients;
 import db_handling.GetDB_medicine;
@@ -18,6 +19,7 @@ import java.util.Vector;
 public class UI extends JPanel{
 
     GradientPanel mainPanel = new GradientPanel();
+    private JPanel logoPanel;
     //JButton View_stock;
     JButton addClient;
     //JButton updateStock;
@@ -32,10 +34,8 @@ public class UI extends JPanel{
         GetDB_clients clientDB = new GetDB_clients();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
-
-        JPanel border1 = new JPanel();
-        border1.setOpaque(false); // make the panel transparent
-        mainPanel.add(border1);
+        logoPanel=new LogoPanel();
+        mainPanel.add(logoPanel);
         JPanel border2 = new JPanel();
         border2.setOpaque(false);
         mainPanel.add(border2);
