@@ -8,6 +8,12 @@ import GUI.SortedComboBoxModel;
 import db_handling.checkForMed;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
@@ -158,7 +164,12 @@ public class UpdateStock {
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 
-
+        //Branch name
+        myPanel.add(new JLabel("Branch "));
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
 
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,

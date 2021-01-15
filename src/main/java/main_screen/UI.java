@@ -1,9 +1,11 @@
 package main_screen;
 
 import GUI.GradientPanel;
+import GUI.dummyFrame;
 import db_handling.GetDB_clients;
 import db_handling.GetDB_medicine;
 import stock_handling.Checkout;
+import stock_handling.RemoveMed;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,70 +53,20 @@ public class UI extends JPanel{
         branches.setVisible(true);
         mainPanel.add(branches);
 
-        Vector<String> cat = new Vector<String>();
-        // getting info from the DB & storing it into vector
-        int size = DB.getCategory().size();
-        for(int i = 0; i< size; i++){
-            cat.addElement(DB.getCategory().get(i));
-        }
-        //sorts the array list and then converting it to a linkedhashset removes the duplicates
-        cat.sort(String::compareToIgnoreCase);
-        LinkedHashSet<String> set = new LinkedHashSet<String>();
-        set.addAll(cat);
-        cat.clear();
-        cat.addAll(set);
-        cat.add(0,"Select a medicine category"); //ad it after sorting alphabetically!
-        final JComboBox<String> categories = new JComboBox<String>(cat);
-        categories.setVisible(true);
-
-        //problem with this is that the value is the initial one, ie always 1
-       // System.out.println("the selected type of medication is: " + var);
-        mainPanel.add(categories);
-
-        //use this combo box to see the list of possible medicine to select,
-        //ideally it would go through the heroku db and select all the names of the available medicine --> will do that soon
-
-        Vector<String> medname = new Vector<String>();
-        //medname.addElement("Select a medicine brand");
-        for(int i = 0; i< size; i++){
-            medname.addElement(DB.getBrand().get(i));
-        }
-        //sorts the array list and then converting it to a linkedhashset removes the duplicates
-        medname.sort(String::compareToIgnoreCase);
-        LinkedHashSet<String> set2 = new LinkedHashSet<String>();
-        set2.addAll(medname);
-        medname.clear();
-        medname.addAll(set2);
-        medname.add(0,"Select a medicine brand"); //ad it after sorting alphabetically!
-        final JComboBox<String> med = new JComboBox<String>(medname);
-        med.setVisible(true);
-        mainPanel.add(med);
 
 
-        //set the combo box - should we make sure that it only proposes available quantities?
-        Vector<String> choices = new Vector<String>();
-        choices.addElement("Select amount");
-        choices.addElement("1");
-        choices.addElement("2");
-        choices.addElement("3");
-        choices.addElement("4");
-        final JComboBox<String> cb = new JComboBox<String>(choices);
-        cb.setVisible(true);
-        //problem with this is that the value is the initial one, ie always 1
-        //System.out.println("the selected number of medication is: " + varName);
-        mainPanel.add(cb);
-
-        //set the combo box
-        //when using the servlet, we have to go through the db and names
-        int sizeName = clientDB.getFirstName().size();
-        Vector<String> fullName = new Vector<>();
-        for(int i=0; i<sizeName; i++){
-            fullName.add(clientDB.getFirstName().get(i) +" "+ clientDB.getLastName().get(i));
-        }
-        fullName.add(0, "Select a client");
-        final JComboBox<String> names = new JComboBox<String>(fullName);
-        names.setVisible(true);
-        mainPanel.add(names);
+        JPanel bordera = new JPanel();
+        bordera.setOpaque(false); // make the panel transparent
+        mainPanel.add(bordera);
+        JPanel borderb = new JPanel();
+        borderb.setOpaque(false);
+        mainPanel.add(borderb);
+        JPanel borderc = new JPanel();
+        borderc.setOpaque(false);
+        mainPanel.add(borderc);
+        JPanel borderd = new JPanel();
+        borderd.setOpaque(false);
+        mainPanel.add(borderd);
 
 
 
@@ -155,17 +107,14 @@ public class UI extends JPanel{
         checkout.setOpaque(true);
         checkout.setBorderPainted(true); // if set to false the whole button gets colored
         mainPanel.add(checkout);
+
         checkout.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //JOptionPane.showMessageDialog(null, "Checkout successful", " " , JOptionPane.PLAIN_MESSAGE);
-            String ChosenCat = (String)categories.getSelectedItem();
-            String ChosenBrand = (String)med.getSelectedItem();
-            String ChosenAmount = (String)cb.getSelectedItem();
-            String ChosenClient = (String)names.getSelectedItem();
-            String branch = branches.getSelectedItem().toString();
-            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, branch );
-            System.out.println("category: " + ChosenCat + " Brand " + ChosenBrand + " Amount " + ChosenAmount);
+
+            String branch = branches.getSelectedItem().toString(); //get the branch selected
+            Checkout ch = new Checkout(branch); // pas in the branch name as argument
+
         }
         });
 
