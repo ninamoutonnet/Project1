@@ -10,10 +10,11 @@ import java.util.ArrayList;
 
 public class Get {
     public ArrayList<ArrayList> Response(URL myURL) {
-        //ArrayList of ArrayList that stores all info from the DB
+        //ArrayList of ArrayList that stores all info from one particular table in the DB
         ArrayList<ArrayList> AllItems = new ArrayList<ArrayList>();
 
         try {
+            // URL of the GET request (response will give resources identified by that URL)
             HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -31,6 +32,7 @@ public class Get {
             in.close();
 
             Gson gson = new Gson();
+            // Get JSON object which is an ArrayList of ArrayLists
             AllItems = gson.fromJson(jsonS, ArrayList.class);
             System.out.println(AllItems);
         }

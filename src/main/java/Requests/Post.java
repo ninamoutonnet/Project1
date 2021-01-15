@@ -12,7 +12,7 @@ public class Post {
         try {
             byte[] body = query.getBytes(StandardCharsets.UTF_8);
 
-            // The URL maps to the servlet (check that this is the correct way to say it)
+            // The URL maps to the servlet
             URL myURL = new URL("https://projectservlet.herokuapp.com/access");
             HttpURLConnection conn = null;
 
@@ -24,7 +24,7 @@ public class Post {
             conn.setRequestProperty("Content-Length", Integer.toString(body.length));
             conn.setDoOutput(true);
 
-            // Write the body of the request
+            // Write the body of the request (will contain SQL query to be executed)
             try (OutputStream outputStream = conn.getOutputStream()) {
                 outputStream.write(body, 0, body.length);
             }

@@ -12,10 +12,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
+/* This class makes sure user can input new medicine to add to list of drugs sold & adds that new medicine to the DB if it does not exist already */
 
 public class AddMed {
     GetDB_medicine info = new GetDB_medicine(2);
 
+    // Method for the UI
     public AddMed() {
         JFrame fr = new JFrame(); //dummy JFrame to ensure that the window popping up is on top of anything else
         fr.setVisible(false);
@@ -34,6 +36,7 @@ public class AddMed {
         String DES = "";
         String Branch ="";
 
+        // Information that the user will need to input to add a new medicine
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(10, 2));
         myPanel.add(new JLabel("Medicine brand:"));
@@ -202,7 +205,7 @@ public class AddMed {
         }
     }
 
-    // Method making a POST request to the servlet to add a new medicine to the DB - check that POST is the correct method (could be PUT)
+    // Method making a POST request to the servlet to add a new medicine to the DB
     public static void makePostRequest(String N, String A, Double SP, Double PP, Integer FS, Boolean LIM, String DES, String CAT, Integer CS, String prodDB) {
         // This is the SQL query included in the body of the POST request = instructions
         String query = "INSERT INTO "+prodDB+" (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+","+LIM+",'"+DES+"','"+CAT+"',"+CS+");";
