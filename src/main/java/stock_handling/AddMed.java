@@ -39,7 +39,7 @@ public class AddMed {
         String LIM = "";
         String CAT = "";
         String DES = "";
-        String Branch ="";
+        String Branch = "";
 
         // Information that the user will need to input to add a new medicine
         JPanel myPanel = new JPanel();

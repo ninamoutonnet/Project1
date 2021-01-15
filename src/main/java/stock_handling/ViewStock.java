@@ -10,6 +10,7 @@ import db_handling.GetDB_medicine;
 
 import javax.swing.*;
 
+// show the current stock of each medicine to the pharmacist in form of progress bars
 
 public class ViewStock {
 
@@ -70,7 +71,7 @@ public class ViewStock {
             }
         }
 
-        JButton button1 = new JButton("Restock medicines running low");
+        JButton button1 = new JButton("Send restock request");
         myPanel.add(button1);
         button1.addActionListener(new ActionListener() {
             @Override
@@ -90,7 +91,7 @@ public class ViewStock {
         });
 
         int res = JOptionPane.showConfirmDialog(frmOpt, myPanel,
-                "Update Stock", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                "Current stock", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }
 

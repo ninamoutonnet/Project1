@@ -114,7 +114,6 @@ public class UI extends JPanel{
             }
         });
 
-
         JPanel border6 = new JPanel();
         border6.setOpaque(false);
         mainPanel.add(border6);
