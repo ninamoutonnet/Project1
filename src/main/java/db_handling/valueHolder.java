@@ -1,5 +1,7 @@
 package db_handling;
 
+/* This class ? */
+
 public class valueHolder {
     //constructor
     private String strVH;

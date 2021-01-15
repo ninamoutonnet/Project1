@@ -68,10 +68,8 @@ public class GetDB_medicine {
             Limit.add(product.get(5));
             Description.add(product.get(6));
             Category.add(product.get(7));
-            ID.add(product.get(9));
             CurrentStock.add(product.get(8));
-
-            //System.out.println(product);
+            ID.add(product.get(9));
         }
 
     }
@@ -92,7 +90,7 @@ public class GetDB_medicine {
 
     public ArrayList<String> getCategory() { return Category; }
 
-    public ArrayList<String> getID() { return ID; }
+    public ArrayList<String> getCurrentStock() { return CurrentStock; }
 
-    public ArrayList<String> getCurrentStock(){ return CurrentStock; }
+    public ArrayList<String> getID() { return ID; }
 }
