@@ -27,6 +27,7 @@ public class Main {
 
     }
 
+    /*
     public void MakeGetRequest() {
         try {
             URL myURL = new URL("http://imperial.ac.uk");
@@ -47,6 +48,6 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Something is wrong with URL");
         }
-    }
+    }*/
 
 }

@@ -43,7 +43,6 @@ public class UI extends JPanel{
         border3.setOpaque(false);
         mainPanel.add(border3);
 
-
         Vector<String> branch = new Vector<String>();
         // add a condition for the prices if one of these is selected
         branch.addElement("Green Park");
@@ -52,8 +51,6 @@ public class UI extends JPanel{
         final JComboBox<String> branches = new JComboBox<String>(branch);
         branches.setVisible(true);
         mainPanel.add(branches);
-
-
 
         JPanel bordera = new JPanel();
         bordera.setOpaque(false); // make the panel transparent
@@ -67,8 +64,6 @@ public class UI extends JPanel{
         JPanel borderd = new JPanel();
         borderd.setOpaque(false);
         mainPanel.add(borderd);
-
-
 
         //Handling the stock
         HandleS = new JButton("Stock Handling");
@@ -94,14 +89,13 @@ public class UI extends JPanel{
             }
         });
 
-
         //include bottom panel with nothing!
         JPanel border5 = new JPanel();
         border5.setOpaque(false); // make the panel transparent
         mainPanel.add(border5);
 
-        //
-        JButton checkout = new JButton("Checkout");
+        // register a new purhase
+        JButton checkout = new JButton("Make a purchase");
         Color color6 = new Color(102,204,0);
         checkout.setBackground(color6);
         checkout.setOpaque(true);
@@ -109,13 +103,13 @@ public class UI extends JPanel{
         mainPanel.add(checkout);
 
         checkout.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-            String branch = branches.getSelectedItem().toString(); //get the branch selected
-            Checkout ch = new Checkout(branch); // pas in the branch name as argument
+                String branch = branches.getSelectedItem().toString(); //get the branch selected
+                Checkout ch = new Checkout(branch); // pas in the branch name as argument
 
-        }
+            }
         });
 
 
@@ -135,4 +129,3 @@ public class UI extends JPanel{
     }
 
 }
-
