@@ -16,7 +16,9 @@ import java.sql.SQLException;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
-public class UI extends JPanel{
+/* This class creates a panel on which the whole UI will be based */
+
+public class UI extends JPanel {
 
     GradientPanel mainPanel = new GradientPanel();
     private JPanel logoPanel;

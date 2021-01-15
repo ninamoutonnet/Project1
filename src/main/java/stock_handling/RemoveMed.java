@@ -13,8 +13,11 @@ import GUI.dummyFrame;
 import Requests.Post;
 import db_handling.GetDB_medicine;
 import db_handling.checkForMed;
+
 import javax.swing.*;
 import java.util.LinkedHashSet;
+
+/* This class enables the user to remove a medicine from the DB */
 
 public class RemoveMed {
 
@@ -24,7 +27,7 @@ public class RemoveMed {
     String Branch = "";
 
 
-    public RemoveMed(String branch){
+    public RemoveMed(String branch) {
         Branch = branch;
         //System.out.println("the branch is" + Branch);
 

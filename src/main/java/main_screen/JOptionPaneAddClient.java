@@ -8,6 +8,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+/* This class creates the "Add Client" feature of the UI */
+
 public class JOptionPaneAddClient {
 
     //check if a string is only digits

@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/* This class creates the "Handling Stock" feature of the UI */
+
 public class HandlingStock {
 
     public HandlingStock() {

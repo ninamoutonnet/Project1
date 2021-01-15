@@ -7,9 +7,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/* This class creates a panel with a faded background */
+
 public class GradientPanel extends JPanel {
 
-    //will allow the creation of a panel with a faded background
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

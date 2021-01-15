@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
+/* This class implements the checkout feature that the pharmacist uses to register new purchases */
+
 public class Checkout {
 
     GetDB_medicine info = new GetDB_medicine(1);

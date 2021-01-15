@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
+/* This class enables the user to add a medicine to the DB */
+
 public class UpdateStock {
 
     GetDB_medicine info1 = new GetDB_medicine(1);
@@ -26,7 +28,7 @@ public class UpdateStock {
     String Branch;
 
     //constructor
-    public  UpdateStock(String Branch) {
+    public UpdateStock(String Branch) {
 
         //get the branch name
         Branch = Branch;

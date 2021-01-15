@@ -10,7 +10,7 @@ import db_handling.GetDB_medicine;
 
 import javax.swing.*;
 
-// show the current stock of each medicine to the pharmacist in form of progress bars
+/* This class shows the current stock of each medicine to the pharmacist in form of progress bars */
 
 public class ViewStock {
 

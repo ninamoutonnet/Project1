@@ -17,7 +17,6 @@ public class checkTheInput {
         try{
             CS = Integer.parseInt(input);
         }catch (Exception e){
-            //System.out.println("Not an current stock integer ");
             isAnInt = false; //set to false to signal an issue
             //construct a dummy frame using the class! since it is a redundant operation
             dummyFrame df = new dummyFrame();
@@ -46,7 +45,6 @@ public class checkTheInput {
         try{
             CS = Double.parseDouble(input);
         }catch (Exception e){
-            //System.out.println("Not an current stock integer ");
             isADouble = false; //set to false to signal an issue
             //construct a dummy frame using the class! since it is a redundant operation
             dummyFrame df = new dummyFrame();
@@ -68,6 +66,4 @@ public class checkTheInput {
         }
         return isADouble;
     }
-
-
 }

@@ -9,10 +9,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/* This class creates the add and remove features of handling stock */
+
 public class JOptionPaneMultipleInputAddRemove {
 
     //constructor
-    public  JOptionPaneMultipleInputAddRemove() {
+    public JOptionPaneMultipleInputAddRemove() {
 
         //construct a dummy frame using the class! since it is a redundant operation
         dummyFrame df = new dummyFrame();

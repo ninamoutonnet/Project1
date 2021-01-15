@@ -7,6 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+/* This class adds icons/logos to the UI */
+
 public class LogoPanel extends JPanel {
     /*Reference 1 - taken from https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel*/
     private BufferedImage image;
