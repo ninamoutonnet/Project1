@@ -5,6 +5,14 @@ import GUI.dummyFrame;
 import javax.swing.*;
 import java.util.function.DoubleConsumer;
 
+/*this class does the following*/
+//creates an object that has a function isAnInt. it takes a string input and the description of what the input corresponds to.
+//for instance, if we pass "43" as input it can be described as "Sale quantity".
+//you then check that the input is an integer, if it is not you have a pop up message saying the input is not an int and you return a false.
+//if it is an int, you return a true value.
+
+//The function isADouble works similarly.
+
 public class checkTheInput {
 
     public checkTheInput(){
