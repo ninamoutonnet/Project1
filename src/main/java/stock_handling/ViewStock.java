@@ -22,7 +22,6 @@ public class ViewStock {
         JFrame frmOpt = df.dummyFrameConstruction();
 
         JPanel myPanel = new JPanel();
-        //JScrollPane scroll = new JScrollPane(myPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         myPanel.setLocation(5,2);
         myPanel.setLayout(new GridLayout(200, 150));
 
