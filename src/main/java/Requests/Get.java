@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/* This class provides a template for all the HTTP GET requests that will allow to extract relevant data from the DB */
+
 public class Get {
     public ArrayList<ArrayList> Response(URL myURL) {
         //ArrayList of ArrayList that stores all info from one particular table in the DB

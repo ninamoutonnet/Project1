@@ -10,9 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-// code to get the information from the database in the constructor
-// store the info into arrays
-// make functions that return the arrays of info when called in other classes
+/* This class does the following */
+// Code to get the list of clients from the DB in the constructor
+// Up-to-date information about these clients stored in arrays
+// Methods return the arrays when called in other classes
 
 public class GetDB_clients {
     //ArrayList of ArrayList that stores all info from the DB

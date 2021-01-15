@@ -9,9 +9,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-// code to get the information from the database in the constructor
-// store the info into arrays
-// make functions that return the arrays of info when called in other classes
+/* This class does the following */
+// Code to get the list of clients from the DB in the constructor
+// Up-to-date information about these clients stored in arrays
+// Methods return the arrays when called in other classes
 
 public class GetDB_medicine {
     //ArrayList of ArrayList that stores all info from the DB
@@ -31,17 +32,6 @@ public class GetDB_medicine {
     ArrayList<String> CurrentStock = new ArrayList<>();
 
     public GetDB_medicine(int nb) {
-        /*
-        if (branchnb == 1) {
-            try {
-                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=1");
-                Get getRequest = new Get();
-                AllProducts = getRequest.Response(myURL);
-            } catch (Exception e) {
-                System.out.println("Something went wrong");
-            }
-        }
-        */
         try {
             if (nb == 1) {
                 URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");

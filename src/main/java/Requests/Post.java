@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+/* This class provides a template for all the HTTP POST requests that will allow to modify data in the DB according to user input */
+
 public class Post {
     public Post(String query) {
         try {

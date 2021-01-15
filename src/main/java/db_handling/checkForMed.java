@@ -3,8 +3,9 @@ package db_handling;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class checkForMed {
+/* This class checks if a medicine is already in the list of products sold at one particular branch */
 
+public class checkForMed {
 
     public  checkForMed(){
     }
