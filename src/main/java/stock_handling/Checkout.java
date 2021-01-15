@@ -11,15 +11,24 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Checkout {
 
     private String amt;
 
-    public Checkout(String cat, String brand, String amount, String customer, int branch) {
+    public Checkout(String cat, String brand, String amount, String customer, String branch) {
 
-        GetDB_medicine info = new GetDB_medicine(2);
+        int branchNB = 0;
+
+        if(branch.equalsIgnoreCase("Paddington")) branchNB =2;
+        if(branch.equalsIgnoreCase("Green Park")) branchNB =1;
+        if(branch.equalsIgnoreCase("East End")) branchNB =3;
+
+        GetDB_medicine info = new GetDB_medicine(branchNB);
+
+        //System.out.println("the branch is " + branchNB);
 
         boolean found = false;
         boolean match = false;
@@ -28,10 +37,9 @@ public class Checkout {
         for (int i = 0; i < info.getBrand().size(); i++) {
             // get the ID of selected med
             if ((brand.equals(info.getBrand().get(i))) && (!found)) {
-                //System.out.println("in the loop");
                 // compare to see if the correct category was selected
-                int ID = Integer.parseInt(info.getID().get(i));
                 found = true;
+                int ID = Integer.parseInt(info.getID().get(i));
                 if (cat.equals(info.getCategory().get(ID))) {
                     match = true;
                     IDCheckout = Integer.parseInt(info.getID().get(i));
@@ -51,6 +59,7 @@ public class Checkout {
         }
 
     }
+
 
     public static void DBout (int idNUM, String amount) {
         try {

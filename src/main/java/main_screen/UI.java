@@ -42,9 +42,6 @@ public class UI extends JPanel{
         mainPanel.add(border3);
 
 
-
-
-
         Vector<String> branch = new Vector<String>();
         // add a condition for the prices if one of these is selected
         branch.addElement("Green Park");
@@ -53,7 +50,6 @@ public class UI extends JPanel{
         final JComboBox<String> branches = new JComboBox<String>(branch);
         branches.setVisible(true);
         mainPanel.add(branches);
-
 
         Vector<String> cat = new Vector<String>();
         // getting info from the DB & storing it into vector
@@ -115,7 +111,7 @@ public class UI extends JPanel{
         for(int i=0; i<sizeName; i++){
             fullName.add(clientDB.getFirstName().get(i) +" "+ clientDB.getLastName().get(i));
         }
-        fullName.add(0, "Select a customer");
+        fullName.add(0, "Select a client");
         final JComboBox<String> names = new JComboBox<String>(fullName);
         names.setVisible(true);
         mainPanel.add(names);
@@ -171,8 +167,8 @@ public class UI extends JPanel{
             String ChosenBrand = (String)med.getSelectedItem();
             String ChosenAmount = (String)cb.getSelectedItem();
             String ChosenClient = (String)names.getSelectedItem();
-            //int Branch = (int)branches.getSelectedItem();
-            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, 1 );
+            String branch = branches.getSelectedItem().toString();
+            Checkout co = new Checkout(ChosenCat, ChosenBrand, ChosenAmount,ChosenClient, branch );
             System.out.println("category: " + ChosenCat + " Brand " + ChosenBrand + " Amount " + ChosenAmount);
         }
         });

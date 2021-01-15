@@ -15,16 +15,35 @@ public class ViewStock {
 
     public ViewStock() {
 
+        Integer branchNB =0;
+
         dummyFrame df = new dummyFrame();
         JFrame frmOpt = df.dummyFrameConstruction();
 
         JPanel myPanel = new JPanel();
-        JScrollPane scroll = new JScrollPane(myPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        //JScrollPane scroll = new JScrollPane(myPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         myPanel.setLocation(5,2);
         myPanel.setLayout(new GridLayout(200, 150));
 
+        // which branch
+        JPanel aPanel = new JPanel();
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        aPanel.add(comboBoxBranch);
 
-        GetDB_medicine info = new GetDB_medicine(2);
+        int result = JOptionPane.showConfirmDialog(frmOpt, aPanel,"Select the branch",JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+        if(result==0) {
+            String branch = comboBoxBranch.getSelectedItem().toString();
+
+            if(branch.equalsIgnoreCase("Paddington")) branchNB =2;
+            if(branch.equalsIgnoreCase("Green Park")) branchNB =1;
+            if(branch.equalsIgnoreCase("East End")) branchNB =3;
+            //whichBranch = Integer.parseInt(branch);
+            System.out.println("the branch is " + branchNB );
+        }
+
+        GetDB_medicine info = new GetDB_medicine(branchNB);
 
         int size = info.getCurrentStock().size();
 
@@ -36,10 +55,10 @@ public class ViewStock {
             int number2 = Integer.parseInt(original);
             if(number2 != 0){
             double percent = number1*100/number2;
-            System.out.println("the percentage is " + percent);
+            //System.out.println("the percentage is " + percent);
             String s = info.getBrand().get(i);
             String s2 = info.getAmount().get(i);
-                System.out.println("the brand is " + s + " - " + s2);
+                //System.out.println("the brand is " + s + " - " + s2);
                 JPanel newPanel = new JPanel();
                 myPanel.setLayout(new GridLayout(20, 20));
                 newPanel.add(new JLabel(s + " - " + s2));
@@ -51,13 +70,13 @@ public class ViewStock {
             }
         }
 
-
         JButton button1 = new JButton("Restock medicines running low");
         myPanel.add(button1);
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //automatically send emails to the suppliers
+                // the pharmacist should receive an email that he needs to approve
                 dummyFrame df = new dummyFrame();
                 JFrame f = df.dummyFrameConstruction();
                 JPanel mp = new JPanel();
@@ -70,8 +89,9 @@ public class ViewStock {
             }
         });
 
-        int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
+        int res = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Update Stock", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }
+
 }

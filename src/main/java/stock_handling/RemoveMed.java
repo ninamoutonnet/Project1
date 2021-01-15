@@ -263,7 +263,7 @@ public class RemoveMed {
 
                 //System.out.println("what fucks up: "+ (id.get(0)-1));
 
-               if(branchNB==1)  Delete(ids.get(id.get(0)-1), "products"); //delete query for the sql db
+               if(branchNB==1) Delete(ids.get(id.get(0)-1), "products"); //delete query for the sql db
                else if(branchNB==2) Delete(ids.get(id.get(0)-1), "products2");
                else if(branchNB==3) Delete(ids.get(id.get(0)-1), "products3");
 
