@@ -209,6 +209,5 @@ public class AddMed {
         new Post(query);
     }
 
-
 }
 

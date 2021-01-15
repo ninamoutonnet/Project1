@@ -1,6 +1,7 @@
 package stock_handling;
 
 import GUI.dummyFrame;
+import Requests.Post;
 import db_handling.GetDB_medicine;
 import db_handling.valueHolder;
 import GUI.SortedComboBoxModel;
@@ -163,6 +164,12 @@ public class UpdateStock {
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 
+        //Branch name
+        myPanel.add(new JLabel("Branch "));
+        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
+        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
+        comboBoxBranch.setVisible(true);
+        myPanel.add(comboBoxBranch);
 
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
@@ -271,41 +278,9 @@ public class UpdateStock {
     }
 
     public static void UpdateRequest(Integer idNUM, Integer CS, String branchName) {
-        try {
-            // This is the SQL query included in the body of the POST request = instructions
-            String message = "UPDATE "+branchName+" SET currentstock = "+CS+" where id = "+idNUM+";";
-           // "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
-            byte[] body = message.getBytes(StandardCharsets.UTF_8);
-
-            // The URL maps to the servlet (check that this is the correct way to say it)
-            URL myURL = new URL("https://projectservlet.herokuapp.com/access");
-            HttpURLConnection conn = null;
-
-            conn = (HttpURLConnection) myURL.openConnection();
-            // Set up the header
-            conn.setRequestMethod("POST"); // sets the HTTP method
-            conn.setRequestProperty("Accept", "text/html");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setRequestProperty("Content-Length", Integer.toString(body.length));
-            conn.setDoOutput(true);
-
-            // Write the body of the request
-            try (OutputStream outputStream = conn.getOutputStream()) {
-                outputStream.write(body, 0, body.length);
-            }
-
-            // BufferedReader is a Java class to read the text from an I stream
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-            String inputLine;
-            // Read the body of the response
-            while ((inputLine = bufferedReader.readLine()) != null) {
-                System.out.println(inputLine);
-            }
-            bufferedReader.close();
-        }
-        catch(Exception e) {
-            System.out.println("Something went wrong");
-        }
+        // This is the SQL query included in the body of the POST request = instructions
+        String query = "UPDATE "+branchName+" SET currentstock = "+CS+" where id = "+idNUM+";";
+        new Post(query);
     }
 }
 
