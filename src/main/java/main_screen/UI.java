@@ -42,9 +42,6 @@ public class UI extends JPanel{
         mainPanel.add(border3);
 
 
-
-
-
         Vector<String> branch = new Vector<String>();
         // add a condition for the prices if one of these is selected
         branch.addElement("Green Park");
@@ -189,19 +186,9 @@ public class UI extends JPanel{
         mainPanel.add(border8);
     }
 
-
-
     public JPanel getMainPanel(){
         return mainPanel;
     }
-
-
-
-
-
-
-
-
 
 }
 

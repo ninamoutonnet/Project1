@@ -31,17 +31,6 @@ public class GetDB_medicine {
     ArrayList<String> CurrentStock = new ArrayList<>();
 
     public GetDB_medicine(int nb) {
-        /*
-        if (branchnb == 1) {
-            try {
-                URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products&nb=1");
-                Get getRequest = new Get();
-                AllProducts = getRequest.Response(myURL);
-            } catch (Exception e) {
-                System.out.println("Something went wrong");
-            }
-        }
-        */
         try {
             if (nb == 1) {
                 URL myURL = new URL("https://projectservlet.herokuapp.com/access?item=products");
