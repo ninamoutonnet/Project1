@@ -60,7 +60,6 @@ public class Checkout {
 
     }
 
-
     public static void DBout (int idNUM, String amount) {
             //System.out.println("The ID is " + idNUM + " The amount is " + amount);
             // This is the SQL query included in the body of the POST request = instructions
