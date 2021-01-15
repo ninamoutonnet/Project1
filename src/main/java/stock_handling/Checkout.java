@@ -78,7 +78,6 @@ public class Checkout {
         names.setVisible(true);
         myPanel.add(names);
 
-
         Vector<String> amount = new Vector<>();
         if (branchNB == 1) {
             for (int i = 0; i < size1; i++) {
@@ -104,7 +103,6 @@ public class Checkout {
         JComboBox<String> amountCB = new JComboBox<String>(amount);
         amountCB.setVisible(true);
         myPanel.add(amountCB);
-
 
         Vector<String> description = new Vector<>();
         if (branchNB == 1) {
@@ -132,7 +130,6 @@ public class Checkout {
         descriptionCB.setVisible(true);
         myPanel.add(descriptionCB);
 
-
         Vector<String> category = new Vector<>();
         if (branchNB == 1) {
             for (int i = 0; i < size1; i++) {
@@ -159,8 +156,6 @@ public class Checkout {
         categoryCB.setVisible(true);
         myPanel.add(categoryCB);
 
-
-
         ArrayList<String> str3 = new ArrayList<>();
         if (branchNB == 1) str3 = info.getSPrice(); //GET FROM DB
         else if (branchNB == 2) str3 = info2.getSPrice(); //GET FROM DB
@@ -179,8 +174,6 @@ public class Checkout {
         comboBox3.setVisible(true);
         myPanel.add(comboBox3);
 
-
-
         ArrayList<String> str4 = new ArrayList<>();
         if (branchNB == 1) str4 = info.getPPrice(); //GET FROM DB
         else if (branchNB == 2) str4 = info2.getPPrice(); //GET FROM DB
@@ -198,7 +191,6 @@ public class Checkout {
         comboBox4.setVisible(true);
         myPanel.add(comboBox4);
 
-
         //set the combo box
         //when using the servlet, we have to go through the db and names
         GetDB_clients clientDB = new GetDB_clients(); //get if from the db
@@ -211,7 +203,6 @@ public class Checkout {
         final JComboBox<String> namesClient = new JComboBox<String>(fullName);
         namesClient.setVisible(true);
         myPanel.add(namesClient);
-
 
         //set the combo box - should we make sure that it only proposes available quantities?
         Vector<String> choices = new Vector<String>();
@@ -226,12 +217,10 @@ public class Checkout {
         //System.out.println("the selected number of medication is: " + varName);
         myPanel.add(cb);
 
-
         frmOpt.add(myPanel);
 
         int result = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Please Enter the details of the medicine you wish to remove", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
 
         //check if the quantities make sense when ok is pressed
         if (result == JOptionPane.OK_OPTION) {
@@ -244,7 +233,6 @@ public class Checkout {
             String selectedSalesP = comboBox3.getSelectedItem().toString();
             String selectedPurchP = comboBox4.getSelectedItem().toString();
 
-
             boolean validEntry = true; //assume the entries are valid
             checkForMed CFM = new checkForMed();
             //false if the medicine is not in
@@ -252,7 +240,6 @@ public class Checkout {
             id = CFM.isTheMedicineIn(selectedName, selectedAmount, selectedSalesP, selectedPurchP, selectedDescription, selectedCategory, branchNB);
             if (id.size() == 0) validEntry = false; // if no medicine has been found having the same values,
             //// give an error. you cannot update a stock of smt that is not in the db
-
 
             if (validEntry == false) {
                 JPanel error = new JPanel();
@@ -361,6 +348,4 @@ public class Checkout {
         String query = "UPDATE " + branchName + " SET currentstock = " + CS + " where id = " + idNUM + ";";
         new Post(query);
     }
-
-
 }

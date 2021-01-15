@@ -56,10 +56,8 @@ public class ViewStock {
             int number2 = Integer.parseInt(original);
             if(number2 != 0){
             double percent = number1*100/number2;
-            //System.out.println("the percentage is " + percent);
             String s = info.getBrand().get(i);
             String s2 = info.getAmount().get(i);
-                //System.out.println("the brand is " + s + " - " + s2);
                 JPanel newPanel = new JPanel();
                 myPanel.setLayout(new GridLayout(20, 20));
                 newPanel.add(new JLabel(s + " - " + s2));
@@ -92,7 +90,5 @@ public class ViewStock {
 
         int res = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Current stock", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
     }
-
 }

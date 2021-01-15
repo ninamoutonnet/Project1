@@ -26,7 +26,7 @@ public class HandlingStock {
         HSpanel.setVisible(true);
         HSpanel.setLayout(new GridLayout(3, 1));
 
-        // add VIEW STOCK
+        // ADD VIEW STOCK
         HSpanel.add(View_stock);
         HSpanel.add(Box.createHorizontalStrut(15)); // a spacer
         // to update the stock correctly each time -> need info about medicine:

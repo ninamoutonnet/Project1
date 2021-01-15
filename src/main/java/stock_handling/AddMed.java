@@ -73,7 +73,7 @@ public class AddMed {
         limited.setVisible(true);
         myPanel.add(limited);
 
-        //CATEGORY
+        // CATEGORY
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Category "));
         //from the 3 different tables, add all of the categories of each one
@@ -95,7 +95,7 @@ public class AddMed {
         comboBoxCategory.setVisible(true);
         myPanel.add(comboBoxCategory);
 
-        //Branch name
+        // Branch name
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
         myPanel.add(new JLabel("Branch "));
         String[] arrayBranches = {"East End", "Green Park", "Paddington"};
@@ -272,10 +272,8 @@ public class AddMed {
                             "Error", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
 
                     if(result3==0) frmOpt1.dispose();
-
                 }
             }
-
         }
         else {
             fr.dispose(); //discard of the dummy jframe
@@ -288,6 +286,5 @@ public class AddMed {
         String query = "INSERT INTO "+prodDB+" (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+","+LIM+",'"+DES+"','"+CAT+"',"+CS+");";
         new Post(query);
     }
-
 }
 

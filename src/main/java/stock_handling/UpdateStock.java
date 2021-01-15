@@ -32,7 +32,6 @@ public class UpdateStock {
 
         //get the branch name
         Branch = Branch;
-        System.out.println("the branch is " + Branch);
 
         //relate the different branches to the different databases tables
         Integer branchNB =0;
@@ -56,7 +55,6 @@ public class UpdateStock {
         else if(branchNB==2) str1 = info2.getBrand(); //GET FROM DB
         else if(branchNB==3) str1 = info3.getBrand(); //GET FROM DB
 
-       // int size = str1.size();
         //sort the list
         str1.sort(String::compareToIgnoreCase);
         //remove duplicates from the list
@@ -128,7 +126,6 @@ public class UpdateStock {
         comboBox4.setVisible(true);
         myPanel.add(comboBox4);
 
-
         myPanel.add(new JLabel("Description:"));
         ArrayList<String> str5 = new ArrayList<>();
         if(branchNB==1) str5 = info1.getDescription(); //GET FROM DB
@@ -146,7 +143,6 @@ public class UpdateStock {
         JComboBox<String> comboBox5 = new JComboBox<>(array5);
         comboBox5.setVisible(true);
         myPanel.add(comboBox5);
-
 
         myPanel.add(new JLabel("Category:"));
         ArrayList<String> str6 = new ArrayList<>();
@@ -177,7 +173,6 @@ public class UpdateStock {
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
                 "Update Stock", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-
         //check if the quantities make sense when ok is pressed
         if(result2==JOptionPane.OK_OPTION){
             String selectedName = comboBox.getSelectedItem().toString();
@@ -188,9 +183,6 @@ public class UpdateStock {
             String selectedDescription = comboBox5.getSelectedItem().toString();
             String selectedCategory = comboBox6.getSelectedItem().toString();
 
-
-
-
            // System.out.println(selectedName + " " + selectedAmount + " " + quantityAddRemove + " " + selectedSalesP + " " + selectedPurchP + " " + selectedDescription + " " + selectedCategory);
             boolean validEntry = true; //assume the entries are valid
             checkForMed CFM = new checkForMed();
@@ -199,7 +191,6 @@ public class UpdateStock {
             id = CFM.isTheMedicineIn(selectedName,selectedAmount,selectedSalesP,selectedPurchP,selectedDescription,selectedCategory, branchNB);
             if(id.size()==0) validEntry = false; // if no medicine has been found having the same values,
             //// give an error. you cannot update a stock of smt that is not in the db
-
 
             if(validEntry==false){
                 JPanel error = new JPanel();
@@ -212,7 +203,6 @@ public class UpdateStock {
             }
 
             if(validEntry==true ){
-
                 //now check the input makes sens with respect to stock available
                 ArrayList<String> strAmount =new ArrayList<>();
                 if(branchNB==1)  strAmount = info1.getCurrentStock(); //GET FROM DB
