@@ -166,12 +166,7 @@ public class UpdateStock {
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 
-        //Branch name
-        myPanel.add(new JLabel("Branch "));
-        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
-        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
-        comboBoxBranch.setVisible(true);
-        myPanel.add(comboBoxBranch);
+
 
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
@@ -268,7 +263,7 @@ public class UpdateStock {
                     JPanel success = new JPanel();
                     success.setVisible(true);
                     //System.out.println("Quantity to add/rem is: "+qtyAddRem);
-                    JLabel successMsg = new JLabel("Success, needs to be updated: " + id.get(0));
+                    JLabel successMsg = new JLabel("Success!");
                     success.add(successMsg);
                     // dialog box - for now no icon (Plain message)
                     int result3 = JOptionPane.showConfirmDialog(null, success,
