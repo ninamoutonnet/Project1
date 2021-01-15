@@ -97,7 +97,7 @@ public class UI extends JPanel {
         mainPanel.add(border5);
 
         // register a new purchase
-        JButton checkout = new JButton("Make a purchase");
+        JButton checkout = new JButton("Sell a product");
         Color color6 = new Color(102,204,0);
         checkout.setBackground(color6);
         checkout.setOpaque(true);
