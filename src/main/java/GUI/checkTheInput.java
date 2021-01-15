@@ -1,9 +1,7 @@
 package GUI;
 
-import GUI.dummyFrame;
-
 import javax.swing.*;
-import java.util.function.DoubleConsumer;
+
 
 /*this class does the following*/
 //creates an object that has a function isAnInt. it takes a string input and the description of what the input corresponds to.
