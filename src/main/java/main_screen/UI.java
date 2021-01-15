@@ -116,10 +116,6 @@ public class UI extends JPanel{
         names.setVisible(true);
         mainPanel.add(names);
 
-        //set the date
-        Label label1 = new Label("Name:");
-        TextField textField = new TextField ();
-        // mainPanel.add(textField); //not adding it for now
 
 
         //Handling the stock
