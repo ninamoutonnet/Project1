@@ -18,10 +18,25 @@ import java.util.LinkedHashSet;
 import java.util.Vector;
 
 public class UpdateStock {
-    GetDB_medicine info = new GetDB_medicine(2);
+
+    GetDB_medicine info1 = new GetDB_medicine(1);
+    GetDB_medicine info2 = new GetDB_medicine(2);
+    GetDB_medicine info3 = new GetDB_medicine(3);
+    String Branch;
 
     //constructor
-    public  UpdateStock() {
+    public  UpdateStock(String Branch) {
+
+        //get the branch name
+        Branch = Branch;
+        System.out.println("the branch is " + Branch);
+
+        //relate the different branches to the different databases tables
+        Integer branchNB =0;
+        if(Branch.equalsIgnoreCase("Paddington")) branchNB =2;
+        if(Branch.equalsIgnoreCase("Green Park")) branchNB =1;
+        if(Branch.equalsIgnoreCase("East End")) branchNB =3;
+
         //create a dummy jframe in order to set the option pane on top
         //construct a dummy frame using the class! since it is a redundant operation
         dummyFrame df = new dummyFrame();
@@ -33,8 +48,12 @@ public class UpdateStock {
 
         // MED NAME
         myPanel.add(new JLabel("Medicine Name:"));
-        ArrayList<String> str1 = info.getBrand(); //GET FROM DB
-        int size = str1.size();
+        ArrayList<String> str1 = new ArrayList<>();
+        if(branchNB==1) str1 = info1.getBrand(); //GET FROM DB
+        else if(branchNB==2) str1 = info2.getBrand(); //GET FROM DB
+        else if(branchNB==3) str1 = info3.getBrand(); //GET FROM DB
+
+       // int size = str1.size();
         //sort the list
         str1.sort(String::compareToIgnoreCase);
         //remove duplicates from the list
@@ -49,7 +68,10 @@ public class UpdateStock {
         myPanel.add(comboBox);
 
         myPanel.add(new JLabel("Amount per box/bottle:"));
-        ArrayList<String> str2 = info.getAmount(); //GET FROM DB
+        ArrayList<String> str2=new ArrayList<>();
+        if(branchNB==1) str2 = info1.getAmount(); //GET FROM DB
+        else if(branchNB==2) str2 = info2.getAmount(); //GET FROM DB
+        else if(branchNB==3) str2 = info3.getAmount(); //GET FROM DB
         //sort the list
         str2.sort(String::compareToIgnoreCase);
         //remove duplicates from the list
@@ -69,7 +91,10 @@ public class UpdateStock {
         myPanel.add(qty);
 
         myPanel.add(new JLabel("Sale price :"));
-        ArrayList<String> str3 = info.getSPrice(); //GET FROM DB
+        ArrayList<String> str3=new ArrayList<>();
+        if(branchNB==1) str3 = info1.getSPrice(); //GET FROM DB
+        else if(branchNB==2) str3 = info2.getSPrice(); //GET FROM DB
+        else if(branchNB==3) str3 = info3.getSPrice(); //GET FROM DB
         //remove duplicates from the list
         LinkedHashSet<String> set3 = new LinkedHashSet<String>();
         set3.addAll(str3);
@@ -84,7 +109,10 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Purchase price:"));
-        ArrayList<String> str4 = info.getPPrice(); //GET FROM DB
+        ArrayList<String> str4=new ArrayList<>();
+        if(branchNB==1) str4 = info1.getPPrice(); //GET FROM DB
+        else if(branchNB==2) str4 = info2.getPPrice(); //GET FROM DB
+        else if(branchNB==3) str4 = info3.getPPrice(); //GET FROM DB
         //remove duplicates from the list
         LinkedHashSet<String> set4 = new LinkedHashSet<String>();
         set4.addAll(str4);
@@ -99,7 +127,10 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Description:"));
-        ArrayList<String> str5 = info.getDescription(); //GET FROM DB
+        ArrayList<String> str5 = new ArrayList<>();
+        if(branchNB==1) str5 = info1.getDescription(); //GET FROM DB
+        else if(branchNB==2) str5 = info2.getDescription(); //GET FROM DB
+        else if(branchNB==3) str5 = info3.getDescription(); //GET FROM DB
         //sort the list
         str5.sort(String::compareToIgnoreCase);
         //remove duplicates from the list
@@ -115,7 +146,10 @@ public class UpdateStock {
 
 
         myPanel.add(new JLabel("Category:"));
-        ArrayList<String> str6 = info.getCategory(); //GET FROM DB
+        ArrayList<String> str6 = new ArrayList<>();
+        if(branchNB==1) str6 = info1.getCategory(); //GET FROM DB
+        else if(branchNB==2) str6 = info2.getCategory(); //GET FROM DB
+        else if(branchNB==3) str6 = info3.getCategory(); //GET FROM DB
         //sort the list
         str6.sort(String::compareToIgnoreCase);
         //remove duplicates from the list
@@ -129,12 +163,6 @@ public class UpdateStock {
         comboBox6.setVisible(true);
         myPanel.add(comboBox6);
 
-        //Branch name
-        myPanel.add(new JLabel("Branch "));
-        String[] arrayBranches = {"East End", "Green Park", "Paddington"};
-        JComboBox<String> comboBoxBranch = new JComboBox<>(arrayBranches);
-        comboBoxBranch.setVisible(true);
-        myPanel.add(comboBoxBranch);
 
         // no icon for now
         int result2 = JOptionPane.showConfirmDialog(frmOpt, myPanel,
@@ -150,13 +178,9 @@ public class UpdateStock {
             String selectedPurchP = comboBox4.getSelectedItem().toString();
             String selectedDescription = comboBox5.getSelectedItem().toString();
             String selectedCategory = comboBox6.getSelectedItem().toString();
-            String Branch = comboBoxBranch.getSelectedItem().toString();
 
-            //relate the different branches to the different databases tables
-            Integer branchNB =0;
-            if(Branch.equalsIgnoreCase("Paddington")) branchNB =2;
-            if(Branch.equalsIgnoreCase("Green Park")) branchNB =1;
-            if(Branch.equalsIgnoreCase("East End")) branchNB =3;
+
+
 
            // System.out.println(selectedName + " " + selectedAmount + " " + quantityAddRemove + " " + selectedSalesP + " " + selectedPurchP + " " + selectedDescription + " " + selectedCategory);
             boolean validEntry = true; //assume the entries are valid
@@ -167,7 +191,7 @@ public class UpdateStock {
             if(id.size()==0) validEntry = false; // if no medicine has been found having the same values,
             //// give an error. you cannot update a stock of smt that is not in the db
 
-            //NOW CHOOSE WETHER OR NOT THE INPUT IS VALID AND YOU SHOULD UPDATE THE DB OR NOT
+
             if(validEntry==false){
                 JPanel error = new JPanel();
                 error.setVisible(true);
@@ -180,8 +204,12 @@ public class UpdateStock {
 
             if(validEntry==true ){
 
-                //now check the input makes sens with respoect to stock available
-                ArrayList<String> strAmount = info.getCurrentStock(); //GET FROM DB
+                //now check the input makes sens with respect to stock available
+                ArrayList<String> strAmount =new ArrayList<>();
+                if(branchNB==1)  strAmount = info1.getCurrentStock(); //GET FROM DB
+                if(branchNB==2)  strAmount = info2.getCurrentStock();
+                if(branchNB==3)  strAmount = info3.getCurrentStock();
+
                 System.out.println("The current stock of this medicine is: "+ strAmount.get(id.get(0)-1));
                 //check that the number in the database is superior than the quantity to remove if it is a removal
                 boolean finalstep = true;
@@ -212,12 +240,21 @@ public class UpdateStock {
                 }
 
                 if(finalstep) {
-                    ArrayList<String> strID = info.getID(); //GET FROM DB
+                    ArrayList<String> strID = new ArrayList<>();
+                    if(branchNB==1)  strID = info1.getID(); //GET FROM DB
+                    if(branchNB==2)  strID = info2.getID(); //GET FROM DB
+                    if(branchNB==3)  strID = info3.getID(); //GET FROM DB
+
                     Integer id1 = id.get(0)-1;
                     Integer idToSendToDB = Integer.parseInt(strID.get(id1));
                     System.out.println("The id is: " + idToSendToDB);
                     Integer updatedAmount = Integer.parseInt(strAmount.get(id.get(0)-1))+qtyAddRem;
-                    UpdateRequest(idToSendToDB,updatedAmount);
+                    String branchname ="";
+                    if(branchNB==1) branchname="products";
+                    if(branchNB==2) branchname="products2";
+                    if(branchNB==3) branchname="products3";
+
+                    UpdateRequest(idToSendToDB,updatedAmount, branchname);
 
                     JPanel success = new JPanel();
                     success.setVisible(true);
@@ -233,10 +270,10 @@ public class UpdateStock {
         }
     }
 
-    public static void UpdateRequest(Integer idNUM, Integer CS) {
+    public static void UpdateRequest(Integer idNUM, Integer CS, String branchName) {
         try {
             // This is the SQL query included in the body of the POST request = instructions
-            String message = "UPDATE products SET currentstock = "+CS+" where id = "+idNUM+";";
+            String message = "UPDATE "+branchName+" SET currentstock = "+CS+" where id = "+idNUM+";";
            // "INSERT INTO products (brand,amount,\"sprice \",pprice,\"fullstock \",\"limitation \",\"description \",\"category \",currentstock) values( '"+N+"','"+A+"',"+SP+","+PP+","+FS+",'"+LIM+"','"+DES+"','"+CAT+"',"+CS+");";
             byte[] body = message.getBytes(StandardCharsets.UTF_8);
 

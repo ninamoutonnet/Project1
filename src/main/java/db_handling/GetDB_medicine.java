@@ -78,8 +78,8 @@ public class GetDB_medicine {
             Limit.add(product.get(5));
             Description.add(product.get(6));
             Category.add(product.get(7));
-            ID.add(product.get(8));
-            CurrentStock.add(product.get(9));
+            CurrentStock.add(product.get(8));
+            ID.add(product.get(9));
 
             //System.out.println(product);
         }
