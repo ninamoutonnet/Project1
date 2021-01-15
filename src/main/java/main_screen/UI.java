@@ -34,7 +34,9 @@ public class UI extends JPanel{
         GetDB_clients clientDB = new GetDB_clients();
 
         //fill in the top of the grid layout with empty jpanels, will fit the logo in there
-        logoPanel=new LogoPanel();
+        String path = "logophab.png";
+        logoPanel=new LogoPanel(path);
+        logoPanel.setOpaque(false);
         mainPanel.add(logoPanel);
         JPanel border2 = new JPanel();
         border2.setOpaque(false);
@@ -122,6 +124,12 @@ public class UI extends JPanel{
         JPanel border8 = new JPanel();
         border8.setOpaque(false);
         mainPanel.add(border8);
+
+        //from https://www.flaticon.com/packs/medicaments-14?word=pharmacy
+        String path2 = "nobackground_image.png";
+        logoPanel=new LogoPanel(path2);
+        logoPanel.setOpaque(false);
+        mainPanel.add(logoPanel);
     }
 
     public JPanel getMainPanel(){

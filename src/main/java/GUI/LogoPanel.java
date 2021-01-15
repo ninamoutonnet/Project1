@@ -11,9 +11,9 @@ public class LogoPanel extends JPanel {
     /*Reference 1 - taken from https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel*/
     private BufferedImage image;
 
-    public LogoPanel() {
+    public LogoPanel(String path) {
         try {
-            image = ImageIO.read(new File("PhabPharmacyLogo.png")); //path to logo
+            image = ImageIO.read(new File(path)); //path to logo
         } catch (IOException ex) {
             ex.printStackTrace();
         }
